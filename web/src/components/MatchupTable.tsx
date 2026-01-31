@@ -12,9 +12,11 @@ const MatchupTable: React.FC<MatchupTableProps> = ({ stats, topN = 10 }) => {
   const topArchetypes = useMemo(() => {
     return Object.values(stats)
       .sort((a, b) => {
-        const aTotal = a.wins + a.losses + a.draws;
-        const bTotal = b.wins + b.losses + b.draws;
-        return bTotal - aTotal; // Sort by total games
+        // Sort by win rate first (descending), then by wins (descending)
+        if (b.winRate !== a.winRate) {
+          return b.winRate - a.winRate;
+        }
+        return b.wins - a.wins;
       })
       .slice(0, topN);
   }, [stats, topN]);

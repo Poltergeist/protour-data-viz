@@ -11,7 +11,13 @@ const WinRateChart: React.FC<WinRateChartProps> = ({ stats, minGames = 5 }) => {
   const chartData = useMemo(() => {
     return Object.values(stats)
       .filter(s => (s.wins + s.losses + s.draws) >= minGames)
-      .sort((a, b) => b.winRate - a.winRate)
+      .sort((a, b) => {
+        // Sort by win rate first (descending), then by wins (descending)
+        if (b.winRate !== a.winRate) {
+          return b.winRate - a.winRate;
+        }
+        return b.wins - a.wins;
+      })
       .slice(0, 20) // Top 20 archetypes
       .map(s => ({
         archetype: s.archetype,
