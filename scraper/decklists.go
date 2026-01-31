@@ -14,8 +14,16 @@ const (
 
 // DeckInfo represents a player's deck information
 type DeckInfo struct {
-	PlayerName string `json:"playerName"`
-	Archetype  string `json:"archetype"`
+	PlayerName string     `json:"playerName"`
+	Archetype  string     `json:"archetype"`
+	MainDeck   []CardInfo `json:"mainDeck"`
+	Sideboard  []CardInfo `json:"sideboard"`
+}
+
+// CardInfo represents a card with quantity
+type CardInfo struct {
+	Quantity int    `json:"quantity"`
+	Name     string `json:"name"`
 }
 
 // fetchDecklists fetches all decklists from magic.gg pages
@@ -60,25 +68,75 @@ func scrapeDecklistPage(url string) ([]DeckInfo, error) {
 	return parseDecklists(string(body)), nil
 }
 
-// parseDecklists extracts player names and archetypes from HTML
+// parseDecklists extracts player names, archetypes, and full deck lists from HTML
 func parseDecklists(html string) []DeckInfo {
 	var decks []DeckInfo
 
-	// Pattern: <deck-list deck-title="Player Name" subtitle="Archetype"
-	re := regexp.MustCompile(`<deck-list[^>]*deck-title="([^"]*)"[^>]*subtitle="([^"]*)"`)
-	matches := re.FindAllStringSubmatch(html, -1)
+	// Pattern: <deck-list deck-title="Player Name" subtitle="Archetype"...>...</deck-list>
+	deckPattern := regexp.MustCompile(`(?s)<deck-list[^>]*deck-title="([^"]*)"[^>]*subtitle="([^"]*)"[^>]*>(.*?)</deck-list>`)
+	deckMatches := deckPattern.FindAllStringSubmatch(html, -1)
 
-	for _, match := range matches {
-		if len(match) >= 3 {
+	for _, match := range deckMatches {
+		if len(match) >= 4 {
 			playerName := strings.TrimSpace(match[1])
 			archetype := strings.TrimSpace(match[2])
+			deckContent := match[3]
+			
+			// Extract main deck
+			mainDeck := extractCards(deckContent, "main-deck")
+			
+			// Extract sideboard
+			sideboard := extractCards(deckContent, "side-board")
 			
 			decks = append(decks, DeckInfo{
 				PlayerName: playerName,
 				Archetype:  archetype,
+				MainDeck:   mainDeck,
+				Sideboard:  sideboard,
 			})
 		}
 	}
 
 	return decks
+}
+
+// extractCards extracts cards from a deck section (main-deck or side-board)
+func extractCards(deckContent, section string) []CardInfo {
+	var cards []CardInfo
+	
+	// Pattern: <main-deck> or <side-board>
+	sectionPattern := regexp.MustCompile(fmt.Sprintf(`(?s)<%s>(.*?)</%s>`, section, section))
+	sectionMatch := sectionPattern.FindStringSubmatch(deckContent)
+	
+	if len(sectionMatch) < 2 {
+		return cards
+	}
+	
+	sectionContent := sectionMatch[1]
+	
+	// Split by newlines and parse each card line
+	lines := strings.Split(sectionContent, "\n")
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if line == "" {
+			continue
+		}
+		
+		// Pattern: "4 Card Name" or "1 Card Name"
+		cardPattern := regexp.MustCompile(`^(\d+)\s+(.+)$`)
+		cardMatch := cardPattern.FindStringSubmatch(line)
+		
+		if len(cardMatch) >= 3 {
+			quantity := 0
+			fmt.Sscanf(cardMatch[1], "%d", &quantity)
+			cardName := strings.TrimSpace(cardMatch[2])
+			
+			cards = append(cards, CardInfo{
+				Quantity: quantity,
+				Name:     cardName,
+			})
+		}
+	}
+	
+	return cards
 }
