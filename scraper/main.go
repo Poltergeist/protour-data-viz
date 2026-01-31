@@ -2,60 +2,72 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 	"os"
 	"path/filepath"
-
-	"github.com/gocolly/colly/v2"
+	"time"
 )
 
 const (
 	tournamentURL = "https://melee.gg/Tournament/View/394299"
+	tournamentID  = "394299"
 	outputDir     = "../data"
 )
 
 func main() {
+	// Parse command-line flags
+	roundsFlag := flag.String("rounds", "4-8", "Rounds to scrape (e.g., '4-8', '4,5,6', '4-8,12-16')")
+	flag.Parse()
+
 	log.Println("Starting ProTour data scraper...")
+	log.Printf("Tournament: %s", tournamentURL)
+
+	// Parse rounds configuration
+	rounds, err := parseRounds(*roundsFlag)
+	if err != nil {
+		log.Fatalf("Invalid rounds configuration: %v", err)
+	}
+	log.Printf("Scraping rounds: %v", rounds)
 
 	// Create output directory if it doesn't exist
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		log.Fatalf("Failed to create output directory: %v", err)
 	}
 
-	// Initialize collector
-	c := colly.NewCollector(
-		colly.AllowedDomains("melee.gg"),
-	)
+	// Fetch match data for each round
+	allMatches := make(map[int][]Match)
+	for _, roundNum := range rounds {
+		log.Printf("Fetching Round %d...", roundNum)
 
-	// Set realistic browser headers
-	c.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
-	c.OnRequest(func(r *colly.Request) {
-		r.Headers.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8")
-		r.Headers.Set("Accept-Language", "en-US,en;q=0.9")
-	})
+		matches, err := fetchRoundMatches(roundNum)
+		if err != nil {
+			log.Printf("Warning: Failed to fetch Round %d: %v", roundNum, err)
+			continue
+		}
 
-	// TODO: Implement scraping logic
-	c.OnHTML("body", func(e *colly.HTMLElement) {
-		log.Println("Successfully connected to melee.gg")
-		// Scraping logic will be implemented here
-	})
+		log.Printf("  Found %d matches in Round %d", matches.RecordsTotal, roundNum)
+		allMatches[roundNum] = matches.Data
 
-	c.OnError(func(r *colly.Response, err error) {
-		log.Printf("Request failed: %v", err)
-	})
-
-	// Visit the tournament page
-	if err := c.Visit(tournamentURL); err != nil {
-		log.Fatalf("Failed to visit tournament page: %v", err)
+		// Be polite - add delay between requests
+		time.Sleep(1 * time.Second)
 	}
 
-	log.Println("Scraping completed")
+	// Save raw match data
+	if err := saveMatchData(allMatches); err != nil {
+		log.Fatalf("Failed to save match data: %v", err)
+	}
+
+	log.Println("Scraping completed successfully!")
+	log.Printf("Data saved to: %s", outputDir)
 }
 
-// saveJSON writes data to a JSON file in the output directory
-func saveJSON(filename string, data interface{}) error {
+// saveMatchData saves match data to JSON file
+func saveMatchData(matches map[int][]Match) error {
+	filename := fmt.Sprintf("tournament-%s-matches.json", tournamentID)
 	outputPath := filepath.Join(outputDir, filename)
+
 	file, err := os.Create(outputPath)
 	if err != nil {
 		return fmt.Errorf("failed to create file: %w", err)
@@ -64,10 +76,11 @@ func saveJSON(filename string, data interface{}) error {
 
 	encoder := json.NewEncoder(file)
 	encoder.SetIndent("", "  ")
-	if err := encoder.Encode(data); err != nil {
+	if err := encoder.Encode(matches); err != nil {
 		return fmt.Errorf("failed to encode JSON: %w", err)
 	}
 
-	log.Printf("Saved data to %s", outputPath)
+	log.Printf("Saved match data to %s", outputPath)
 	return nil
 }
+
