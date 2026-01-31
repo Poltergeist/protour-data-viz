@@ -1,196 +1,159 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"io"
-	"net/http"
-	"regexp"
-	"strings"
+"fmt"
+"io"
+"net/http"
+"regexp"
+"strings"
+"time"
 )
 
-// MeleeDeckInfo represents a player's deck information from melee.gg
-type MeleeDeckInfo struct {
-	PlayerName string     `json:"playerName"`
-	Archetype  string     `json:"archetype"`
-	MainDeck   []CardInfo `json:"mainDeck"`
-	Sideboard  []CardInfo `json:"sideboard"`
-	DecklistID string     `json:"decklistId"`
+// fetchDecklistsFromMelee fetches full decklists with card information from melee.gg
+func fetchDecklistsFromMelee(allMatches map[int][]Match, playerArchetype map[string]string, playerNames map[string]string) ([]DeckInfo, error) {
+// Build a map of player -> decklist ID (deduplicated)
+decklistIDs := make(map[string]string) // normalized name -> decklist ID
+
+for _, matches := range allMatches {
+for _, match := range matches {
+for _, competitor := range match.Competitors {
+if len(competitor.Decklists) > 0 && len(competitor.Team.Players) > 0 {
+decklistID := competitor.Decklists[0].DecklistID
+playerName := competitor.Team.Players[0].DisplayName
+normalizedName := normalizePlayerName(playerName)
+
+if decklistID != "" {
+decklistIDs[normalizedName] = decklistID
+}
+}
+}
+}
 }
 
-// fetchMeleeDecklists fetches full decklists from melee.gg using DecklistIDs
-func fetchMeleeDecklists(allMatches map[int][]Match) ([]MeleeDeckInfo, error) {
-	// Build a map of player -> decklist ID
-	playerDecklistIDs := make(map[string]string)
-	playerNames := make(map[string]string) // normalized -> display name
-	
-	for _, matches := range allMatches {
-		for _, match := range matches {
-			for _, competitor := range match.Competitors {
-				if len(competitor.Decklists) > 0 && len(competitor.Team.Players) > 0 {
-					decklistID := competitor.Decklists[0].DecklistID
-					playerName := competitor.Team.Players[0].DisplayName
-					normalizedName := normalizePlayerName(playerName)
-					
-					if decklistID != "" {
-						playerDecklistIDs[normalizedName] = decklistID
-						playerNames[normalizedName] = playerName
-					}
-				}
-			}
-		}
-	}
-	
-	// Fetch each unique decklist
-	var decklists []MeleeDeckInfo
-	seenDecklists := make(map[string]bool)
-	
-	for normalizedName, decklistID := range playerDecklistIDs {
-		if seenDecklists[decklistID] {
-			continue
-		}
-		seenDecklists[decklistID] = true
-		
-		deck, err := fetchSingleMeleeDecklist(decklistID, playerNames[normalizedName])
-		if err != nil {
-			fmt.Printf("Warning: Failed to fetch decklist for %s (%s): %v\n", playerNames[normalizedName], decklistID, err)
-			continue
-		}
-		
-		decklists = append(decklists, deck)
-	}
-	
-	return decklists, nil
+// Fetch each unique decklist
+var decklists []DeckInfo
+count := 0
+total := len(decklistIDs)
+
+for normalizedName, decklistID := range decklistIDs {
+count++
+if count%10 == 0 {
+fmt.Printf("    Fetching decklist %d/%d...\n", count, total)
+}
+
+deck, err := fetchSingleMeleeDecklist(decklistID, playerNames[normalizedName], playerArchetype[normalizedName])
+if err != nil {
+fmt.Printf("    Warning: Failed to fetch decklist for %s: %v\n", playerNames[normalizedName], err)
+// Create placeholder
+deck = DeckInfo{
+PlayerName: playerNames[normalizedName],
+Archetype:  playerArchetype[normalizedName],
+MainDeck:   []CardInfo{},
+Sideboard:  []CardInfo{},
+}
+}
+
+decklists = append(decklists, deck)
+
+// Be polite - add delay between requests
+time.Sleep(300 * time.Millisecond)
+}
+
+return decklists, nil
 }
 
 // fetchSingleMeleeDecklist fetches a single decklist from melee.gg
-func fetchSingleMeleeDecklist(decklistID, playerName string) (MeleeDeckInfo, error) {
-	url := fmt.Sprintf("https://melee.gg/Decklist/View/%s", decklistID)
-	
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return MeleeDeckInfo{}, fmt.Errorf("failed to create request: %w", err)
-	}
-	
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36")
-	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
-	
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return MeleeDeckInfo{}, fmt.Errorf("failed to send request: %w", err)
-	}
-	defer resp.Body.Close()
-	
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return MeleeDeckInfo{}, fmt.Errorf("failed to read response: %w", err)
-	}
-	
-	html := string(body)
-	
-	// Parse the HTML to extract decklist information
-	deck := MeleeDeckInfo{
-		PlayerName: playerName,
-		DecklistID: decklistID,
-	}
-	
-	// Extract archetype from title or meta tags
-	deck.Archetype = extractArchetype(html)
-	
-	// Try to extract from JSON embedded in the page
-	mainDeck, sideboard := extractCardsFromMeleeHTML(html)
-	deck.MainDeck = mainDeck
-	deck.Sideboard = sideboard
-	
-	return deck, nil
+func fetchSingleMeleeDecklist(decklistID, playerName, archetype string) (DeckInfo, error) {
+url := fmt.Sprintf("https://melee.gg/Decklist/View/%s", decklistID)
+
+req, err := http.NewRequest("GET", url, nil)
+if err != nil {
+return DeckInfo{}, fmt.Errorf("failed to create request: %w", err)
 }
 
-// extractArchetype extracts the archetype name from HTML
-func extractArchetype(html string) string {
-	// Try meta description first
-	metaPattern := regexp.MustCompile(`<meta[^>]*content="([^"]*?)\s*-\s*[^"]*?"[^>]*name="description"`)
-	if matches := metaPattern.FindStringSubmatch(html); len(matches) >= 2 {
-		return strings.TrimSpace(matches[1])
-	}
-	
-	// Try og:title
-	ogPattern := regexp.MustCompile(`<meta[^>]*property="og:title"[^>]*content="([^"]*?)"`)
-	if matches := ogPattern.FindStringSubmatch(html); len(matches) >= 2 {
-		return strings.TrimSpace(matches[1])
-	}
-	
-	return "Unknown"
+req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36")
+req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+
+client := &http.Client{}
+resp, err := client.Do(req)
+if err != nil {
+return DeckInfo{}, fmt.Errorf("failed to send request: %w", err)
+}
+defer resp.Body.Close()
+
+body, err := io.ReadAll(resp.Body)
+if err != nil {
+return DeckInfo{}, fmt.Errorf("failed to read response: %w", err)
 }
 
-// extractCardsFromMeleeHTML extracts cards from melee.gg HTML
-func extractCardsFromMeleeHTML(html string) ([]CardInfo, []CardInfo) {
-	var mainDeck []CardInfo
-	var sideboard []CardInfo
-	
-	// Try to find JSON data in script tags
-	jsonPattern := regexp.MustCompile(`(?s)var\s+decklistData\s*=\s*({.*?});`)
-	if matches := jsonPattern.FindStringSubmatch(html); len(matches) >= 2 {
-		var data map[string]interface{}
-		if err := json.Unmarshal([]byte(matches[1]), &data); err == nil {
-			// Parse the JSON structure (format may vary)
-			// This is a placeholder - actual implementation depends on melee.gg's format
-		}
-	}
-	
-	// Fallback: Parse visible card list from HTML
-	mainDeck = parseCardListFromHTML(html, "main-deck", "sideboard")
-	sideboard = parseCardListFromHTML(html, "sideboard", "")
-	
-	return mainDeck, sideboard
+html := string(body)
+
+// Parse the HTML to extract cards
+mainDeck, sideboard := parseCardsFromMeleeHTML(html)
+
+return DeckInfo{
+PlayerName: playerName,
+Archetype:  archetype,
+MainDeck:   mainDeck,
+Sideboard:  sideboard,
+}, nil
 }
 
-// parseCardListFromHTML parses card list from HTML sections
-func parseCardListFromHTML(html, startMarker, endMarker string) []CardInfo {
-	var cards []CardInfo
-	
-	// Find the section between markers
-	var section string
-	if endMarker != "" {
-		pattern := regexp.MustCompile(fmt.Sprintf(`(?si)%s(.*?)%s`, regexp.QuoteMeta(startMarker), regexp.QuoteMeta(endMarker)))
-		if matches := pattern.FindStringSubmatch(html); len(matches) >= 2 {
-			section = matches[1]
-		}
-	} else {
-		pattern := regexp.MustCompile(fmt.Sprintf(`(?si)%s(.*?)(?:</div>|</section>)`, regexp.QuoteMeta(startMarker)))
-		if matches := pattern.FindStringSubmatch(html); len(matches) >= 2 {
-			section = matches[1]
-		}
-	}
-	
-	if section == "" {
-		return cards
-	}
-	
-	// Pattern: <span class="quantity">4</span> Card Name
-	// or similar variations
-	cardPattern := regexp.MustCompile(`(?i)<span[^>]*class="[^"]*quantity[^"]*"[^>]*>(\d+)</span>\s*([^<]+)`)
-	cardMatches := cardPattern.FindAllStringSubmatch(section, -1)
-	
-	for _, match := range cardMatches {
-		if len(match) >= 3 {
-			quantity := 0
-			fmt.Sscanf(match[1], "%d", &quantity)
-			cardName := strings.TrimSpace(match[2])
-			
-			// Clean up HTML entities and extra whitespace
-			cardName = strings.ReplaceAll(cardName, "&nbsp;", " ")
-			cardName = regexp.MustCompile(`\s+`).ReplaceAllString(cardName, " ")
-			cardName = strings.TrimSpace(cardName)
-			
-			if cardName != "" && quantity > 0 {
-				cards = append(cards, CardInfo{
-					Quantity: quantity,
-					Name:     cardName,
-				})
-			}
-		}
-	}
-	
-	return cards
+// parseCardsFromMeleeHTML extracts cards from melee.gg HTML
+func parseCardsFromMeleeHTML(html string) ([]CardInfo, []CardInfo) {
+var mainDeck []CardInfo
+var sideboard []CardInfo
+
+// Pattern to find decklist records:
+// <span class="decklist-record-quantity">4</span>
+// <a class="decklist-record-name" ...>Lightning Helix</a>
+recordPattern := regexp.MustCompile(`(?s)<span class="decklist-record-quantity">(\d+)</span>\s*<a class="decklist-record-name"[^>]*>([^<]+)</a>`)
+
+// Find the main decklist container (before sideboard section)
+// Split at sideboard section
+parts := strings.Split(html, `<div class="decklist-category-title">Sideboard`)
+
+if len(parts) > 0 {
+// Parse main deck from first part
+mainDeckHTML := parts[0]
+matches := recordPattern.FindAllStringSubmatch(mainDeckHTML, -1)
+for _, match := range matches {
+if len(match) >= 3 {
+quantity := 0
+fmt.Sscanf(match[1], "%d", &quantity)
+cardName := strings.TrimSpace(match[2])
+// Decode HTML entities
+cardName = strings.ReplaceAll(cardName, "&#39;", "'")
+cardName = strings.ReplaceAll(cardName, "&amp;", "&")
+
+mainDeck = append(mainDeck, CardInfo{
+Quantity: quantity,
+Name:     cardName,
+})
+}
+}
+}
+
+if len(parts) > 1 {
+// Parse sideboard from second part
+sideboardHTML := parts[1]
+matches := recordPattern.FindAllStringSubmatch(sideboardHTML, -1)
+for _, match := range matches {
+if len(match) >= 3 {
+quantity := 0
+fmt.Sscanf(match[1], "%d", &quantity)
+cardName := strings.TrimSpace(match[2])
+// Decode HTML entities
+cardName = strings.ReplaceAll(cardName, "&#39;", "'")
+cardName = strings.ReplaceAll(cardName, "&amp;", "&")
+
+sideboard = append(sideboard, CardInfo{
+Quantity: quantity,
+Name:     cardName,
+})
+}
+}
+}
+
+return mainDeck, sideboard
 }
