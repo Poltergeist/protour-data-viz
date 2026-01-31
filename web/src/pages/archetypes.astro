@@ -214,6 +214,50 @@ const defaultArchetype = archetypes[0];
 
   .breakdown-section :global(.card-name) {
     font-weight: 500;
+    position: relative;
+  }
+
+  .breakdown-section :global(.card-name-with-preview) {
+    position: relative;
+    display: inline-block;
+  }
+
+  .breakdown-section :global(.card-name-text) {
+    cursor: default;
+  }
+
+  .breakdown-section :global(.card-name-text.hoverable) {
+    cursor: help;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--text-muted);
+  }
+
+  .breakdown-section :global(.card-preview) {
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    transform: translateX(20px);
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  .breakdown-section :global(.card-preview img) {
+    width: 250px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--grey-border);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px) translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(20px) translateY(0);
+    }
   }
 
   .breakdown-section :global(.breakdown-empty) {

@@ -204,6 +204,34 @@ const playerResults = calculatePlayerResults(matchData);
     gap: 2rem;
   }
 
+  .decklist-section :global(.deck-actions) {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+
+  .decklist-section :global(.arena-export-btn) {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: inherit;
+  }
+
+  .decklist-section :global(.arena-export-btn:hover) {
+    background: var(--primary-hover);
+  }
+
+  .decklist-section :global(.arena-export-btn:active) {
+    transform: scale(0.98);
+  }
+
   @media (max-width: 768px) {
     .decklist-section :global(.deck-content) {
       grid-template-columns: 1fr;

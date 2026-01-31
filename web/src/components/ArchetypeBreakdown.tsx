@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import type { DeckInfo } from '../types/tournament';
+import CardImage from './CardImage';
 
 interface CardBreakdown {
   name: string;
@@ -121,7 +122,9 @@ const ArchetypeBreakdown: React.FC<ArchetypeBreakdownProps> = ({ archetypeName, 
           <tbody>
             {mainboardBreakdown.map((card) => (
               <tr key={card.name} className={card.percentPlaying >= 90 ? 'staple' : ''}>
-                <td className="card-name">{card.name}</td>
+                <td className="card-name">
+                  <CardImage cardName={card.name} />
+                </td>
                 <td className="number">{card.decksPlaying}/{archetypeDecks.length}</td>
                 <td className="number">{card.percentPlaying.toFixed(0)}%</td>
                 <td className="number">{card.avgCopies.toFixed(1)}</td>
@@ -147,7 +150,9 @@ const ArchetypeBreakdown: React.FC<ArchetypeBreakdownProps> = ({ archetypeName, 
           <tbody>
             {sideboardBreakdown.map((card) => (
               <tr key={card.name} className={card.percentPlaying >= 90 ? 'staple' : ''}>
-                <td className="card-name">{card.name}</td>
+                <td className="card-name">
+                  <CardImage cardName={card.name} />
+                </td>
                 <td className="number">{card.decksPlaying}/{archetypeDecks.length}</td>
                 <td className="number">{card.percentPlaying.toFixed(0)}%</td>
                 <td className="number">{card.avgCopies.toFixed(1)}</td>

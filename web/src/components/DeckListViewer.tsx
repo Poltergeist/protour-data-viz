@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import type { DeckInfo, StatsData } from '../types/tournament';
 import type { PlayerResult } from '../utils/calculatePlayerResults';
+import { formatDeckForArena, copyToClipboard } from '../utils/arenaExport';
 
 interface DeckListViewerProps {
   decklists: DeckInfo[];
@@ -13,6 +14,7 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists, playerResult
   const [selectedArchetype, setSelectedArchetype] = useState<string>('all');
   const [expandedDeck, setExpandedDeck] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'name' | 'record' | 'archetype'>('name');
+  const [copiedDeck, setCopiedDeck] = useState<string | null>(null);
 
   const archetypes = useMemo(() => {
     const archs = new Set(decklists.map(d => d.archetype));
@@ -59,6 +61,16 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists, playerResult
 
   const toggleDeck = (playerName: string) => {
     setExpandedDeck(expandedDeck === playerName ? null : playerName);
+  };
+
+  const handleCopyArena = async (deck: DeckInfo) => {
+    const arenaFormat = formatDeckForArena(deck);
+    const success = await copyToClipboard(arenaFormat);
+    
+    if (success) {
+      setCopiedDeck(deck.playerName);
+      setTimeout(() => setCopiedDeck(null), 2000);
+    }
   };
 
   const groupCards = (cards: { quantity: number; name: string }[]) => {
@@ -147,6 +159,18 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists, playerResult
 
             {expandedDeck === deck.playerName && (
               <div className="deck-content">
+                <div className="deck-actions">
+                  <button 
+                    className="arena-export-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCopyArena(deck);
+                    }}
+                  >
+                    {copiedDeck === deck.playerName ? '✓ Copied!' : '📋 Copy for Arena'}
+                  </button>
+                </div>
+                
                 <div className="deck-section">
                   <h5>Main Deck ({deck.mainDeck.reduce((sum, c) => sum + c.quantity, 0)})</h5>
                   <ul className="card-list">
