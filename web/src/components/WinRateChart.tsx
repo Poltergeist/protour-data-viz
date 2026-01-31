@@ -51,6 +51,11 @@ const WinRateChart: React.FC<WinRateChartProps> = ({ stats, minGames = 5 }) => {
               borderRadius: '4px',
               color: '#ffffff'
             }}
+            labelStyle={{
+              color: '#ffffff',
+              fontWeight: 600,
+              marginBottom: '8px'
+            }}
             formatter={(value: number, name: string, props: any) => {
               if (name === 'winRate') {
                 return [
