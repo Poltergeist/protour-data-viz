@@ -35,21 +35,43 @@ Scrapes tournament data including:
 ## Development
 
 ```bash
-# Run the scraper
-go run main.go
+cd scraper
+
+# Run with default rounds (4-8)
+go run .
+
+# Specify custom rounds
+go run . --rounds 4-8,12-16
 
 # Build executable
 go build -o scraper
 
-# Run tests
-go test ./...
+# Run built executable
+./scraper --rounds 4-8
 ```
 
 ## Output
 
 Scraped data is saved to `../data/` in JSON format:
-- `tournament-394299.json` - Main tournament data
-- Additional files as needed for matches, decks, players
+- `tournament-394299-matches.json` - Raw match results by round
+- `tournament-394299-decklists.json` - Player names and deck archetypes  
+- `tournament-394299-stats.json` - Aggregated statistics (win rates, head-to-head matchups)
+
+## Example Output
+
+```
+=== Tournament Statistics Summary ===
+
+Top Archetypes (10+ matches):
+  Azorius Tempo: 8-2 (80.0% win rate)
+  Grixis Elementals: 21-6 (77.8% win rate)
+  Izzet Spellementals: 44-17 (72.1% win rate)
+  Izzet Prowess: 15-9 (62.5% win rate)
+  Izzet Lessons: 31-22 (58.5% win rate)
+
+Total archetypes: 40
+=====================================
+```
 
 ## Project Structure
 

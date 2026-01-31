@@ -87,10 +87,52 @@ func main() {
 		if err := saveStatsData(stats); err != nil {
 			log.Fatalf("Failed to save statistics: %v", err)
 		}
+		
+		// Print summary
+		printStatsSummary(stats)
 	}
 
 	log.Println("Scraping completed successfully!")
 	log.Printf("Data saved to: %s", outputDir)
+}
+
+// printStatsSummary prints a summary of the statistics
+func printStatsSummary(stats *TournamentStats) {
+	log.Println("\n=== Tournament Statistics Summary ===")
+	
+	// Find top archetypes by win rate (min 10 matches)
+	type archetypeWithWins struct {
+		name    string
+		stats   *ArchetypeStats
+		matches int
+	}
+	
+	var archetypes []archetypeWithWins
+	for name, archStats := range stats.Archetypes {
+		matches := archStats.Wins + archStats.Losses
+		archetypes = append(archetypes, archetypeWithWins{
+			name:    name,
+			stats:   archStats,
+			matches: matches,
+		})
+	}
+	
+	// Sort by win rate (for those with 10+ matches)
+	log.Println("\nTop Archetypes (10+ matches):")
+	count := 0
+	for _, arch := range archetypes {
+		if arch.matches >= 10 && count < 5 {
+			log.Printf("  %s: %d-%d (%.1f%% win rate)",
+				arch.name,
+				arch.stats.Wins,
+				arch.stats.Losses,
+				arch.stats.WinRate)
+			count++
+		}
+	}
+	
+	log.Printf("\nTotal archetypes: %d", len(stats.Archetypes))
+	log.Println("=====================================\n")
 }
 
 // saveMatchData saves match data to JSON file
