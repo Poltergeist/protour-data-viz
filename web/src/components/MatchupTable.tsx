@@ -10,7 +10,7 @@ const MatchupTable: React.FC<MatchupTableProps> = ({ stats, topN = 10 }) => {
   const [selectedArchetype, setSelectedArchetype] = useState<string | null>(null);
 
   const topArchetypes = useMemo(() => {
-    return Object.values(stats)
+    const sorted = Object.values(stats)
       .sort((a, b) => {
         // Sort by win rate first (descending), then by wins (descending)
         if (b.winRate !== a.winRate) {
@@ -19,7 +19,18 @@ const MatchupTable: React.FC<MatchupTableProps> = ({ stats, topN = 10 }) => {
         return b.wins - a.wins;
       })
       .slice(0, topN);
-  }, [stats, topN]);
+    
+    // If an archetype is selected, move it to the top
+    if (selectedArchetype) {
+      const selectedIndex = sorted.findIndex(arch => arch.archetype === selectedArchetype);
+      if (selectedIndex > 0) {
+        const selected = sorted.splice(selectedIndex, 1)[0];
+        sorted.unshift(selected);
+      }
+    }
+    
+    return sorted;
+  }, [stats, topN, selectedArchetype]);
 
   const getMatchupColor = (percentage: number, totalGames: number) => {
     if (totalGames < 3) return '#393940'; // Not enough data
@@ -35,7 +46,15 @@ const MatchupTable: React.FC<MatchupTableProps> = ({ stats, topN = 10 }) => {
     if (!matchup) return { text: '-', color: '#393940', totalGames: 0 };
     
     const total = matchup.wins + matchup.losses + matchup.draws;
-    const text = total > 0 ? `${Math.round(matchup.percentage)}%` : '-';
+    if (total === 0) {
+      return { text: '-', color: '#393940', totalGames: 0, ...matchup };
+    }
+    
+    const percentage = Math.round(matchup.percentage);
+    const record = matchup.draws > 0 
+      ? `${matchup.wins}-${matchup.losses}-${matchup.draws}`
+      : `${matchup.wins}-${matchup.losses}`;
+    const text = `${percentage}%\n${record}`;
     const color = getMatchupColor(matchup.percentage, total);
     
     return { text, color, totalGames: total, ...matchup };
@@ -85,7 +104,9 @@ const MatchupTable: React.FC<MatchupTableProps> = ({ stats, topN = 10 }) => {
                         : 'No data'
                       }
                     >
-                      {matchup.text}
+                      <div style={{ whiteSpace: 'pre-line', lineHeight: '1.2' }}>
+                        {matchup.text}
+                      </div>
                     </td>
                   );
                 })}
