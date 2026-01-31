@@ -45,10 +45,12 @@ const archetypeCount = Object.keys(statsData.archetypes).length;
       <h3>{totalMatches}</h3>
       <p>Matches</p>
     </div>
-    <div class="stat-card">
-      <h3>{uniqueCardsCount}</h3>
-      <p>Unique Cards</p>
-    </div>
+    {uniqueCardsCount > 0 && (
+      <div class="stat-card">
+        <h3>{uniqueCardsCount}</h3>
+        <p>Unique Cards</p>
+      </div>
+    )}
     {playersWithoutResultsCount > 0 && (
       <div class="stat-card warning">
         <h3>{playersWithoutResultsCount}</h3>
@@ -61,10 +63,10 @@ const archetypeCount = Object.keys(statsData.archetypes).length;
   <section class="description">
     <h3>About This Tournament</h3>
     <p>
-      Pro Tour Lorwyn Eclipsed featured 306 players competing in Standard format.
+      Pro Tour Lorwyn Eclipsed featured 304 players competing in Standard format.
       This site visualizes the meta-game data from Day 1 (Rounds 4-8), including
-      win rates by archetype, head-to-head matchup statistics, and complete decklists
-      for all players.
+      win rates by archetype, head-to-head matchup statistics, and player deck information
+      sourced directly from melee.gg tournament data.
     </p>
   </section>
 

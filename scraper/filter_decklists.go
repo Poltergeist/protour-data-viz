@@ -5,56 +5,49 @@ import (
 "fmt"
 "os"
 "path/filepath"
+"sort"
 )
 
-// filterDecklistsToMatchPlayers filters the magic.gg decklists to only include players
-// that have match data in melee.gg, eliminating the "players without results" issue
-func filterDecklistsToMatchPlayers() error {
-// Read the magic.gg decklists
-decklistPath := filepath.Join(outputDir, fmt.Sprintf("tournament-%s-decklists.json", tournamentID))
-decklistData, err := os.ReadFile(decklistPath)
-if err != nil {
-return fmt.Errorf("failed to read decklists file: %w", err)
-}
-
+// generateDecklistsFromMelee generates a complete decklists.json file from melee.gg data
+// This replaces the magic.gg decklists entirely with melee.gg as the single source of truth
+func generateDecklistsFromMelee(playerArchetype map[string]string, playerNames map[string]string) error {
 var decklists []DeckInfo
-if err := json.Unmarshal(decklistData, &decklists); err != nil {
-return fmt.Errorf("failed to parse decklists: %w", err)
+
+// Create a decklist entry for each player
+for normalizedName, archetype := range playerArchetype {
+displayName := playerNames[normalizedName]
+if displayName == "" {
+displayName = normalizedName // Fallback
 }
 
-// Read the melee.gg player-deck mapping
-playerDecksPath := filepath.Join(outputDir, fmt.Sprintf("tournament-%s-player-decks.json", tournamentID))
-playerDecksData, err := os.ReadFile(playerDecksPath)
-if err != nil {
-return fmt.Errorf("failed to read player-decks file: %w", err)
+decklists = append(decklists, DeckInfo{
+PlayerName: displayName,
+Archetype:  archetype,
+MainDeck:   []CardInfo{}, // No card list available from melee.gg API
+Sideboard:  []CardInfo{}, // No card list available from melee.gg API
+})
 }
 
-var playerDecks map[string]string
-if err := json.Unmarshal(playerDecksData, &playerDecks); err != nil {
-return fmt.Errorf("failed to parse player-decks: %w", err)
-}
+// Sort by player name for consistency
+sort.Slice(decklists, func(i, j int) bool {
+return decklists[i].PlayerName < decklists[j].PlayerName
+})
 
-// Filter decklists to only those in playerDecks
-var filteredDecklists []DeckInfo
-for _, deck := range decklists {
-normalizedName := normalizePlayerName(deck.PlayerName)
-if _, exists := playerDecks[normalizedName]; exists {
-filteredDecklists = append(filteredDecklists, deck)
-}
-}
-
-// Save filtered decklists
+// Save decklists
+decklistPath := filepath.Join(outputDir, fmt.Sprintf("tournament-%s-decklists.json", tournamentID))
 file, err := os.Create(decklistPath)
 if err != nil {
-return fmt.Errorf("failed to create filtered decklists file: %w", err)
+return fmt.Errorf("failed to create decklists file: %w", err)
 }
 defer file.Close()
 
 encoder := json.NewEncoder(file)
 encoder.SetIndent("", "  ")
-if err := encoder.Encode(filteredDecklists); err != nil {
-return fmt.Errorf("failed to encode filtered decklists: %w", err)
+if err := encoder.Encode(decklists); err != nil {
+return fmt.Errorf("failed to encode decklists: %w", err)
 }
+
+fmt.Printf("  Generated %d decklists from melee.gg data\n", len(decklists))
 
 return nil
 }

@@ -62,6 +62,7 @@ func main() {
 	// Extract deck information from melee.gg match data
 	log.Println("Extracting deck information from melee.gg...")
 	playerArchetype := extractPlayerDecksFromMatches(allMatches)
+	playerNames := extractPlayerNamesFromMatches(allMatches)
 	log.Printf("Mapped %d players to decks", len(playerArchetype))
 
 	// Save player deck mapping
@@ -69,12 +70,10 @@ func main() {
 		log.Fatalf("Failed to save player deck mapping: %v", err)
 	}
 
-	// Filter magic.gg decklists to only include players with match results
-	log.Println("Filtering decklists to match melee.gg players...")
-	if err := filterDecklistsToMatchPlayers(); err != nil {
-		log.Printf("Warning: Failed to filter decklists: %v", err)
-	} else {
-		log.Println("Decklists filtered successfully")
+	// Generate decklists from melee.gg data
+	log.Println("Generating decklists from melee.gg data...")
+	if err := generateDecklistsFromMelee(playerArchetype, playerNames); err != nil {
+		log.Fatalf("Failed to generate decklists: %v", err)
 	}
 
 	// Aggregate statistics
@@ -223,6 +222,27 @@ func extractPlayerDecksFromMatches(allMatches map[int][]Match) map[string]string
 	}
 	
 	return playerDecks
+}
+
+// extractPlayerNamesFromMatches extracts actual player display names from matches
+func extractPlayerNamesFromMatches(allMatches map[int][]Match) map[string]string {
+	playerNames := make(map[string]string) // normalized -> display name
+	
+	for _, matches := range allMatches {
+		for _, match := range matches {
+			for _, competitor := range match.Competitors {
+				if len(competitor.Team.Players) > 0 {
+					playerName := competitor.Team.Players[0].DisplayName
+					if playerName != "" {
+						normalizedName := normalizePlayerName(playerName)
+						playerNames[normalizedName] = playerName
+					}
+				}
+			}
+		}
+	}
+	
+	return playerNames
 }
 
 // saveStatsData saves aggregated statistics to JSON file
