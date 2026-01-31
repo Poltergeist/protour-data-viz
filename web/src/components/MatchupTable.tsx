@@ -33,7 +33,8 @@ const MatchupTable: React.FC<MatchupTableProps> = ({ stats, topN = 10 }) => {
   }, [stats, topN, selectedArchetype]);
 
   const getMatchupColor = (percentage: number, totalGames: number) => {
-    if (totalGames < 3) return '#393940'; // Not enough data
+    if (totalGames === 0) return '#393940'; // No data
+    // Color based on win percentage, regardless of sample size
     if (percentage >= 60) return '#1a4d1a'; // Strong favorable
     if (percentage >= 55) return '#2d4a2d'; // Favorable
     if (percentage >= 45) return '#4a4a2d'; // Even
