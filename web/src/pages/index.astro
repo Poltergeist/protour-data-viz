@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Pro Tour Lorwyn Eclipsed - Statistics">
+  <div class="hero">
+    <h2>Pro Tour Lorwyn Eclipsed</h2>
+    <p class="subtitle">Standard Format - Day 1 Statistics (Rounds 4-8)</p>
+  </div>
+
+  <section class="stats-overview">
+    <div class="stat-card">
+      <h3>306</h3>
+      <p>Players</p>
+    </div>
+    <div class="stat-card">
+      <h3>40</h3>
+      <p>Archetypes</p>
+    </div>
+    <div class="stat-card">
+      <h3>735</h3>
+      <p>Matches</p>
+    </div>
+    <div class="stat-card">
+      <h3>341</h3>
+      <p>Unique Cards</p>
+    </div>
+  </section>
+
+  <section class="links">
+    <a href="/statistics" class="cta-button">View Win Rates & Matchups</a>
+    <a href="/decklists" class="cta-button secondary">Browse Decklists</a>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--grey-border);
+    margin-bottom: 3rem;
+  }
+
+  .hero h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  .stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--grey-border);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .stat-card h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(0deg, #ffa100 9%, #c92700 50%, #ff6000 0, #de2400 93%);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .cta-button:hover {
+    filter: drop-shadow(0 0 7px #e83411);
+    transform: translateY(-2px);
+  }
+
+  .cta-button.secondary {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--grey-border);
+  }
+
+  .cta-button.secondary:hover {
+    border-color: var(--primary-color);
+  }
+</style>

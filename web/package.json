@@ -1,0 +1,17 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "ProTour Data Visualization Web App",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.1.2",
+    "@astrojs/react": "^4.1.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
