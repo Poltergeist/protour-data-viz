@@ -7,7 +7,8 @@ interface Props {
 const { title, description = "Pro Tour Lorwyn Eclipsed tournament statistics and decklists. View win rates, matchup matrices, and complete deck lists from 306 players across 40 archetypes." } = Astro.props;
 
 const siteUrl = "https://pro-tour-lorwyn-eclipsed.alles-standard.social";
-const ogImage = `${siteUrl}/logo.png`;
+const ogImage = `${siteUrl}/og-image.png`;
+const ogImageAlt = "Pro Tour Lorwyn Eclipsed - Tournament Statistics and Decklists";
 ---
 
 <!doctype html>
@@ -26,6 +27,9 @@ const ogImage = `${siteUrl}/logo.png`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:site_name" content="Alles Standard" />
     
     <!-- Twitter -->
@@ -34,6 +38,7 @@ const ogImage = `${siteUrl}/logo.png`;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
     
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
