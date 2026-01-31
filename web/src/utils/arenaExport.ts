@@ -3,10 +3,13 @@ import type { DeckInfo, CardInfo } from '../types/tournament';
 export function formatDeckForArena(deck: DeckInfo): string {
   const lines: string[] = [];
   
-  // Add deck metadata as comment
-  lines.push(`Deck`);
+  // Add About section with tournament, archetype, and player name
+  lines.push('About');
+  lines.push(`PT - ${deck.archetype} - ${deck.playerName}`);
+  lines.push('');
   
-  // Main deck
+  // Main deck section
+  lines.push('Deck');
   deck.mainDeck.forEach(card => {
     lines.push(`${card.quantity} ${card.name}`);
   });
