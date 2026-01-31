@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import DeckListViewer from '../components/DeckListViewer';
 import decklists from '../../../data/tournament-394299-decklists.json';
+import matchData from '../../../data/tournament-394299-matches.json';
+import statsData from '../../../data/tournament-394299-stats.json';
+import { calculatePlayerResults } from '../utils/calculatePlayerResults';
+
+const playerResults = calculatePlayerResults(matchData);
 ---
 
 <Layout title="Decklists - Pro Tour Lorwyn Eclipsed" description="Browse complete decklists from all 306 players. Search by player name or filter by archetype to view mainboard and sideboard cards.">
@@ -10,7 +15,7 @@ import decklists from '../../../data/tournament-394299-decklists.json';
     <p class="subtitle">{decklists.length} complete decklists from the tournament</p>
     
     <section class="decklist-section">
-      <DeckListViewer client:only="react" decklists={decklists} />
+      <DeckListViewer client:only="react" decklists={decklists} playerResults={playerResults} statsData={statsData} />
     </section>
   </div>
 </Layout>
@@ -86,6 +91,23 @@ import decklists from '../../../data/tournament-394299-decklists.json';
     border-color: var(--primary-color);
   }
 
+  .decklist-section :global(.sort-select) {
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--grey-border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    min-width: 200px;
+  }
+
+  .decklist-section :global(.sort-select:focus) {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
   .decklist-section :global(.results-info) {
     font-size: 0.875rem;
     color: var(--text-muted);
@@ -134,6 +156,23 @@ import decklists from '../../../data/tournament-394299-decklists.json';
     font-size: 0.875rem;
     color: var(--primary-color);
     font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .decklist-section :global(.player-stats) {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .decklist-section :global(.record) {
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .decklist-section :global(.archetype-winrate) {
+    color: var(--text-muted);
   }
 
   .decklist-section :global(.deck-counts) {

@@ -1,14 +1,18 @@
 import React, { useState, useMemo } from 'react';
-import type { DeckInfo } from '../types/tournament';
+import type { DeckInfo, StatsData } from '../types/tournament';
+import type { PlayerResult } from '../utils/calculatePlayerResults';
 
 interface DeckListViewerProps {
   decklists: DeckInfo[];
+  playerResults: Map<string, PlayerResult>;
+  statsData: StatsData;
 }
 
-const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists }) => {
+const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists, playerResults, statsData }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedArchetype, setSelectedArchetype] = useState<string>('all');
   const [expandedDeck, setExpandedDeck] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<'name' | 'record' | 'archetype'>('name');
 
   const archetypes = useMemo(() => {
     const archs = new Set(decklists.map(d => d.archetype));
@@ -16,7 +20,7 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists }) => {
   }, [decklists]);
 
   const filteredDecks = useMemo(() => {
-    return decklists.filter(deck => {
+    let filtered = decklists.filter(deck => {
       const matchesSearch = searchTerm === '' || 
         deck.playerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         deck.archetype.toLowerCase().includes(searchTerm.toLowerCase());
@@ -26,7 +30,24 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists }) => {
       
       return matchesSearch && matchesArchetype;
     });
-  }, [decklists, searchTerm, selectedArchetype]);
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      if (sortBy === 'name') {
+        return a.playerName.localeCompare(b.playerName);
+      } else if (sortBy === 'archetype') {
+        return a.archetype.localeCompare(b.archetype) || a.playerName.localeCompare(b.playerName);
+      } else if (sortBy === 'record') {
+        const aResult = playerResults.get(a.playerName);
+        const bResult = playerResults.get(b.playerName);
+        if (!aResult || !bResult) return 0;
+        return bResult.matchWins - aResult.matchWins;
+      }
+      return 0;
+    });
+
+    return filtered;
+  }, [decklists, searchTerm, selectedArchetype, sortBy, playerResults]);
 
   const archetypeCounts = useMemo(() => {
     const counts: { [key: string]: number } = {};
@@ -69,6 +90,16 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists }) => {
             </option>
           ))}
         </select>
+
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as 'name' | 'record' | 'archetype')}
+          className="sort-select"
+        >
+          <option value="name">Sort by Name</option>
+          <option value="record">Sort by Record</option>
+          <option value="archetype">Sort by Archetype</option>
+        </select>
       </div>
 
       <div className="results-info">
@@ -76,7 +107,11 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists }) => {
       </div>
 
       <div className="decklist-grid">
-        {filteredDecks.map(deck => (
+        {filteredDecks.map(deck => {
+          const playerResult = playerResults.get(deck.playerName);
+          const archetypeStats = statsData.archetypes[deck.archetype];
+          
+          return (
           <div key={deck.playerName} className="deck-card">
             <div 
               className="deck-header"
@@ -85,6 +120,21 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists }) => {
               <div className="deck-info">
                 <h4>{deck.playerName}</h4>
                 <p className="archetype-badge">{deck.archetype}</p>
+                {playerResult && (
+                  <div className="player-stats">
+                    <span className="record">
+                      {playerResult.matchWins}-{playerResult.matchLosses}
+                      {playerResult.matchDraws > 0 && `-${playerResult.matchDraws}`}
+                      {' '}({playerResult.wins}-{playerResult.losses}
+                      {playerResult.draws > 0 && `-${playerResult.draws}`})
+                    </span>
+                    {archetypeStats && (
+                      <span className="archetype-winrate">
+                        {deck.archetype}: {archetypeStats.winRate.toFixed(1)}%
+                      </span>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="deck-counts">
                 <span className="count main">{deck.mainDeck.reduce((sum, c) => sum + c.quantity, 0)} Main</span>
@@ -123,7 +173,8 @@ const DeckListViewer: React.FC<DeckListViewerProps> = ({ decklists }) => {
               </div>
             )}
           </div>
-        ))}
+        );
+        })}
       </div>
 
       {filteredDecks.length === 0 && (

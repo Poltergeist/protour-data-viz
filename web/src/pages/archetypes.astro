@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArchetypeBreakdown from '../components/ArchetypeBreakdown';
+import decklists from '../../../data/tournament-394299-decklists.json';
+
+// Get all unique archetypes sorted alphabetically
+const archetypes = Array.from(new Set(decklists.map(d => d.archetype))).sort();
+const defaultArchetype = archetypes[0];
+---
+
+<Layout title="Archetype Breakdown - Pro Tour Lorwyn Eclipsed" description="Detailed card-by-card breakdown for each archetype. See which cards are played, how many copies, and in what percentage of decks.">
+  <div class="breakdown-page">
+    <h2>Archetype Breakdown</h2>
+    <p class="subtitle">Card-by-card analysis for each archetype</p>
+    
+    <div class="archetype-selector">
+      <label for="archetype-select">Select Archetype:</label>
+      <select id="archetype-select" class="archetype-dropdown">
+        {archetypes.map(arch => (
+          <option value={arch}>{arch}</option>
+        ))}
+      </select>
+    </div>
+
+    <section class="breakdown-section">
+      {archetypes.map(archetype => (
+        <div 
+          class="breakdown-container" 
+          data-archetype={archetype}
+          style={archetype === defaultArchetype ? 'display: block;' : 'display: none;'}
+        >
+          <ArchetypeBreakdown 
+            client:only="react" 
+            archetypeName={archetype}
+            decklists={decklists}
+          />
+        </div>
+      ))}
+    </section>
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const select = document.getElementById('archetype-select') as HTMLSelectElement;
+    const containers = document.querySelectorAll('.breakdown-container');
+    
+    select?.addEventListener('change', (e) => {
+      const target = e.target as HTMLSelectElement;
+      const selectedArchetype = target.value;
+      
+      containers.forEach(container => {
+        const containerEl = container as HTMLElement;
+        if (containerEl.dataset.archetype === selectedArchetype) {
+          containerEl.style.display = 'block';
+        } else {
+          containerEl.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .breakdown-page {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .archetype-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .archetype-selector label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .archetype-dropdown {
+    padding: 0.75rem 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--grey-border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    min-width: 300px;
+  }
+
+  .archetype-dropdown:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  .breakdown-section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--grey-border);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+
+  .breakdown-section :global(.archetype-breakdown) {
+    width: 100%;
+  }
+
+  .breakdown-section :global(.breakdown-header) {
+    margin-bottom: 2rem;
+  }
+
+  .breakdown-section :global(.breakdown-header h3) {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .breakdown-section :global(.deck-count) {
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+
+  .breakdown-section :global(.breakdown-section) {
+    margin-bottom: 3rem;
+  }
+
+  .breakdown-section :global(.breakdown-section:last-child) {
+    margin-bottom: 0;
+  }
+
+  .breakdown-section :global(.breakdown-section h4) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .breakdown-section :global(.breakdown-table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  .breakdown-section :global(.breakdown-table thead) {
+    background: var(--bg-tertiary);
+    border-bottom: 2px solid var(--grey-border);
+  }
+
+  .breakdown-section :global(.breakdown-table th) {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .breakdown-section :global(.number-col) {
+    text-align: right;
+    width: 80px;
+  }
+
+  .breakdown-section :global(.card-name-col) {
+    min-width: 250px;
+  }
+
+  .breakdown-section :global(.breakdown-table tbody tr) {
+    border-bottom: 1px solid rgba(57, 57, 64, 0.3);
+    transition: background-color 0.2s;
+  }
+
+  .breakdown-section :global(.breakdown-table tbody tr:hover) {
+    background: rgba(255, 96, 0, 0.05);
+  }
+
+  .breakdown-section :global(.breakdown-table tbody tr.staple) {
+    background: rgba(255, 96, 0, 0.08);
+  }
+
+  .breakdown-section :global(.breakdown-table tbody tr.staple:hover) {
+    background: rgba(255, 96, 0, 0.12);
+  }
+
+  .breakdown-section :global(.breakdown-table td) {
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+  }
+
+  .breakdown-section :global(.number) {
+    text-align: right;
+    font-family: 'Monaco', 'Courier New', monospace;
+    color: var(--text-secondary);
+  }
+
+  .breakdown-section :global(.card-name) {
+    font-weight: 500;
+  }
+
+  .breakdown-section :global(.breakdown-empty) {
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .archetype-selector {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .archetype-dropdown {
+      width: 100%;
+    }
+
+    .breakdown-section :global(.breakdown-table) {
+      font-size: 0.8125rem;
+    }
+
+    .breakdown-section :global(.breakdown-table th),
+    .breakdown-section :global(.breakdown-table td) {
+      padding: 0.5rem 0.75rem;
+    }
+
+    .breakdown-section :global(.number-col) {
+      width: 60px;
+    }
+
+    .breakdown-section :global(.card-name-col) {
+      min-width: 150px;
+    }
+  }
+</style>
