@@ -1,5 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import decklists from '../../../data/tournament-394299-decklists.json';
+import matchData from '../../../data/tournament-394299-matches.json';
+import { calculatePlayerResults } from '../utils/calculatePlayerResults';
+
+const playerResults = calculatePlayerResults(matchData);
+
+// Calculate players without results
+const playersWithoutResults = decklists.filter(deck => !playerResults.has(deck.playerName));
+const playersWithoutResultsCount = playersWithoutResults.length;
 ---
 
 <Layout title="Pro Tour Lorwyn Eclipsed - Tournament Data" description="Complete tournament statistics from Pro Tour Lorwyn Eclipsed: 306 players, 40 archetypes, 735 matches. View win rates, matchups, and decklists.">
@@ -25,6 +34,13 @@ import Layout from '../layouts/Layout.astro';
       <h3>341</h3>
       <p>Unique Cards</p>
     </div>
+    {playersWithoutResultsCount > 0 && (
+      <div class="stat-card warning">
+        <h3>{playersWithoutResultsCount}</h3>
+        <p>Players Without Results</p>
+        <span class="tooltip">Name mismatch between decklist and match data</span>
+      </div>
+    )}
   </section>
 
   <section class="description">
@@ -36,6 +52,28 @@ import Layout from '../layouts/Layout.astro';
       for all players.
     </p>
   </section>
+
+  {playersWithoutResultsCount > 0 && (
+    <section class="warning-section">
+      <h3>⚠️ Data Quality Notice</h3>
+      <p>
+        {playersWithoutResultsCount} player{playersWithoutResultsCount > 1 ? 's' : ''} from the decklist data 
+        could not be matched with match results. This is likely due to name differences between 
+        the magic.gg decklist page and melee.gg match data.
+      </p>
+      <details>
+        <summary>Show affected players ({playersWithoutResultsCount})</summary>
+        <ul class="player-list">
+          {playersWithoutResults.map(player => (
+            <li>
+              <strong>{player.playerName}</strong>
+              <span class="archetype">({player.archetype})</span>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </section>
+  )}
 
   <section class="links">
     <a href="/statistics" class="cta-button">View Win Rates & Matchups</a>
@@ -93,6 +131,26 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 600;
   }
 
+  .stat-card.warning {
+    border-color: #ffa500;
+    position: relative;
+  }
+
+  .stat-card.warning h3 {
+    color: #ffa500;
+  }
+
+  .stat-card .tooltip {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    font-style: italic;
+  }
+
   .description {
     max-width: 800px;
     margin: 0 auto 3rem;
@@ -110,6 +168,74 @@ import Layout from '../layouts/Layout.astro';
     font-size: 1rem;
     line-height: 1.7;
     color: var(--text-secondary);
+  }
+
+  .warning-section {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 1.5rem;
+    background: rgba(255, 165, 0, 0.1);
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .warning-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ffa500;
+  }
+
+  .warning-section p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .warning-section details {
+    margin-top: 1rem;
+  }
+
+  .warning-section summary {
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .warning-section summary:hover {
+    background: rgba(255, 96, 0, 0.1);
+  }
+
+  .player-list {
+    list-style: none;
+    padding: 1rem 0 0 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .player-list li {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(255, 165, 0, 0.2);
+  }
+
+  .player-list li:last-child {
+    border-bottom: none;
+  }
+
+  .player-list strong {
+    color: var(--text-primary);
+  }
+
+  .player-list .archetype {
+    margin-left: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
   }
 
   .links {
