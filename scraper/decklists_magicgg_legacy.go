@@ -1,5 +1,9 @@
 package main
 
+// This file contains legacy code for scraping decklists from magic.gg.
+// It's kept for reference but is no longer used by the main scraper.
+// The scraper now extracts deck information directly from melee.gg API responses.
+
 import (
 	"fmt"
 	"io"

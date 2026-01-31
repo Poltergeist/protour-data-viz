@@ -1,11 +1,44 @@
 {
   "archetypes": {
+    "Abzan Roots": {
+      "archetype": "Abzan Roots",
+      "wins": 0,
+      "losses": 4,
+      "draws": 0,
+      "winRate": 0,
+      "matchups": {
+        "Bant Airbending": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Bant Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Dimir Midrange": {
+          "wins": 0,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Simic Rhythm": {
+          "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 0
+        }
+      }
+    },
     "Azorius Control": {
       "archetype": "Azorius Control",
-      "wins": 10,
-      "losses": 7,
+      "wins": 12,
+      "losses": 8,
       "draws": 0,
-      "winRate": 58.82352941176471,
+      "winRate": 60,
       "matchups": {
         "Bant Airbending": {
           "wins": 1,
@@ -14,10 +47,10 @@
           "percentage": 100
         },
         "Bant Rhythm": {
-          "wins": 3,
+          "wins": 4,
           "losses": 1,
           "draws": 0,
-          "percentage": 75
+          "percentage": 80
         },
         "Dimir Control": {
           "wins": 0,
@@ -33,7 +66,7 @@
         },
         "Grixis Elementals": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -56,7 +89,7 @@
           "percentage": 100
         },
         "Simic Rhythm": {
-          "wins": 2,
+          "wins": 3,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -128,11 +161,17 @@
     },
     "Bant Airbending": {
       "archetype": "Bant Airbending",
-      "wins": 21,
-      "losses": 32,
+      "wins": 40,
+      "losses": 54,
       "draws": 0,
-      "winRate": 39.62264150943396,
+      "winRate": 42.5531914893617,
       "matchups": {
+        "Abzan Roots": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Azorius Control": {
           "wins": 0,
           "losses": 1,
@@ -140,16 +179,16 @@
           "percentage": 0
         },
         "Bant Airbending": {
-          "wins": 1,
-          "losses": 1,
+          "wins": 3,
+          "losses": 3,
           "draws": 0,
           "percentage": 50
         },
         "Bant Rhythm": {
-          "wins": 2,
-          "losses": 5,
+          "wins": 4,
+          "losses": 7,
           "draws": 0,
-          "percentage": 28.57142857142857
+          "percentage": 36.36363636363637
         },
         "Boros Dragons": {
           "wins": 0,
@@ -158,16 +197,16 @@
           "percentage": 0
         },
         "Dimir Excruciator": {
-          "wins": 0,
+          "wins": 2,
           "losses": 3,
           "draws": 0,
-          "percentage": 0
+          "percentage": 40
         },
         "Dimir Midrange": {
-          "wins": 0,
-          "losses": 2,
+          "wins": 1,
+          "losses": 3,
           "draws": 0,
-          "percentage": 0
+          "percentage": 25
         },
         "Esper Pixie": {
           "wins": 1,
@@ -181,7 +220,19 @@
           "draws": 0,
           "percentage": 100
         },
+        "Five-Color Rhythm": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
         "Four-Color Allies": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Four-Color Control": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
@@ -193,7 +244,19 @@
           "draws": 0,
           "percentage": 100
         },
+        "Golgari Gravefall": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Golgari Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Grixis Control": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -213,21 +276,21 @@
         },
         "Izzet Blink": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         },
         "Izzet Elementals": {
-          "wins": 2,
+          "wins": 3,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Izzet Lessons": {
-          "wins": 0,
+          "wins": 1,
           "losses": 3,
           "draws": 0,
-          "percentage": 0
+          "percentage": 25
         },
         "Izzet Prowess": {
           "wins": 0,
@@ -242,16 +305,22 @@
           "percentage": 0
         },
         "Jeskai Control": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
+        },
+        "Jeskai Midrange": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Mono-Green Landfall": {
           "wins": 3,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 75
         },
         "Mono-Red Aggro": {
           "wins": 0,
@@ -259,29 +328,68 @@
           "draws": 0,
           "percentage": 0
         },
+        "Rakdos Monument": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Simic Rhythm": {
           "wins": 0,
-          "losses": 3,
+          "losses": 4,
           "draws": 0,
           "percentage": 0
         },
         "Sultai Elementals": {
           "wins": 1,
-          "losses": 0,
-          "draws": 0,
-          "percentage": 100
-        },
-        "Sultai Reanimator": {
-          "wins": 5,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 71.42857142857143
-        },
-        "Sultai Rhythm": {
-          "wins": 1,
           "losses": 1,
           "draws": 0,
           "percentage": 50
+        },
+        "Sultai Reanimator": {
+          "wins": 9,
+          "losses": 7,
+          "draws": 0,
+          "percentage": 56.25
+        },
+        "Sultai Rhythm": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 66.66666666666666
+        },
+        "Temur Harmonizer": {
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "percentage": 0
+        }
+      }
+    },
+    "Bant Omniscience": {
+      "archetype": "Bant Omniscience",
+      "wins": 4,
+      "losses": 4,
+      "draws": 0,
+      "winRate": 50,
+      "matchups": {
+        "Bant Rhythm": {
+          "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 33.33333333333333
+        },
+        "Izzet Blink": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Simic Rhythm": {
+          "wins": 3,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Temur Harmonizer": {
           "wins": 0,
@@ -291,39 +399,24 @@
         }
       }
     },
-    "Bant Omniscience": {
-      "archetype": "Bant Omniscience",
-      "wins": 1,
-      "losses": 2,
+    "Bant Rhythm": {
+      "archetype": "Bant Rhythm",
+      "wins": 89,
+      "losses": 133,
       "draws": 0,
-      "winRate": 33.33333333333333,
+      "winRate": 40.090090090090094,
       "matchups": {
-        "Bant Rhythm": {
-          "wins": 0,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 0
-        },
-        "Simic Rhythm": {
+        "Abzan Roots": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
-        }
-      }
-    },
-    "Bant Rhythm": {
-      "archetype": "Bant Rhythm",
-      "wins": 66,
-      "losses": 98,
-      "draws": 0,
-      "winRate": 40.243902439024396,
-      "matchups": {
+        },
         "Azorius Control": {
           "wins": 1,
-          "losses": 3,
+          "losses": 4,
           "draws": 0,
-          "percentage": 25
+          "percentage": 20
         },
         "Azorius Tempo": {
           "wins": 0,
@@ -332,20 +425,20 @@
           "percentage": 0
         },
         "Bant Airbending": {
-          "wins": 5,
-          "losses": 2,
+          "wins": 7,
+          "losses": 4,
           "draws": 0,
-          "percentage": 71.42857142857143
+          "percentage": 63.63636363636363
         },
         "Bant Omniscience": {
           "wins": 2,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 66.66666666666666
         },
         "Bant Rhythm": {
-          "wins": 14,
-          "losses": 14,
+          "wins": 18,
+          "losses": 18,
           "draws": 0,
           "percentage": 50
         },
@@ -362,22 +455,22 @@
           "percentage": 0
         },
         "Dimir Excruciator": {
-          "wins": 1,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 33.33333333333333
-        },
-        "Dimir Midrange": {
           "wins": 2,
           "losses": 2,
           "draws": 0,
           "percentage": 50
         },
+        "Dimir Midrange": {
+          "wins": 3,
+          "losses": 8,
+          "draws": 0,
+          "percentage": 27.27272727272727
+        },
         "Esper Pixie": {
-          "wins": 1,
+          "wins": 3,
           "losses": 5,
           "draws": 0,
-          "percentage": 16.666666666666664
+          "percentage": 37.5
         },
         "Five-Color Elementals": {
           "wins": 0,
@@ -386,10 +479,16 @@
           "percentage": 0
         },
         "Five-Color Rhythm": {
-          "wins": 1,
+          "wins": 2,
           "losses": 5,
           "draws": 0,
-          "percentage": 16.666666666666664
+          "percentage": 28.57142857142857
+        },
+        "Four-Color Allies": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Four-Color Control": {
           "wins": 1,
@@ -399,7 +498,7 @@
         },
         "Four-Color Reanimator": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -409,9 +508,21 @@
           "draws": 0,
           "percentage": 0
         },
+        "Golgari Rhythm": {
+          "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Grixis Control": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 66.66666666666666
+        },
         "Grixis Elementals": {
           "wins": 0,
-          "losses": 3,
+          "losses": 4,
           "draws": 0,
           "percentage": 0
         },
@@ -435,9 +546,9 @@
         },
         "Izzet Elementals": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         },
         "Izzet Lessons": {
           "wins": 5,
@@ -453,13 +564,13 @@
         },
         "Izzet Spellementals": {
           "wins": 1,
-          "losses": 10,
+          "losses": 12,
           "draws": 0,
-          "percentage": 9.090909090909092
+          "percentage": 7.6923076923076925
         },
         "Jeskai Control": {
           "wins": 0,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
           "percentage": 0
         },
@@ -471,15 +582,21 @@
         },
         "Mono-Green Landfall": {
           "wins": 1,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 50
+          "percentage": 33.33333333333333
         },
         "Mono-Red Aggro": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
+        },
+        "Mono-Red Leyline": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Rakdos Monument": {
           "wins": 0,
@@ -487,11 +604,17 @@
           "draws": 0,
           "percentage": 0
         },
-        "Simic Rhythm": {
-          "wins": 13,
-          "losses": 13,
+        "Selesnya Landfall": {
+          "wins": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 50
+          "percentage": 0
+        },
+        "Simic Rhythm": {
+          "wins": 17,
+          "losses": 16,
+          "draws": 0,
+          "percentage": 51.515151515151516
         },
         "Sultai Elementals": {
           "wins": 0,
@@ -500,10 +623,10 @@
           "percentage": 0
         },
         "Sultai Reanimator": {
-          "wins": 9,
-          "losses": 5,
+          "wins": 12,
+          "losses": 10,
           "draws": 0,
-          "percentage": 64.28571428571429
+          "percentage": 54.54545454545454
         },
         "Sultai Rhythm": {
           "wins": 2,
@@ -513,9 +636,9 @@
         },
         "Temur Harmonizer": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         }
       }
     },
@@ -566,10 +689,10 @@
     },
     "Boros Dragons": {
       "archetype": "Boros Dragons",
-      "wins": 6,
+      "wins": 7,
       "losses": 4,
       "draws": 0,
-      "winRate": 60,
+      "winRate": 63.63636363636363,
       "matchups": {
         "Bant Airbending": {
           "wins": 1,
@@ -619,6 +742,12 @@
           "draws": 0,
           "percentage": 0
         },
+        "Jeskai Midrange": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Mono-Green Landfall": {
           "wins": 1,
           "losses": 0,
@@ -629,10 +758,10 @@
     },
     "Dimir Control": {
       "archetype": "Dimir Control",
-      "wins": 8,
+      "wins": 12,
       "losses": 3,
       "draws": 0,
-      "winRate": 72.72727272727273,
+      "winRate": 80,
       "matchups": {
         "Azorius Control": {
           "wins": 1,
@@ -659,10 +788,10 @@
           "percentage": 0
         },
         "Five-Color Rhythm": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Grixis Elementals": {
           "wins": 1,
@@ -683,7 +812,7 @@
           "percentage": 100
         },
         "Jeskai Control": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -694,8 +823,14 @@
           "draws": 0,
           "percentage": 100
         },
-        "Sultai Reanimator": {
+        "Simic Rhythm": {
           "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Sultai Reanimator": {
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -704,22 +839,22 @@
     },
     "Dimir Excruciator": {
       "archetype": "Dimir Excruciator",
-      "wins": 14,
-      "losses": 7,
+      "wins": 21,
+      "losses": 13,
       "draws": 0,
-      "winRate": 66.66666666666666,
+      "winRate": 61.76470588235294,
       "matchups": {
         "Bant Airbending": {
           "wins": 3,
-          "losses": 0,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 60
         },
         "Bant Rhythm": {
           "wins": 2,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 50
         },
         "Esper Pixie": {
           "wins": 1,
@@ -739,8 +874,20 @@
           "draws": 0,
           "percentage": 100
         },
+        "Grixis Elementals": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Izzet Blink": {
           "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Izzet Elementals": {
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -751,23 +898,41 @@
           "draws": 0,
           "percentage": 0
         },
+        "Izzet Prowess": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Izzet Spellementals": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
           "percentage": 0
         },
-        "Rakdos Monument": {
+        "Jeskai Control": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Rakdos Monument": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
         },
         "Selesnya Landfall": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Simic Omniscience": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Simic Rhythm": {
           "wins": 3,
@@ -776,7 +941,7 @@
           "percentage": 75
         },
         "Sultai Reanimator": {
-          "wins": 1,
+          "wins": 3,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -785,22 +950,28 @@
     },
     "Dimir Midrange": {
       "archetype": "Dimir Midrange",
-      "wins": 18,
-      "losses": 15,
+      "wins": 31,
+      "losses": 22,
       "draws": 0,
-      "winRate": 54.54545454545454,
+      "winRate": 58.490566037735846,
       "matchups": {
-        "Bant Airbending": {
-          "wins": 2,
+        "Abzan Roots": {
+          "wins": 0,
           "losses": 0,
           "draws": 0,
-          "percentage": 100
+          "percentage": 0
+        },
+        "Bant Airbending": {
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 75
         },
         "Bant Rhythm": {
-          "wins": 2,
-          "losses": 2,
+          "wins": 8,
+          "losses": 3,
           "draws": 0,
-          "percentage": 50
+          "percentage": 72.72727272727273
         },
         "Dimir Control": {
           "wins": 1,
@@ -821,16 +992,22 @@
           "percentage": 0
         },
         "Five-Color Rhythm": {
-          "wins": 0,
+          "wins": 2,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 66.66666666666666
         },
         "Four-Color Allies": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Golgari Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Grixis Reanimator": {
           "wins": 1,
@@ -857,26 +1034,32 @@
           "percentage": 100
         },
         "Izzet Spellementals": {
-          "wins": 1,
+          "wins": 3,
           "losses": 1,
           "draws": 0,
-          "percentage": 50
+          "percentage": 75
+        },
+        "Mono-Green Landfall": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Simic Rhythm": {
           "wins": 5,
-          "losses": 6,
+          "losses": 8,
           "draws": 0,
-          "percentage": 45.45454545454545
+          "percentage": 38.46153846153847
         },
         "Sultai Reanimator": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         },
         "Sultai Rhythm": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -890,10 +1073,10 @@
     },
     "Esper Pixie": {
       "archetype": "Esper Pixie",
-      "wins": 10,
-      "losses": 13,
+      "wins": 17,
+      "losses": 18,
       "draws": 0,
-      "winRate": 43.47826086956522,
+      "winRate": 48.57142857142857,
       "matchups": {
         "Bant Airbending": {
           "wins": 1,
@@ -903,9 +1086,9 @@
         },
         "Bant Rhythm": {
           "wins": 5,
-          "losses": 1,
+          "losses": 3,
           "draws": 0,
-          "percentage": 83.33333333333334
+          "percentage": 62.5
         },
         "Dimir Excruciator": {
           "wins": 0,
@@ -925,6 +1108,12 @@
           "draws": 0,
           "percentage": 100
         },
+        "Golgari Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Grixis Elementals": {
           "wins": 0,
           "losses": 1,
@@ -936,6 +1125,12 @@
           "losses": 1,
           "draws": 0,
           "percentage": 0
+        },
+        "Izzet Elementals": {
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Izzet Lessons": {
           "wins": 0,
@@ -955,6 +1150,12 @@
           "draws": 0,
           "percentage": 0
         },
+        "Jeskai Control": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Jeskai Midrange": {
           "wins": 0,
           "losses": 1,
@@ -967,11 +1168,17 @@
           "draws": 0,
           "percentage": 100
         },
-        "Simic Rhythm": {
+        "Mono-Red Leyline": {
           "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Simic Rhythm": {
+          "wins": 2,
           "losses": 2,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 50
         },
         "Sultai Elementals": {
           "wins": 0,
@@ -980,6 +1187,12 @@
           "percentage": 0
         },
         "Sultai Reanimator": {
+          "wins": 2,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Temur Harmonizer": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -1022,22 +1235,28 @@
     },
     "Five-Color Rhythm": {
       "archetype": "Five-Color Rhythm",
-      "wins": 15,
-      "losses": 13,
+      "wins": 20,
+      "losses": 25,
       "draws": 0,
-      "winRate": 53.57142857142857,
+      "winRate": 44.44444444444444,
       "matchups": {
-        "Bant Rhythm": {
-          "wins": 5,
+        "Bant Airbending": {
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 83.33333333333334
+          "percentage": 50
+        },
+        "Bant Rhythm": {
+          "wins": 5,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 71.42857142857143
         },
         "Dimir Control": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         },
         "Dimir Excruciator": {
           "wins": 1,
@@ -1047,9 +1266,9 @@
         },
         "Dimir Midrange": {
           "wins": 1,
-          "losses": 0,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 33.33333333333333
         },
         "Esper Pixie": {
           "wins": 0,
@@ -1058,6 +1277,12 @@
           "percentage": 0
         },
         "Grixis Elementals": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Grixis Reanimator": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -1081,6 +1306,18 @@
           "draws": 0,
           "percentage": 0
         },
+        "Izzet Spellementals": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Jeskai Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Jeskai Elementals": {
           "wins": 0,
           "losses": 2,
@@ -1094,16 +1331,16 @@
           "percentage": 66.66666666666666
         },
         "Simic Rhythm": {
-          "wins": 2,
-          "losses": 2,
+          "wins": 3,
+          "losses": 5,
           "draws": 0,
-          "percentage": 50
+          "percentage": 37.5
         },
         "Sultai Reanimator": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 3,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 60
         },
         "Sultai Rhythm": {
           "wins": 1,
@@ -1122,11 +1359,17 @@
     "Four-Color Allies": {
       "archetype": "Four-Color Allies",
       "wins": 1,
-      "losses": 3,
+      "losses": 4,
       "draws": 0,
-      "winRate": 25,
+      "winRate": 20,
       "matchups": {
         "Bant Airbending": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Bant Rhythm": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -1154,11 +1397,17 @@
     },
     "Four-Color Control": {
       "archetype": "Four-Color Control",
-      "wins": 8,
-      "losses": 4,
+      "wins": 10,
+      "losses": 5,
       "draws": 0,
       "winRate": 66.66666666666666,
       "matchups": {
+        "Bant Airbending": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Bant Rhythm": {
           "wins": 3,
           "losses": 1,
@@ -1171,6 +1420,12 @@
           "draws": 0,
           "percentage": 100
         },
+        "Grixis Elementals": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Izzet Lessons": {
           "wins": 1,
           "losses": 0,
@@ -1178,6 +1433,12 @@
           "percentage": 100
         },
         "Jeskai Control": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Mono-Green Landfall": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
@@ -1211,10 +1472,10 @@
     },
     "Four-Color Reanimator": {
       "archetype": "Four-Color Reanimator",
-      "wins": 4,
+      "wins": 6,
       "losses": 4,
       "draws": 0,
-      "winRate": 50,
+      "winRate": 60,
       "matchups": {
         "Azorius Control": {
           "wins": 1,
@@ -1235,7 +1496,7 @@
           "percentage": 0
         },
         "Bant Rhythm": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1251,6 +1512,12 @@
           "losses": 1,
           "draws": 0,
           "percentage": 0
+        },
+        "Golgari Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Izzet Blink": {
           "wins": 1,
@@ -1269,10 +1536,16 @@
     "Golgari Gravefall": {
       "archetype": "Golgari Gravefall",
       "wins": 1,
-      "losses": 3,
+      "losses": 4,
       "draws": 0,
-      "winRate": 25,
+      "winRate": 20,
       "matchups": {
+        "Bant Airbending": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Bant Rhythm": {
           "wins": 1,
           "losses": 0,
@@ -1301,10 +1574,10 @@
     },
     "Golgari Rhythm": {
       "archetype": "Golgari Rhythm",
-      "wins": 3,
-      "losses": 1,
+      "wins": 9,
+      "losses": 6,
       "draws": 0,
-      "winRate": 75,
+      "winRate": 60,
       "matchups": {
         "Bant Airbending": {
           "wins": 1,
@@ -1312,17 +1585,86 @@
           "draws": 0,
           "percentage": 100
         },
+        "Bant Rhythm": {
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Dimir Midrange": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Esper Pixie": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Four-Color Reanimator": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Izzet Lessons": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Izzet Spellementals": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Jeskai Control": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Simic Rhythm": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 66.66666666666666
+        },
+        "Sultai Elementals": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Sultai Reanimator": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        }
+      }
+    },
+    "Grixis Control": {
+      "archetype": "Grixis Control",
+      "wins": 2,
+      "losses": 3,
+      "draws": 0,
+      "winRate": 40,
+      "matchups": {
+        "Bant Airbending": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Bant Rhythm": {
+          "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 33.33333333333333
         },
         "Sultai Elementals": {
           "wins": 0,
@@ -1334,13 +1676,13 @@
     },
     "Grixis Elementals": {
       "archetype": "Grixis Elementals",
-      "wins": 21,
-      "losses": 6,
+      "wins": 25,
+      "losses": 10,
       "draws": 0,
-      "winRate": 77.77777777777779,
+      "winRate": 71.42857142857143,
       "matchups": {
         "Azorius Control": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1352,12 +1694,18 @@
           "percentage": 100
         },
         "Bant Rhythm": {
-          "wins": 3,
+          "wins": 4,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Dimir Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Dimir Excruciator": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -1381,6 +1729,12 @@
           "draws": 0,
           "percentage": 100
         },
+        "Four-Color Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Golgari Gravefall": {
           "wins": 1,
           "losses": 0,
@@ -1395,9 +1749,9 @@
         },
         "Izzet Lessons": {
           "wins": 3,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 75
+          "percentage": 60
         },
         "Izzet Prowess": {
           "wins": 0,
@@ -1418,17 +1772,23 @@
           "percentage": 0
         },
         "Simic Rhythm": {
-          "wins": 4,
-          "losses": 1,
+          "wins": 5,
+          "losses": 2,
           "draws": 0,
-          "percentage": 80
+          "percentage": 71.42857142857143
+        },
+        "Sultai Reanimator": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         }
       }
     },
     "Grixis Reanimator": {
       "archetype": "Grixis Reanimator",
-      "wins": 4,
-      "losses": 4,
+      "wins": 5,
+      "losses": 5,
       "draws": 0,
       "winRate": 50,
       "matchups": {
@@ -1456,6 +1816,12 @@
           "draws": 0,
           "percentage": 50
         },
+        "Five-Color Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Izzet Blink": {
           "wins": 1,
           "losses": 0,
@@ -1467,21 +1833,33 @@
           "losses": 1,
           "draws": 0,
           "percentage": 0
+        },
+        "Temur Harmonizer": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         }
       }
     },
     "Izzet Blink": {
       "archetype": "Izzet Blink",
-      "wins": 12,
-      "losses": 11,
+      "wins": 18,
+      "losses": 12,
       "draws": 0,
-      "winRate": 52.17391304347826,
+      "winRate": 60,
       "matchups": {
         "Bant Airbending": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
+        },
+        "Bant Omniscience": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Bant Rhythm": {
           "wins": 3,
@@ -1490,10 +1868,10 @@
           "percentage": 100
         },
         "Dimir Excruciator": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Dimir Midrange": {
           "wins": 0,
@@ -1532,10 +1910,10 @@
           "percentage": 100
         },
         "Simic Rhythm": {
-          "wins": 4,
+          "wins": 6,
           "losses": 1,
           "draws": 0,
-          "percentage": 80
+          "percentage": 85.71428571428571
         },
         "Sultai Elementals": {
           "wins": 1,
@@ -1544,10 +1922,10 @@
           "percentage": 50
         },
         "Sultai Reanimator": {
-          "wins": 2,
-          "losses": 1,
+          "wins": 3,
+          "losses": 2,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 60
         },
         "Temur Harmonizer": {
           "wins": 0,
@@ -1560,9 +1938,9 @@
     "Izzet Burn": {
       "archetype": "Izzet Burn",
       "wins": 2,
-      "losses": 2,
+      "losses": 3,
       "draws": 0,
-      "winRate": 50,
+      "winRate": 40,
       "matchups": {
         "Bant Rhythm": {
           "wins": 1,
@@ -1584,18 +1962,18 @@
         },
         "Sultai Reanimator": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         }
       }
     },
     "Izzet Control": {
       "archetype": "Izzet Control",
       "wins": 1,
-      "losses": 3,
+      "losses": 4,
       "draws": 0,
-      "winRate": 25,
+      "winRate": 20,
       "matchups": {
         "Boros Dragons": {
           "wins": 0,
@@ -1620,31 +1998,49 @@
           "losses": 1,
           "draws": 0,
           "percentage": 0
+        },
+        "Temur Harmonizer": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         }
       }
     },
     "Izzet Elementals": {
       "archetype": "Izzet Elementals",
-      "wins": 7,
-      "losses": 11,
+      "wins": 13,
+      "losses": 18,
       "draws": 0,
-      "winRate": 38.88888888888889,
+      "winRate": 41.935483870967744,
       "matchups": {
         "Bant Airbending": {
+          "wins": 0,
+          "losses": 3,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Bant Rhythm": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Boros Dragons": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Dimir Excruciator": {
           "wins": 0,
           "losses": 2,
           "draws": 0,
           "percentage": 0
         },
-        "Bant Rhythm": {
+        "Esper Pixie": {
           "wins": 0,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 0
-        },
-        "Boros Dragons": {
-          "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -1684,6 +2080,12 @@
           "draws": 0,
           "percentage": 0
         },
+        "Mono-Red Aggro": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Selesnya Landfall": {
           "wins": 0,
           "losses": 1,
@@ -1691,10 +2093,10 @@
           "percentage": 0
         },
         "Simic Rhythm": {
-          "wins": 2,
-          "losses": 0,
+          "wins": 3,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 60
         },
         "Sultai Elementals": {
           "wins": 1,
@@ -1703,19 +2105,19 @@
           "percentage": 100
         },
         "Sultai Reanimator": {
-          "wins": 2,
+          "wins": 5,
           "losses": 2,
           "draws": 0,
-          "percentage": 50
+          "percentage": 71.42857142857143
         }
       }
     },
     "Izzet Lessons": {
       "archetype": "Izzet Lessons",
-      "wins": 31,
-      "losses": 22,
+      "wins": 39,
+      "losses": 24,
       "draws": 0,
-      "winRate": 58.490566037735846,
+      "winRate": 61.904761904761905,
       "matchups": {
         "Azorius Control": {
           "wins": 1,
@@ -1725,9 +2127,9 @@
         },
         "Bant Airbending": {
           "wins": 3,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 75
         },
         "Bant Rhythm": {
           "wins": 5,
@@ -1790,16 +2192,16 @@
           "percentage": 100
         },
         "Golgari Rhythm": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Grixis Elementals": {
-          "wins": 1,
+          "wins": 2,
           "losses": 3,
           "draws": 0,
-          "percentage": 25
+          "percentage": 40
         },
         "Izzet Elementals": {
           "wins": 1,
@@ -1831,6 +2233,12 @@
           "draws": 0,
           "percentage": 0
         },
+        "Rakdos Monument": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Simic Omniscience": {
           "wins": 0,
           "losses": 1,
@@ -1838,25 +2246,31 @@
           "percentage": 0
         },
         "Simic Rhythm": {
+          "wins": 6,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 75
+        },
+        "Sultai Reanimator": {
           "wins": 3,
           "losses": 1,
           "draws": 0,
           "percentage": 75
         },
-        "Sultai Reanimator": {
-          "wins": 2,
-          "losses": 1,
+        "Temur Harmonizer": {
+          "wins": 1,
+          "losses": 0,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 100
         }
       }
     },
     "Izzet Prowess": {
       "archetype": "Izzet Prowess",
-      "wins": 15,
-      "losses": 9,
+      "wins": 18,
+      "losses": 12,
       "draws": 0,
-      "winRate": 62.5,
+      "winRate": 60,
       "matchups": {
         "Bant Airbending": {
           "wins": 1,
@@ -1869,6 +2283,12 @@
           "losses": 1,
           "draws": 0,
           "percentage": 80
+        },
+        "Dimir Excruciator": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Dimir Midrange": {
           "wins": 0,
@@ -1906,32 +2326,44 @@
           "draws": 0,
           "percentage": 20
         },
+        "Jeskai Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Jeskai Midrange": {
           "wins": 1,
           "losses": 1,
           "draws": 0,
           "percentage": 50
         },
+        "Mono-Red Aggro": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Simic Rhythm": {
-          "wins": 4,
+          "wins": 6,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Sultai Reanimator": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         }
       }
     },
     "Izzet Spellementals": {
       "archetype": "Izzet Spellementals",
-      "wins": 44,
-      "losses": 17,
+      "wins": 54,
+      "losses": 21,
       "draws": 0,
-      "winRate": 72.1311475409836,
+      "winRate": 72,
       "matchups": {
         "Azorius Tempo": {
           "wins": 2,
@@ -1946,10 +2378,10 @@
           "percentage": 100
         },
         "Bant Rhythm": {
-          "wins": 10,
+          "wins": 12,
           "losses": 1,
           "draws": 0,
-          "percentage": 90.9090909090909
+          "percentage": 92.3076923076923
         },
         "Boros Aggro": {
           "wins": 2,
@@ -1977,11 +2409,23 @@
         },
         "Dimir Midrange": {
           "wins": 1,
-          "losses": 1,
+          "losses": 3,
           "draws": 0,
-          "percentage": 50
+          "percentage": 25
         },
         "Esper Pixie": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Five-Color Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Golgari Rhythm": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
@@ -2018,7 +2462,7 @@
           "percentage": 50
         },
         "Jeskai Midrange": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -2030,8 +2474,8 @@
           "percentage": 100
         },
         "Simic Rhythm": {
-          "wins": 9,
-          "losses": 6,
+          "wins": 12,
+          "losses": 8,
           "draws": 0,
           "percentage": 60
         },
@@ -2042,28 +2486,28 @@
           "percentage": 100
         },
         "Sultai Reanimator": {
-          "wins": 5,
+          "wins": 7,
           "losses": 2,
           "draws": 0,
-          "percentage": 71.42857142857143
+          "percentage": 77.77777777777779
         }
       }
     },
     "Jeskai Control": {
       "archetype": "Jeskai Control",
-      "wins": 9,
-      "losses": 6,
+      "wins": 19,
+      "losses": 15,
       "draws": 0,
-      "winRate": 60,
+      "winRate": 55.88235294117647,
       "matchups": {
         "Bant Airbending": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 2,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Bant Rhythm": {
-          "wins": 2,
+          "wins": 3,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -2076,11 +2520,35 @@
         },
         "Dimir Control": {
           "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Dimir Excruciator": {
+          "wins": 0,
           "losses": 1,
           "draws": 0,
           "percentage": 0
         },
+        "Esper Pixie": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Five-Color Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Four-Color Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Golgari Rhythm": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -2098,23 +2566,47 @@
           "draws": 0,
           "percentage": 50
         },
+        "Izzet Prowess": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Jeskai Control": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
         "Jeskai Elementals": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
-        "Simic Rhythm": {
-          "wins": 2,
+        "Jeskai Midrange": {
+          "wins": 0,
           "losses": 1,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 0
         },
-        "Sultai Elementals": {
+        "Mono-Green Landfall": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Simic Rhythm": {
+          "wins": 5,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 71.42857142857143
+        },
+        "Sultai Elementals": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
         },
         "Sultai Reanimator": {
           "wins": 1,
@@ -2153,10 +2645,10 @@
     },
     "Jeskai Midrange": {
       "archetype": "Jeskai Midrange",
-      "wins": 8,
-      "losses": 6,
+      "wins": 10,
+      "losses": 10,
       "draws": 0,
-      "winRate": 57.14285714285714,
+      "winRate": 50,
       "matchups": {
         "Azorius Control": {
           "wins": 1,
@@ -2170,11 +2662,23 @@
           "draws": 0,
           "percentage": 0
         },
+        "Bant Airbending": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Bant Rhythm": {
           "wins": 2,
           "losses": 2,
           "draws": 0,
           "percentage": 50
+        },
+        "Boros Dragons": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Esper Pixie": {
           "wins": 1,
@@ -2196,6 +2700,18 @@
         },
         "Izzet Spellementals": {
           "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Jeskai Control": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Mono-Green Landfall": {
+          "wins": 0,
           "losses": 1,
           "draws": 0,
           "percentage": 0
@@ -2205,29 +2721,41 @@
           "losses": 1,
           "draws": 0,
           "percentage": 66.66666666666666
+        },
+        "Temur Harmonizer": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         }
       }
     },
     "Mono-Green Landfall": {
       "archetype": "Mono-Green Landfall",
-      "wins": 5,
-      "losses": 11,
+      "wins": 10,
+      "losses": 15,
       "draws": 0,
-      "winRate": 31.25,
+      "winRate": 40,
       "matchups": {
         "Bant Airbending": {
-          "wins": 0,
+          "wins": 1,
           "losses": 3,
+          "draws": 0,
+          "percentage": 25
+        },
+        "Bant Rhythm": {
+          "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 66.66666666666666
+        },
+        "Boros Dragons": {
+          "wins": 0,
+          "losses": 1,
           "draws": 0,
           "percentage": 0
         },
-        "Bant Rhythm": {
-          "wins": 1,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 50
-        },
-        "Boros Dragons": {
+        "Dimir Midrange": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -2238,6 +2766,12 @@
           "losses": 2,
           "draws": 0,
           "percentage": 33.33333333333333
+        },
+        "Four-Color Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Izzet Blink": {
           "wins": 0,
@@ -2257,6 +2791,18 @@
           "draws": 0,
           "percentage": 100
         },
+        "Jeskai Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Jeskai Midrange": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Mono-Red Aggro": {
           "wins": 0,
           "losses": 1,
@@ -2270,8 +2816,20 @@
           "percentage": 100
         },
         "Simic Rhythm": {
-          "wins": 0,
+          "wins": 1,
           "losses": 2,
+          "draws": 0,
+          "percentage": 33.33333333333333
+        },
+        "Sultai Reanimator": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Temur Harmonizer": {
+          "wins": 0,
+          "losses": 1,
           "draws": 0,
           "percentage": 0
         }
@@ -2279,10 +2837,94 @@
     },
     "Mono-Red Aggro": {
       "archetype": "Mono-Red Aggro",
-      "wins": 4,
-      "losses": 1,
+      "wins": 8,
+      "losses": 2,
       "draws": 0,
       "winRate": 80,
+      "matchups": {
+        "Bant Airbending": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Bant Rhythm": {
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Esper Pixie": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Izzet Elementals": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Izzet Prowess": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Mono-Green Landfall": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Simic Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Sultai Reanimator": {
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        }
+      }
+    },
+    "Mono-Red Leyline": {
+      "archetype": "Mono-Red Leyline",
+      "wins": 0,
+      "losses": 3,
+      "draws": 0,
+      "winRate": 0,
+      "matchups": {
+        "Bant Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Esper Pixie": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Simic Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        }
+      }
+    },
+    "Rakdos Monument": {
+      "archetype": "Rakdos Monument",
+      "wins": 5,
+      "losses": 5,
+      "draws": 0,
+      "winRate": 50,
       "matchups": {
         "Bant Airbending": {
           "wins": 1,
@@ -2296,50 +2938,23 @@
           "draws": 0,
           "percentage": 100
         },
-        "Esper Pixie": {
-          "wins": 0,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 0
-        },
-        "Mono-Green Landfall": {
-          "wins": 1,
-          "losses": 0,
-          "draws": 0,
-          "percentage": 100
-        },
-        "Sultai Reanimator": {
-          "wins": 1,
-          "losses": 0,
-          "draws": 0,
-          "percentage": 100
-        }
-      }
-    },
-    "Rakdos Monument": {
-      "archetype": "Rakdos Monument",
-      "wins": 3,
-      "losses": 4,
-      "draws": 0,
-      "winRate": 42.857142857142854,
-      "matchups": {
-        "Bant Rhythm": {
-          "wins": 1,
-          "losses": 0,
-          "draws": 0,
-          "percentage": 100
-        },
         "Dimir Excruciator": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Four-Color Control": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Izzet Lessons": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Izzet Spellementals": {
           "wins": 0,
@@ -2369,11 +2984,17 @@
     },
     "Selesnya Landfall": {
       "archetype": "Selesnya Landfall",
-      "wins": 2,
+      "wins": 3,
       "losses": 2,
       "draws": 0,
-      "winRate": 50,
+      "winRate": 60,
       "matchups": {
+        "Bant Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Dimir Control": {
           "wins": 0,
           "losses": 1,
@@ -2402,16 +3023,22 @@
     },
     "Simic Omniscience": {
       "archetype": "Simic Omniscience",
-      "wins": 2,
-      "losses": 1,
+      "wins": 3,
+      "losses": 2,
       "draws": 0,
-      "winRate": 66.66666666666666,
+      "winRate": 60,
       "matchups": {
         "Azorius Control": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
           "percentage": 0
+        },
+        "Dimir Excruciator": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Izzet Lessons": {
           "wins": 1,
@@ -2421,22 +3048,28 @@
         },
         "Sultai Reanimator": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         }
       }
     },
     "Simic Rhythm": {
       "archetype": "Simic Rhythm",
-      "wins": 71,
-      "losses": 80,
+      "wins": 106,
+      "losses": 125,
       "draws": 0,
-      "winRate": 47.019867549668874,
+      "winRate": 45.887445887445885,
       "matchups": {
+        "Abzan Roots": {
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Azorius Control": {
           "wins": 0,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
           "percentage": 0
         },
@@ -2447,28 +3080,34 @@
           "percentage": 0
         },
         "Bant Airbending": {
-          "wins": 3,
+          "wins": 4,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Bant Omniscience": {
           "wins": 0,
-          "losses": 1,
+          "losses": 3,
           "draws": 0,
           "percentage": 0
         },
         "Bant Rhythm": {
-          "wins": 13,
-          "losses": 13,
+          "wins": 16,
+          "losses": 17,
           "draws": 0,
-          "percentage": 50
+          "percentage": 48.484848484848484
         },
         "Boros Aggro": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Dimir Control": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Dimir Excruciator": {
           "wins": 1,
@@ -2477,22 +3116,22 @@
           "percentage": 25
         },
         "Dimir Midrange": {
-          "wins": 6,
+          "wins": 8,
           "losses": 5,
           "draws": 0,
-          "percentage": 54.54545454545454
+          "percentage": 61.53846153846154
         },
         "Esper Pixie": {
-          "wins": 2,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 66.66666666666666
-        },
-        "Five-Color Rhythm": {
           "wins": 2,
           "losses": 2,
           "draws": 0,
           "percentage": 50
+        },
+        "Five-Color Rhythm": {
+          "wins": 5,
+          "losses": 3,
+          "draws": 0,
+          "percentage": 62.5
         },
         "Four-Color Allies": {
           "wins": 1,
@@ -2507,22 +3146,22 @@
           "percentage": 0
         },
         "Golgari Rhythm": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         },
         "Grixis Elementals": {
-          "wins": 1,
-          "losses": 4,
+          "wins": 2,
+          "losses": 5,
           "draws": 0,
-          "percentage": 20
+          "percentage": 28.57142857142857
         },
         "Izzet Blink": {
           "wins": 1,
-          "losses": 4,
+          "losses": 6,
           "draws": 0,
-          "percentage": 20
+          "percentage": 14.285714285714285
         },
         "Izzet Burn": {
           "wins": 1,
@@ -2537,34 +3176,34 @@
           "percentage": 100
         },
         "Izzet Elementals": {
-          "wins": 0,
-          "losses": 2,
+          "wins": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 0
+          "percentage": 40
         },
         "Izzet Lessons": {
-          "wins": 1,
-          "losses": 3,
+          "wins": 2,
+          "losses": 6,
           "draws": 0,
           "percentage": 25
         },
         "Izzet Prowess": {
           "wins": 0,
-          "losses": 4,
+          "losses": 6,
           "draws": 0,
           "percentage": 0
         },
         "Izzet Spellementals": {
-          "wins": 6,
-          "losses": 9,
+          "wins": 8,
+          "losses": 12,
           "draws": 0,
           "percentage": 40
         },
         "Jeskai Control": {
-          "wins": 1,
-          "losses": 2,
+          "wins": 2,
+          "losses": 5,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 28.57142857142857
         },
         "Jeskai Elementals": {
           "wins": 1,
@@ -2580,6 +3219,18 @@
         },
         "Mono-Green Landfall": {
           "wins": 2,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 66.66666666666666
+        },
+        "Mono-Red Aggro": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Mono-Red Leyline": {
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -2591,26 +3242,32 @@
           "percentage": 100
         },
         "Simic Rhythm": {
-          "wins": 13,
-          "losses": 13,
+          "wins": 21,
+          "losses": 21,
           "draws": 0,
           "percentage": 50
         },
         "Sultai Elementals": {
           "wins": 1,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 25
         },
         "Sultai Reanimator": {
-          "wins": 11,
-          "losses": 2,
+          "wins": 18,
+          "losses": 7,
           "draws": 0,
-          "percentage": 84.61538461538461
+          "percentage": 72
+        },
+        "Sultai Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Temur Harmonizer": {
           "wins": 0,
-          "losses": 2,
+          "losses": 4,
           "draws": 0,
           "percentage": 0
         }
@@ -2618,10 +3275,10 @@
     },
     "Sultai Elementals": {
       "archetype": "Sultai Elementals",
-      "wins": 11,
+      "wins": 16,
       "losses": 9,
       "draws": 0,
-      "winRate": 55.00000000000001,
+      "winRate": 64,
       "matchups": {
         "Azorius Tempo": {
           "wins": 0,
@@ -2630,10 +3287,10 @@
           "percentage": 0
         },
         "Bant Airbending": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Bant Rhythm": {
           "wins": 1,
@@ -2654,6 +3311,12 @@
           "percentage": 100
         },
         "Golgari Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Grixis Control": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
@@ -2684,22 +3347,22 @@
           "percentage": 0
         },
         "Jeskai Control": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
-          "draws": 0,
-          "percentage": 0
-        },
-        "Simic Rhythm": {
-          "wins": 2,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 66.66666666666666
-        },
-        "Sultai Reanimator": {
-          "wins": 2,
-          "losses": 2,
           "draws": 0,
           "percentage": 50
+        },
+        "Simic Rhythm": {
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 75
+        },
+        "Sultai Reanimator": {
+          "wins": 3,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 60
         },
         "Temur Harmonizer": {
           "wins": 1,
@@ -2711,10 +3374,10 @@
     },
     "Sultai Reanimator": {
       "archetype": "Sultai Reanimator",
-      "wins": 23,
-      "losses": 52,
+      "wins": 52,
+      "losses": 95,
       "draws": 0,
-      "winRate": 30.666666666666664,
+      "winRate": 35.374149659863946,
       "matchups": {
         "Azorius Control": {
           "wins": 0,
@@ -2723,46 +3386,46 @@
           "percentage": 0
         },
         "Bant Airbending": {
-          "wins": 2,
-          "losses": 5,
-          "draws": 0,
-          "percentage": 28.57142857142857
-        },
-        "Bant Rhythm": {
-          "wins": 5,
+          "wins": 7,
           "losses": 9,
           "draws": 0,
-          "percentage": 35.714285714285715
+          "percentage": 43.75
+        },
+        "Bant Rhythm": {
+          "wins": 10,
+          "losses": 12,
+          "draws": 0,
+          "percentage": 45.45454545454545
         },
         "Dimir Control": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
         "Dimir Excruciator": {
           "wins": 0,
-          "losses": 1,
+          "losses": 3,
           "draws": 0,
           "percentage": 0
         },
         "Dimir Midrange": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 66.66666666666666
         },
         "Esper Pixie": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         },
         "Five-Color Rhythm": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 100
+          "percentage": 40
         },
         "Four-Color Allies": {
           "wins": 0,
@@ -2782,41 +3445,53 @@
           "draws": 0,
           "percentage": 0
         },
-        "Izzet Blink": {
-          "wins": 1,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 33.33333333333333
-        },
-        "Izzet Burn": {
-          "wins": 0,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 0
-        },
-        "Izzet Elementals": {
-          "wins": 2,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 50
-        },
-        "Izzet Lessons": {
-          "wins": 1,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 33.33333333333333
-        },
-        "Izzet Prowess": {
+        "Golgari Rhythm": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
-        "Izzet Spellementals": {
+        "Grixis Elementals": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Izzet Blink": {
+          "wins": 2,
+          "losses": 3,
+          "draws": 0,
+          "percentage": 40
+        },
+        "Izzet Burn": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Izzet Elementals": {
           "wins": 2,
           "losses": 5,
           "draws": 0,
           "percentage": 28.57142857142857
+        },
+        "Izzet Lessons": {
+          "wins": 1,
+          "losses": 3,
+          "draws": 0,
+          "percentage": 25
+        },
+        "Izzet Prowess": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Izzet Spellementals": {
+          "wins": 2,
+          "losses": 7,
+          "draws": 0,
+          "percentage": 22.22222222222222
         },
         "Jeskai Control": {
           "wins": 0,
@@ -2824,9 +3499,15 @@
           "draws": 0,
           "percentage": 0
         },
-        "Mono-Red Aggro": {
+        "Mono-Green Landfall": {
           "wins": 0,
           "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Mono-Red Aggro": {
+          "wins": 0,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -2837,28 +3518,34 @@
           "percentage": 0
         },
         "Simic Omniscience": {
-          "wins": 0,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 0
-        },
-        "Simic Rhythm": {
-          "wins": 2,
-          "losses": 11,
-          "draws": 0,
-          "percentage": 15.384615384615385
-        },
-        "Sultai Elementals": {
-          "wins": 2,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 50
-        },
-        "Sultai Reanimator": {
           "wins": 1,
           "losses": 1,
           "draws": 0,
           "percentage": 50
+        },
+        "Simic Rhythm": {
+          "wins": 7,
+          "losses": 18,
+          "draws": 0,
+          "percentage": 28.000000000000004
+        },
+        "Sultai Elementals": {
+          "wins": 2,
+          "losses": 3,
+          "draws": 0,
+          "percentage": 40
+        },
+        "Sultai Reanimator": {
+          "wins": 8,
+          "losses": 8,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Sultai Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Temur Harmonizer": {
           "wins": 0,
@@ -2870,10 +3557,10 @@
     },
     "Sultai Rhythm": {
       "archetype": "Sultai Rhythm",
-      "wins": 4,
-      "losses": 5,
+      "wins": 7,
+      "losses": 6,
       "draws": 0,
-      "winRate": 44.44444444444444,
+      "winRate": 53.84615384615385,
       "matchups": {
         "Azorius Control": {
           "wins": 0,
@@ -2883,9 +3570,9 @@
         },
         "Bant Airbending": {
           "wins": 1,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 50
+          "percentage": 33.33333333333333
         },
         "Bant Rhythm": {
           "wins": 1,
@@ -2900,7 +3587,7 @@
           "percentage": 100
         },
         "Dimir Midrange": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -2910,15 +3597,27 @@
           "losses": 1,
           "draws": 0,
           "percentage": 0
+        },
+        "Simic Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Sultai Reanimator": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         }
       }
     },
     "Temur Harmonizer": {
       "archetype": "Temur Harmonizer",
-      "wins": 9,
-      "losses": 4,
+      "wins": 20,
+      "losses": 5,
       "draws": 0,
-      "winRate": 69.23076923076923,
+      "winRate": 80,
       "matchups": {
         "Azorius Control": {
           "wins": 1,
@@ -2927,16 +3626,22 @@
           "percentage": 50
         },
         "Bant Airbending": {
+          "wins": 3,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Bant Omniscience": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Bant Rhythm": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Dimir Midrange": {
           "wins": 0,
@@ -2944,8 +3649,20 @@
           "draws": 0,
           "percentage": 0
         },
+        "Esper Pixie": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Five-Color Rhythm": {
           "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Grixis Reanimator": {
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -2956,8 +3673,32 @@
           "draws": 0,
           "percentage": 100
         },
+        "Izzet Control": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Izzet Lessons": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Jeskai Midrange": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Mono-Green Landfall": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Simic Rhythm": {
-          "wins": 2,
+          "wins": 4,
           "losses": 0,
           "draws": 0,
           "percentage": 100

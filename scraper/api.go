@@ -31,18 +31,21 @@ var roundIDs = map[int]string{
 
 // Match represents a single match from the API
 type Match struct {
-	TableNumber int    `json:"TableNumber"`
+	TableNumber  int    `json:"TableNumber"`
 	ResultString string `json:"ResultString"`
-	Competitors []struct {
+	Competitors  []struct {
+		Decklists []struct {
+			DecklistID   string `json:"DecklistId"`
+			PlayerID     int    `json:"PlayerId"`
+			DecklistName string `json:"DecklistName"`
+			Format       string `json:"Format"`
+			FormatID     string `json:"FormatId"`
+		} `json:"Decklists"`
 		Team struct {
 			Players []struct {
 				ID          int    `json:"ID"`
 				DisplayName string `json:"DisplayName"`
 				ScreenName  string `json:"ScreenName"`
-				Decklists   []struct {
-					DecklistID   int    `json:"DecklistId"`
-					DecklistName string `json:"DecklistName"`
-				} `json:"Decklists"`
 			} `json:"Players"`
 		} `json:"Team"`
 	} `json:"Competitors"`

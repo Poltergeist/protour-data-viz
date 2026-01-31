@@ -59,25 +59,19 @@ func main() {
 		log.Fatalf("Failed to save match data: %v", err)
 	}
 
-	// Fetch deck lists from magic.gg
-	log.Println("Fetching deck lists from magic.gg...")
-	decklists, err := fetchDecklists()
-	if err != nil {
-		log.Printf("Warning: Failed to fetch deck lists: %v", err)
-	} else {
-		log.Printf("Found %d deck lists", len(decklists))
-		if err := saveDecklistData(decklists); err != nil {
-			log.Fatalf("Failed to save decklist data: %v", err)
-		}
+	// Extract deck information from melee.gg match data
+	log.Println("Extracting deck information from melee.gg...")
+	playerArchetype := extractPlayerDecksFromMatches(allMatches)
+	log.Printf("Mapped %d players to decks", len(playerArchetype))
+
+	// Save player deck mapping
+	if err := savePlayerDeckMapping(playerArchetype); err != nil {
+		log.Fatalf("Failed to save player deck mapping: %v", err)
 	}
 
 	// Aggregate statistics
-	if len(decklists) > 0 && len(allMatches) > 0 {
+	if len(playerArchetype) > 0 && len(allMatches) > 0 {
 		log.Println("Aggregating match statistics...")
-		
-		// Build player-to-archetype mapping
-		playerArchetype := buildPlayerArchetypeMap(decklists)
-		log.Printf("Mapped %d players to archetypes", len(playerArchetype))
 		
 		// Calculate statistics
 		stats := aggregateStats(allMatches, playerArchetype)
@@ -156,9 +150,9 @@ func saveMatchData(matches map[int][]Match) error {
 	return nil
 }
 
-// saveDecklistData saves decklist data to JSON file
-func saveDecklistData(decklists []DeckInfo) error {
-	filename := fmt.Sprintf("tournament-%s-decklists.json", tournamentID)
+// savePlayerDeckMapping saves player-to-deck mapping to JSON file
+func savePlayerDeckMapping(playerDecks map[string]string) error {
+	filename := fmt.Sprintf("tournament-%s-player-decks.json", tournamentID)
 	outputPath := filepath.Join(outputDir, filename)
 
 	file, err := os.Create(outputPath)
@@ -169,12 +163,37 @@ func saveDecklistData(decklists []DeckInfo) error {
 
 	encoder := json.NewEncoder(file)
 	encoder.SetIndent("", "  ")
-	if err := encoder.Encode(decklists); err != nil {
+	if err := encoder.Encode(playerDecks); err != nil {
 		return fmt.Errorf("failed to encode JSON: %w", err)
 	}
 
-	log.Printf("Saved decklist data to %s", outputPath)
+	log.Printf("Saved player deck mapping to %s", outputPath)
 	return nil
+}
+
+// extractPlayerDecksFromMatches extracts player-to-deck mapping from match data
+func extractPlayerDecksFromMatches(allMatches map[int][]Match) map[string]string {
+	playerDecks := make(map[string]string)
+	
+	for _, matches := range allMatches {
+		for _, match := range matches {
+			for _, competitor := range match.Competitors {
+				// Get deck information from Decklists at competitor level
+				if len(competitor.Decklists) > 0 && len(competitor.Team.Players) > 0 {
+					deckName := competitor.Decklists[0].DecklistName
+					playerName := competitor.Team.Players[0].DisplayName
+					
+					if deckName != "" && playerName != "" {
+						// Normalize player name for consistent matching
+						normalizedName := normalizePlayerName(playerName)
+						playerDecks[normalizedName] = deckName
+					}
+				}
+			}
+		}
+	}
+	
+	return playerDecks
 }
 
 // saveStatsData saves aggregated statistics to JSON file

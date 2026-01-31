@@ -76,6 +76,7 @@ func parseMatchResult(result string) (winner string, p1Wins, p2Wins, draws int) 
 }
 
 // buildPlayerArchetypeMap creates a mapping from player name to archetype
+// Now deprecated - use extractPlayerDecksFromMatches in main.go instead
 func buildPlayerArchetypeMap(decklists []DeckInfo) map[string]string {
 	playerArchetype := make(map[string]string)
 	
