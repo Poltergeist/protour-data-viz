@@ -15,9 +15,10 @@ interface CardBreakdown {
 interface ArchetypeBreakdownProps {
   archetypeName: string;
   decklists: DeckInfo[];
+  imageCache: { [key: string]: string | null };
 }
 
-const ArchetypeBreakdown: React.FC<ArchetypeBreakdownProps> = ({ archetypeName, decklists }) => {
+const ArchetypeBreakdown: React.FC<ArchetypeBreakdownProps> = ({ archetypeName, decklists, imageCache }) => {
   const archetypeDecks = useMemo(() => {
     return decklists.filter(d => d.archetype === archetypeName);
   }, [decklists, archetypeName]);
@@ -123,7 +124,7 @@ const ArchetypeBreakdown: React.FC<ArchetypeBreakdownProps> = ({ archetypeName, 
             {mainboardBreakdown.map((card) => (
               <tr key={card.name} className={card.percentPlaying >= 90 ? 'staple' : ''}>
                 <td className="card-name">
-                  <CardImage cardName={card.name} />
+                  <CardImage cardName={card.name} imageCache={imageCache} />
                 </td>
                 <td className="number">{card.decksPlaying}/{archetypeDecks.length}</td>
                 <td className="number">{card.percentPlaying.toFixed(0)}%</td>
@@ -151,7 +152,7 @@ const ArchetypeBreakdown: React.FC<ArchetypeBreakdownProps> = ({ archetypeName, 
             {sideboardBreakdown.map((card) => (
               <tr key={card.name} className={card.percentPlaying >= 90 ? 'staple' : ''}>
                 <td className="card-name">
-                  <CardImage cardName={card.name} />
+                  <CardImage cardName={card.name} imageCache={imageCache} />
                 </td>
                 <td className="number">{card.decksPlaying}/{archetypeDecks.length}</td>
                 <td className="number">{card.percentPlaying.toFixed(0)}%</td>

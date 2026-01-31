@@ -2,6 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import ArchetypeBreakdown from '../components/ArchetypeBreakdown';
 import decklists from '../../../data/tournament-394299-decklists.json';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load image cache from public directory at build time
+const imageCachePath = path.join(__dirname, '../../public/card-images.json');
+const imageCache = JSON.parse(readFileSync(imageCachePath, 'utf-8'));
 
 // Get all unique archetypes sorted alphabetically
 const archetypes = Array.from(new Set(decklists.map(d => d.archetype))).sort();
@@ -33,6 +43,7 @@ const defaultArchetype = archetypes[0];
             client:only="react" 
             archetypeName={archetype}
             decklists={decklists}
+            imageCache={imageCache}
           />
         </div>
       ))}
