@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DeckListViewer from '../components/DeckListViewer';
+import decklists from '../../../data/tournament-394299-decklists.json';
+---
+
+<Layout title="Decklists - Pro Tour Lorwyn Eclipsed">
+  <div class="decklists-page">
+    <h2>Player Decklists</h2>
+    <p class="subtitle">{decklists.length} complete decklists from the tournament</p>
+    
+    <section class="decklist-section">
+      <DeckListViewer client:only="react" decklists={decklists} />
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .decklists-page {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .decklist-section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--grey-border);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+
+  .decklist-section :global(.decklist-viewer) {
+    width: 100%;
+  }
+
+  .decklist-section :global(.controls) {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .decklist-section :global(.search-input) {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--grey-border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  .decklist-section :global(.search-input:focus) {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  .decklist-section :global(.archetype-filter) {
+    padding: 0.75rem 1rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--grey-border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    min-width: 250px;
+  }
+
+  .decklist-section :global(.archetype-filter:focus) {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  .decklist-section :global(.results-info) {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .decklist-section :global(.decklist-grid) {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .decklist-section :global(.deck-card) {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--grey-border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .decklist-section :global(.deck-card:hover) {
+    border-color: var(--primary-color);
+  }
+
+  .decklist-section :global(.deck-header) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .decklist-section :global(.deck-header:hover) {
+    background: rgba(255, 96, 0, 0.05);
+  }
+
+  .decklist-section :global(.deck-info h4) {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .decklist-section :global(.archetype-badge) {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .decklist-section :global(.deck-counts) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .decklist-section :global(.count) {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .decklist-section :global(.expand-btn) {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .decklist-section :global(.deck-content) {
+    border-top: 1px solid var(--grey-border);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .decklist-section :global(.deck-content) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .decklist-section :global(.deck-section h5) {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .decklist-section :global(.card-list) {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .decklist-section :global(.card-list li) {
+    display: flex;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(57, 57, 64, 0.5);
+  }
+
+  .decklist-section :global(.card-list li:last-child) {
+    border-bottom: none;
+  }
+
+  .decklist-section :global(.quantity) {
+    display: inline-block;
+    min-width: 30px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-right: 0.75rem;
+  }
+
+  .decklist-section :global(.card-name) {
+    color: var(--text-secondary);
+    flex: 1;
+  }
+
+  .decklist-section :global(.no-results) {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
+  }
+</style>

@@ -1,0 +1,126 @@
+import React, { useMemo, useState } from 'react';
+import type { ArchetypeStats } from '../types/tournament';
+
+interface MatchupTableProps {
+  stats: { [archetype: string]: ArchetypeStats };
+  topN?: number;
+}
+
+const MatchupTable: React.FC<MatchupTableProps> = ({ stats, topN = 10 }) => {
+  const [selectedArchetype, setSelectedArchetype] = useState<string | null>(null);
+
+  const topArchetypes = useMemo(() => {
+    return Object.values(stats)
+      .sort((a, b) => {
+        const aTotal = a.wins + a.losses + a.draws;
+        const bTotal = b.wins + b.losses + b.draws;
+        return bTotal - aTotal; // Sort by total games
+      })
+      .slice(0, topN);
+  }, [stats, topN]);
+
+  const getMatchupColor = (percentage: number, totalGames: number) => {
+    if (totalGames < 3) return '#393940'; // Not enough data
+    if (percentage >= 60) return '#1a4d1a'; // Strong favorable
+    if (percentage >= 55) return '#2d4a2d'; // Favorable
+    if (percentage >= 45) return '#4a4a2d'; // Even
+    if (percentage >= 40) return '#4a2d2d'; // Unfavorable
+    return '#4d1a1a'; // Very unfavorable
+  };
+
+  const getMatchupDisplay = (archetype: ArchetypeStats, opponent: string) => {
+    const matchup = archetype.matchups[opponent];
+    if (!matchup) return { text: '-', color: '#393940', totalGames: 0 };
+    
+    const total = matchup.wins + matchup.losses + matchup.draws;
+    const text = total > 0 ? `${Math.round(matchup.percentage)}%` : '-';
+    const color = getMatchupColor(matchup.percentage, total);
+    
+    return { text, color, totalGames: total, ...matchup };
+  };
+
+  return (
+    <div className="matchup-table-container">
+      <h3>Matchup Matrix (Top {topN} Archetypes)</h3>
+      <p className="table-hint">Click a row to see detailed matchups. Green = favorable, Red = unfavorable</p>
+      
+      <div className="table-wrapper">
+        <table className="matchup-table">
+          <thead>
+            <tr>
+              <th className="archetype-header">Archetype</th>
+              <th className="record-header">Record</th>
+              {topArchetypes.map(arch => (
+                <th key={arch.archetype} className="opponent-header">
+                  <div className="vertical-text">{arch.archetype}</div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {topArchetypes.map(archetype => (
+              <tr 
+                key={archetype.archetype}
+                className={selectedArchetype === archetype.archetype ? 'selected' : ''}
+                onClick={() => setSelectedArchetype(
+                  selectedArchetype === archetype.archetype ? null : archetype.archetype
+                )}
+              >
+                <td className="archetype-cell">{archetype.archetype}</td>
+                <td className="record-cell">
+                  {archetype.wins}-{archetype.losses}-{archetype.draws}
+                  <span className="winrate"> ({Math.round(archetype.winRate)}%)</span>
+                </td>
+                {topArchetypes.map(opponent => {
+                  const matchup = getMatchupDisplay(archetype, opponent.archetype);
+                  return (
+                    <td 
+                      key={opponent.archetype}
+                      className="matchup-cell"
+                      style={{ backgroundColor: matchup.color }}
+                      title={matchup.totalGames > 0 
+                        ? `${archetype.archetype} vs ${opponent.archetype}: ${matchup.wins}-${matchup.losses}-${matchup.draws} (${matchup.totalGames} games)`
+                        : 'No data'
+                      }
+                    >
+                      {matchup.text}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      
+      {selectedArchetype && (
+        <div className="matchup-details">
+          <h4>Detailed Matchups: {selectedArchetype}</h4>
+          <div className="matchup-list">
+            {Object.entries(stats[selectedArchetype].matchups)
+              .filter(([_, m]) => m.wins + m.losses + m.draws > 0)
+              .sort((a, b) => b[1].percentage - a[1].percentage)
+              .map(([opp, matchup]) => (
+                <div key={opp} className="matchup-item">
+                  <span className="matchup-opponent">vs {opp}</span>
+                  <span className="matchup-record">
+                    {matchup.wins}-{matchup.losses}-{matchup.draws}
+                  </span>
+                  <span 
+                    className="matchup-percentage"
+                    style={{ 
+                      color: matchup.percentage >= 50 ? '#00ff00' : '#ff4444' 
+                    }}
+                  >
+                    {Math.round(matchup.percentage)}%
+                  </span>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MatchupTable;

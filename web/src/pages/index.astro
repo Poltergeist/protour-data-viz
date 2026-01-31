@@ -27,6 +27,16 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <section class="description">
+    <h3>About This Tournament</h3>
+    <p>
+      Pro Tour Lorwyn Eclipsed featured 306 players competing in Standard format.
+      This site visualizes the meta-game data from Day 1 (Rounds 4-8), including
+      win rates by archetype, head-to-head matchup statistics, and complete decklists
+      for all players.
+    </p>
+  </section>
+
   <section class="links">
     <a href="/statistics" class="cta-button">View Win Rates & Matchups</a>
     <a href="/decklists" class="cta-button secondary">Browse Decklists</a>
@@ -81,6 +91,25 @@ import Layout from '../layouts/Layout.astro';
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
+  }
+
+  .description {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .description h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .description p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
   }
 
   .links {
