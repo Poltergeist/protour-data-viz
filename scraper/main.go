@@ -71,6 +71,24 @@ func main() {
 		}
 	}
 
+	// Aggregate statistics
+	if len(decklists) > 0 && len(allMatches) > 0 {
+		log.Println("Aggregating match statistics...")
+		
+		// Build player-to-archetype mapping
+		playerArchetype := buildPlayerArchetypeMap(decklists)
+		log.Printf("Mapped %d players to archetypes", len(playerArchetype))
+		
+		// Calculate statistics
+		stats := aggregateStats(allMatches, playerArchetype)
+		log.Printf("Calculated stats for %d archetypes", len(stats.Archetypes))
+		
+		// Save statistics
+		if err := saveStatsData(stats); err != nil {
+			log.Fatalf("Failed to save statistics: %v", err)
+		}
+	}
+
 	log.Println("Scraping completed successfully!")
 	log.Printf("Data saved to: %s", outputDir)
 }
@@ -114,6 +132,27 @@ func saveDecklistData(decklists []DeckInfo) error {
 	}
 
 	log.Printf("Saved decklist data to %s", outputPath)
+	return nil
+}
+
+// saveStatsData saves aggregated statistics to JSON file
+func saveStatsData(stats *TournamentStats) error {
+	filename := fmt.Sprintf("tournament-%s-stats.json", tournamentID)
+	outputPath := filepath.Join(outputDir, filename)
+
+	file, err := os.Create(outputPath)
+	if err != nil {
+		return fmt.Errorf("failed to create file: %w", err)
+	}
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", "  ")
+	if err := encoder.Encode(stats); err != nil {
+		return fmt.Errorf("failed to encode JSON: %w", err)
+	}
+
+	log.Printf("Saved statistics to %s", outputPath)
 	return nil
 }
 
