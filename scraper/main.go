@@ -59,6 +59,18 @@ func main() {
 		log.Fatalf("Failed to save match data: %v", err)
 	}
 
+	// Fetch deck lists from magic.gg
+	log.Println("Fetching deck lists from magic.gg...")
+	decklists, err := fetchDecklists()
+	if err != nil {
+		log.Printf("Warning: Failed to fetch deck lists: %v", err)
+	} else {
+		log.Printf("Found %d deck lists", len(decklists))
+		if err := saveDecklistData(decklists); err != nil {
+			log.Fatalf("Failed to save decklist data: %v", err)
+		}
+	}
+
 	log.Println("Scraping completed successfully!")
 	log.Printf("Data saved to: %s", outputDir)
 }
@@ -81,6 +93,27 @@ func saveMatchData(matches map[int][]Match) error {
 	}
 
 	log.Printf("Saved match data to %s", outputPath)
+	return nil
+}
+
+// saveDecklistData saves decklist data to JSON file
+func saveDecklistData(decklists []DeckInfo) error {
+	filename := fmt.Sprintf("tournament-%s-decklists.json", tournamentID)
+	outputPath := filepath.Join(outputDir, filename)
+
+	file, err := os.Create(outputPath)
+	if err != nil {
+		return fmt.Errorf("failed to create file: %w", err)
+	}
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", "  ")
+	if err := encoder.Encode(decklists); err != nil {
+		return fmt.Errorf("failed to encode JSON: %w", err)
+	}
+
+	log.Printf("Saved decklist data to %s", outputPath)
 	return nil
 }
 
