@@ -69,6 +69,14 @@ func main() {
 		log.Fatalf("Failed to save player deck mapping: %v", err)
 	}
 
+	// Filter magic.gg decklists to only include players with match results
+	log.Println("Filtering decklists to match melee.gg players...")
+	if err := filterDecklistsToMatchPlayers(); err != nil {
+		log.Printf("Warning: Failed to filter decklists: %v", err)
+	} else {
+		log.Println("Decklists filtered successfully")
+	}
+
 	// Aggregate statistics
 	if len(playerArchetype) > 0 && len(allMatches) > 0 {
 		log.Println("Aggregating match statistics...")
@@ -168,6 +176,27 @@ func savePlayerDeckMapping(playerDecks map[string]string) error {
 	}
 
 	log.Printf("Saved player deck mapping to %s", outputPath)
+	return nil
+}
+
+// saveMeleeDecklistData saves melee.gg decklist data to JSON file
+func saveMeleeDecklistData(decklists []MeleeDeckInfo) error {
+	filename := fmt.Sprintf("tournament-%s-decklists.json", tournamentID)
+	outputPath := filepath.Join(outputDir, filename)
+
+	file, err := os.Create(outputPath)
+	if err != nil {
+		return fmt.Errorf("failed to create file: %w", err)
+	}
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", "  ")
+	if err := encoder.Encode(decklists); err != nil {
+		return fmt.Errorf("failed to encode JSON: %w", err)
+	}
+
+	log.Printf("Saved melee decklist data to %s", outputPath)
 	return nil
 }
 
