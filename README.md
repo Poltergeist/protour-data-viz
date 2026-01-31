@@ -1,12 +1,12 @@
 # ProTour Data Viz
 
-A monorepo for collecting and visualizing Pokémon TCG tournament data from melee.gg.
+A monorepo for collecting and visualizing Pokémon TCG Pro Tour tournament data from melee.gg.
 
 ## Project Structure
 
 ```
 protour-data-viz/
-├── scraper/        # Data scraper for melee.gg tournaments
+├── scraper/        # Go-based data scraper for melee.gg tournaments
 ├── web/            # Astro + React static website
 └── data/           # Scraped tournament data (JSON)
 ```
@@ -16,7 +16,7 @@ protour-data-viz/
 ### Prerequisites
 
 - Node.js 18+ (for web app)
-- Go/Rust/TypeScript runtime (for scraper - TBD)
+- Go 1.21+ (for scraper)
 
 ### Setup
 
@@ -24,7 +24,7 @@ protour-data-viz/
 2. Set up the scraper:
    ```bash
    cd scraper
-   # Follow scraper/README.md for setup
+   go build -o scraper .
    ```
 
 3. Set up the web app:
@@ -34,17 +34,73 @@ protour-data-viz/
    npm run dev
    ```
 
+## Updating Tournament Data
+
+To refresh the tournament data with the latest information from melee.gg:
+
+### 1. Run the Scraper
+
+```bash
+cd scraper
+./scraper -rounds "4-8"
+```
+
+**What this does:**
+- Fetches match data for rounds 4-8 from melee.gg API
+- Scrapes complete decklists (60-card main deck + 15-card sideboard) for all players
+- Generates player-to-deck archetype mappings
+- Calculates aggregated statistics and matchup data
+- Outputs JSON files to `../data/`
+
+**Options:**
+- `-rounds "4-8"` - Scrape rounds 4 through 8 (default)
+- `-rounds "4,5,6"` - Scrape specific rounds
+- `-rounds "4-8,12-16"` - Scrape multiple ranges
+
+**Duration:** ~2-3 minutes to fetch all 304 decklists from melee.gg
+
+**Output files:**
+- `tournament-394299-matches.json` - Raw match data
+- `tournament-394299-decklists.json` - Complete decklists with cards
+- `tournament-394299-player-decks.json` - Player-to-archetype mapping
+- `tournament-394299-stats.json` - Aggregated statistics
+
+### 2. Rebuild the Web App
+
+After updating the data, rebuild the static site:
+
+```bash
+cd web
+npm run build
+```
+
+The web app will automatically use the updated JSON files from `../data/`.
+
+### 3. Deploy (Optional)
+
+If hosting the site:
+
+```bash
+cd web
+npm run preview  # Preview locally
+# Or deploy the dist/ folder to your hosting service
+```
+
 ## Workflow
 
-1. **Run the scraper** to fetch tournament data
+1. **Run the scraper** to fetch latest tournament data from melee.gg
 2. **Build the web app** to generate static site from scraped data
-3. **Deploy** the static site
+3. **Deploy** the static site (if applicable)
 
-## Target Data
+## Data Source
 
-- **Source**: [melee.gg Tournament](https://melee.gg/Tournament/View/394299)
-- **Rounds**: 4-8
-- **Data Points**: Match results, deck lists, archetypes, player information
+- **Tournament**: [Pro Tour Lorwyn Eclipsed](https://melee.gg/Tournament/View/394299)
+- **Rounds**: 4-8 (Standard format, Day 1)
+- **Data Points**: 
+  - Match results and standings
+  - Complete decklists with card quantities
+  - Deck archetypes and player information
+  - Win rates and head-to-head matchups
 
 ## Development
 
