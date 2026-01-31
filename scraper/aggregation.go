@@ -45,23 +45,12 @@ func parseMatchResult(result string) (winner string, p1Wins, p2Wins, draws int) 
 	// Examples:
 	// "Guglielmo Lupi won 2-0-0"
 	// "Marco Belacca won 2-1-0"
-	// "1-1-0 Draw"
+	// "1-1-0 Draw" (draw matches have equal wins for both players)
+	// Possible draw formats: 1-1-1, 0-0-0, 1-1-0, 0-0-1
 	
 	result = strings.TrimSpace(result)
 	
-	// Check for draw (format: "1-1-0 Draw")
-	if strings.HasSuffix(strings.ToLower(result), "draw") {
-		re := regexp.MustCompile(`(\d+)-(\d+)-(\d+)`)
-		matches := re.FindStringSubmatch(result)
-		if len(matches) >= 4 {
-			fmt.Sscanf(matches[1], "%d", &p1Wins)
-			fmt.Sscanf(matches[2], "%d", &p2Wins)
-			fmt.Sscanf(matches[3], "%d", &draws)
-		}
-		return "", p1Wins, p2Wins, draws
-	}
-	
-	// Extract winner name and score
+	// Try to extract winner name and score
 	re := regexp.MustCompile(`^(.+?)\s+won\s+(\d+)-(\d+)-(\d+)$`)
 	matches := re.FindStringSubmatch(result)
 	
@@ -70,9 +59,20 @@ func parseMatchResult(result string) (winner string, p1Wins, p2Wins, draws int) 
 		fmt.Sscanf(matches[2], "%d", &p1Wins)
 		fmt.Sscanf(matches[3], "%d", &p2Wins)
 		fmt.Sscanf(matches[4], "%d", &draws)
+		return winner, p1Wins, p2Wins, draws
 	}
 	
-	return winner, p1Wins, p2Wins, draws
+	// If no winner found, try to parse as draw format (e.g., "1-1-0 Draw")
+	re = regexp.MustCompile(`(\d+)-(\d+)-(\d+)`)
+	matches = re.FindStringSubmatch(result)
+	if len(matches) >= 4 {
+		fmt.Sscanf(matches[1], "%d", &p1Wins)
+		fmt.Sscanf(matches[2], "%d", &p2Wins)
+		fmt.Sscanf(matches[3], "%d", &draws)
+	}
+	
+	// Return empty winner (indicates a draw)
+	return "", p1Wins, p2Wins, draws
 }
 
 // buildPlayerArchetypeMap creates a mapping from player name to archetype
