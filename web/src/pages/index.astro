@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import decklists from '../../../data/tournament-394299-decklists.json';
 import matchData from '../../../data/tournament-394299-matches.json';
+import statsData from '../../../data/tournament-394299-stats.json';
 import { calculatePlayerResults } from '../utils/calculatePlayerResults';
 
 const playerResults = calculatePlayerResults(matchData);
@@ -9,9 +10,23 @@ const playerResults = calculatePlayerResults(matchData);
 // Calculate players without results
 const playersWithoutResults = decklists.filter(deck => !playerResults.has(deck.playerName));
 const playersWithoutResultsCount = playersWithoutResults.length;
+
+// Calculate total matches (sum of all rounds)
+const totalMatches = Object.values(matchData).flat().length;
+
+// Calculate unique cards across all decklists
+const allCards = new Set();
+decklists.forEach(deck => {
+  deck.mainDeck.forEach((card: any) => allCards.add(card.name));
+  deck.sideboard.forEach((card: any) => allCards.add(card.name));
+});
+const uniqueCardsCount = allCards.size;
+
+// Get archetype count from stats
+const archetypeCount = Object.keys(statsData.archetypes).length;
 ---
 
-<Layout title="Pro Tour Lorwyn Eclipsed - Tournament Data" description="Complete tournament statistics from Pro Tour Lorwyn Eclipsed: 306 players, 40 archetypes, 735 matches. View win rates, matchups, and decklists.">
+<Layout title="Pro Tour Lorwyn Eclipsed - Tournament Data" description={`Complete tournament statistics from Pro Tour Lorwyn Eclipsed: ${decklists.length} players, ${archetypeCount} archetypes, ${totalMatches} matches. View win rates, matchups, and decklists.`}>
   <div class="hero">
     <h2>Pro Tour Lorwyn Eclipsed</h2>
     <p class="subtitle">Standard Format - Day 1 Statistics (Rounds 4-8)</p>
@@ -19,19 +34,19 @@ const playersWithoutResultsCount = playersWithoutResults.length;
 
   <section class="stats-overview">
     <div class="stat-card">
-      <h3>306</h3>
+      <h3>{decklists.length}</h3>
       <p>Players</p>
     </div>
     <div class="stat-card">
-      <h3>40</h3>
+      <h3>{archetypeCount}</h3>
       <p>Archetypes</p>
     </div>
     <div class="stat-card">
-      <h3>735</h3>
+      <h3>{totalMatches}</h3>
       <p>Matches</p>
     </div>
     <div class="stat-card">
-      <h3>341</h3>
+      <h3>{uniqueCardsCount}</h3>
       <p>Unique Cards</p>
     </div>
     {playersWithoutResultsCount > 0 && (
