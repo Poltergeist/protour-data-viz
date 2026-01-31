@@ -53,9 +53,45 @@ go build -o scraper
 ## Output
 
 Scraped data is saved to `../data/` in JSON format:
-- `tournament-394299-matches.json` - Raw match results by round
-- `tournament-394299-decklists.json` - Player names and deck archetypes  
-- `tournament-394299-stats.json` - Aggregated statistics (win rates, head-to-head matchups)
+
+### tournament-394299-matches.json
+Raw match results organized by round. Contains:
+- Player names
+- Match results (e.g., "Player won 2-1-0")
+- Table numbers
+- 735 total matches from Rounds 4-8
+
+### tournament-394299-decklists.json  
+Complete deck lists for all 306 players. Each entry includes:
+- Player name
+- Deck archetype
+- **Main deck**: Array of cards with quantities (60 cards)
+- **Sideboard**: Array of cards with quantities (15 cards)
+- 341 unique cards across all decks
+
+Example:
+```json
+{
+  "playerName": "David Åberg",
+  "archetype": "Izzet Lessons",
+  "mainDeck": [
+    {"quantity": 4, "name": "Monument to Endurance"},
+    {"quantity": 4, "name": "Accumulate Wisdom"},
+    ...
+  ],
+  "sideboard": [
+    {"quantity": 2, "name": "Soul-Guide Lantern"},
+    ...
+  ]
+}
+```
+
+### tournament-394299-stats.json
+Aggregated statistics for visualization. Contains:
+- Overall W-L-D records per archetype
+- Win rate percentages
+- Head-to-head matchup matrix with percentages
+- 40 archetypes with statistics
 
 ## Example Output
 
