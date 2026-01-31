@@ -45,12 +45,12 @@ func parseMatchResult(result string) (winner string, p1Wins, p2Wins, draws int) 
 	// Examples:
 	// "Guglielmo Lupi won 2-0-0"
 	// "Marco Belacca won 2-1-0"
-	// "Draw 1-1-1"
+	// "1-1-0 Draw"
 	
 	result = strings.TrimSpace(result)
 	
-	// Check for draw
-	if strings.HasPrefix(strings.ToLower(result), "draw") {
+	// Check for draw (format: "1-1-0 Draw")
+	if strings.HasSuffix(strings.ToLower(result), "draw") {
 		re := regexp.MustCompile(`(\d+)-(\d+)-(\d+)`)
 		matches := re.FindStringSubmatch(result)
 		if len(matches) >= 4 {
@@ -169,13 +169,14 @@ func aggregateStats(allMatches map[int][]Match, playerArchetype map[string]strin
 					stats.Archetypes[p2Archetype].Wins++
 					stats.Archetypes[p1Archetype].Losses++
 				}
+			} else {
+				// Match was a draw (no winner)
+				stats.Archetypes[p1Archetype].Draws++
+				stats.Archetypes[p2Archetype].Draws++
 			}
 			
-			// Update draw stats
-			if draws > 0 {
-				stats.Archetypes[p1Archetype].Draws += draws
-				stats.Archetypes[p2Archetype].Draws += draws
-			}
+			// Note: Individual game draws within a match are tracked separately
+			// but not added to overall archetype draws (only match draws count)
 			
 			// Update head-to-head matchup stats
 			updateMatchupStats(stats.Archetypes[p1Archetype], p2Archetype, winner, player1Name, p1Wins, p2Wins, draws)
@@ -219,9 +220,8 @@ func updateMatchupStats(archStats *ArchetypeStats, opponentArchetype, winner, pl
 		} else {
 			matchup.Losses++
 		}
-	}
-	
-	if draws > 0 {
-		matchup.Draws += draws
+	} else {
+		// Match was a draw (no winner)
+		matchup.Draws++
 	}
 }
