@@ -28,22 +28,36 @@
 
 ## Approach Decision
 
-**Option 1**: Browser Automation (Rod/Chromedp)
-- ✅ Can execute JavaScript
-- ❌ Complex, slower, heavier
-- ❌ Browser automation hanging in tests
+**✅ CHOSEN: Direct API Access**
+- Successfully accessed Match API with DataTables POST parameters
+- No browser automation needed!
+- Much simpler and faster implementation
 
-**Option 2**: Direct API with Authenticated Session
-- Needs investigation if we can establish a session
+**API Endpoint Discovered:**
+```bash
+POST /Match/GetRoundMatches/{roundId}
+Content-Type: application/x-www-form-urlencoded
 
-**Option 3**: Alternative Data Source
-- Check if data is available from other sources (mtggoldfish, mtgtop8, etc.)
+# Required Parameters:
+draw=1
+columns[0][data]=TableNumber
+columns[0][searchable]=true
+columns[0][orderable]=true
+order[0][column]=0
+order[0][dir]=asc
+start=0
+length=200
+```
 
-## Recommended Next Steps
+**Response includes:**
+- Player names
+- Match results (e.g., "Player won 2-0-0")
+- Table numbers
+- 152 matches in Round 4
 
-1. Test if we can establish an authenticated session to access API endpoints
-2. If not, implement browser automation properly with headless mode
-3. Alternative: Check if tournament organizers provide data exports
+**Still TODO:**
+- Find deck list data source (player profiles, standings API, or separate endpoint)
+- Extract archetype names
 
 ## CSS Selectors (for future reference)
 
