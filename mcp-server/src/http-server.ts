@@ -12,6 +12,7 @@ import {
   ListToolsRequestSchema,
 } from '@modelcontextprotocol/sdk/types.js';
 
+import apiRoutes from './api-routes.js';
 import {
   queryMatches,
   queryDecks,
@@ -33,7 +34,16 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '1kb' })); // Limit request body size
+
+// Security headers
+app.use((_req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Content-Security-Policy', "default-src 'none'");
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  next();
+});
 
 // Health check endpoint
 app.get('/health', (_req: Request, res: Response) => {
@@ -44,6 +54,9 @@ app.get('/health', (_req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+// Mount REST API routes
+app.use('/api', apiRoutes);
 
 // Create MCP server
 function createMcpServer() {
@@ -324,5 +337,6 @@ app.post('/mcp', async (req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`🚀 ProTour MCP Server running on http://localhost:${PORT}`);
   console.log(`   MCP endpoint: http://localhost:${PORT}/mcp`);
+  console.log(`   REST API: http://localhost:${PORT}/api/*`);
   console.log(`   Health check: http://localhost:${PORT}/health`);
 });
