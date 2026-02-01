@@ -4,7 +4,7 @@ This directory contains AWS CDK infrastructure code for deploying the ProTour MC
 
 ## Architecture
 
-- **Lambda Function**: Node.js 18.x runtime running Express server
+- **Lambda Function**: Node.js 20.x runtime running Express server
 - **API Gateway**: HTTP API (v2) with Lambda integration
 - **CloudWatch**: Log group with 7-day retention
 - **Deployment**: Bundled with application code and data files
@@ -91,7 +91,7 @@ curl https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/api/tournament
 The CDK stack creates:
 
 1. **Lambda Function** (`ProTourMcpFunction`)
-   - Runtime: Node.js 18.x
+   - Runtime: Node.js 20.x
    - Memory: 512 MB
    - Timeout: 30 seconds
    - Handler: `lambda.handler`
@@ -109,6 +109,46 @@ The CDK stack creates:
 
 4. **IAM Role** (auto-created)
    - Lambda execution role with CloudWatch Logs permissions
+
+5. **Resource Tags** (all resources)
+   - `project: MCP-SERVER`
+   - `service: protour-data-query`
+
+## Configuration
+
+### Lambda Settings
+
+Edit `lib/mcp-server-stack.ts` to adjust:
+
+```typescript
+const fn = new lambda.Function(this, 'ProTourMcpFunction', {
+  runtime: lambda.Runtime.NODEJS_20_X,
+  memorySize: 512,  // Adjust: 128-10240 MB
+  timeout: Duration.seconds(30),  // Adjust: 1-900 seconds
+  // ...
+});
+```
+
+### Resource Tags
+
+Edit `lib/mcp-server-stack.ts` to customize tags:
+
+```typescript
+cdk.Tags.of(this).add('project', 'MCP-SERVER');
+cdk.Tags.of(this).add('service', 'protour-data-query');
+cdk.Tags.of(this).add('environment', 'production'); // Add more tags
+```
+
+### Environment Variables
+
+Add environment variables in the stack:
+
+```typescript
+environment: {
+  NODE_ENV: 'production',
+  LOG_LEVEL: 'info',
+},
+```
 
 ## Monitoring
 

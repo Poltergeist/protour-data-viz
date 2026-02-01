@@ -19,13 +19,17 @@ export class McpServerStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    // Add tags to all resources in this stack
+    cdk.Tags.of(this).add('project', 'MCP-SERVER');
+    cdk.Tags.of(this).add('service', 'protour-data-query');
+
     // Lambda function
     const mcpFunction = new lambda.Function(this, 'ProTourMcpFunction', {
-      runtime: lambda.Runtime.NODEJS_18_X,
+      runtime: lambda.Runtime.NODEJS_20_X,
       handler: 'lambda.handler',
       code: lambda.Code.fromAsset(path.join(__dirname, '../../dist'), {
         bundling: {
-          image: lambda.Runtime.NODEJS_18_X.bundlingImage,
+          image: lambda.Runtime.NODEJS_20_X.bundlingImage,
           command: [
             'bash',
             '-c',

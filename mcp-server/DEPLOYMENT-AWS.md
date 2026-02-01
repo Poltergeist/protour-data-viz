@@ -151,6 +151,13 @@ The stack creates:
 - **CloudWatch Log Group**: `/aws/lambda/ProTourMcpStack-ProTourMcpFunctionXXXXXX`
 - **IAM Role**: For Lambda execution (auto-created)
 
+**Resource Tags:**
+All resources are tagged with:
+- `project: MCP-SERVER`
+- `service: protour-data-query`
+
+These tags help with cost tracking and resource organization in AWS.
+
 ## Testing Deployment
 
 ### 1. Health Check

@@ -3,7 +3,7 @@
 Model Context Protocol (MCP) server + REST API for querying Pokémon TCG ProTour tournament data.
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-20+-green)](https://nodejs.org/)
 [![MCP](https://img.shields.io/badge/MCP-1.25-purple)](https://modelcontextprotocol.io)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
 
