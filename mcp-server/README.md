@@ -40,29 +40,59 @@ npm run dev
 
 ## Usage Modes
 
-### 1. HTTP Server Mode (for deployment)
+### 1. HTTP Server Mode (Recommended for Production)
 
 ```bash
 npm run dev
 # Server runs on http://localhost:3000
 # MCP endpoint: POST http://localhost:3000/mcp
+# Health check: GET http://localhost:3000/health
 ```
 
-This mode is for:
-- Deploying to AWS Lambda, Vercel, Railway, etc.
-- Connecting AI tools via HTTP (Claude Desktop, Cursor, VS Code)
-- Testing with ngrok for HTTPS
+**What is this?**
+- MCP protocol over HTTP using Server-Sent Events (SSE)
+- Can be deployed to AWS Lambda, Vercel, Railway, Fly.io, etc.
+- AI tools connect via HTTPS URL (e.g., `https://your-domain.com/mcp`)
+- Same architecture as Astro's MCP server
 
-### 2. Stdio Mode (for local testing)
+**Connect AI tools:**
+```json
+// Claude Desktop config
+{
+  "mcpServers": {
+    "ProTour Data": {
+      "type": "http",
+      "url": "http://localhost:3000/mcp"
+    }
+  }
+}
+```
+
+**Test the endpoint:**
+```bash
+# Health check
+curl http://localhost:3000/health
+
+# List MCP tools
+curl -X POST http://localhost:3000/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+```
+
+### 2. Stdio Mode (For Local Testing)
 
 ```bash
 npm run mcp
 # Runs MCP server on stdio
 ```
 
-This mode is for:
+This mode is primarily for:
 - Testing MCP protocol locally
-- Direct integration with MCP inspector
+- MCP inspector integration
+- Debugging tool implementations
+
+**Note:** Most users should use HTTP mode for deployment and AI tool integration.
 
 ## Architecture
 
