@@ -157,6 +157,126 @@ export function queryPlayerDeck(playerName: string) {
 }
 
 /**
+ * Get individual player's performance statistics
+ */
+export function queryPlayerStats(playerName: string) {
+  const data = getData();
+  
+  // Find player
+  const playerLower = playerName.toLowerCase();
+  const matchingPlayer = Object.keys(data.playerDecks).find(
+    name => name.toLowerCase() === playerLower
+  );
+  
+  if (!matchingPlayer) {
+    return null;
+  }
+  
+  const archetype = data.playerDecks[matchingPlayer];
+  
+  // Find player's deck list
+  const deckList = data.decklists.find(
+    deck => deck.playerName.toLowerCase() === playerLower
+  );
+  
+  // Find all player's matches
+  const matches = queryMatches({ player: playerName });
+  
+  // Calculate player's individual stats
+  let wins = 0;
+  let losses = 0;
+  let draws = 0;
+  const matchupStats: Record<string, {
+    wins: number;
+    losses: number;
+    draws: number;
+    percentage: number;
+  }> = {};
+  
+  matches.forEach(match => {
+    // Find which competitor is our player
+    const playerCompetitorIndex = match.Competitors.findIndex(comp =>
+      comp.Team.Players.some(p => 
+        p.DisplayName.toLowerCase().includes(playerLower)
+      )
+    );
+    
+    if (playerCompetitorIndex === -1) return;
+    
+    const playerName = match.Competitors[playerCompetitorIndex].Team.Players[0].DisplayName;
+    const opponentIndex = playerCompetitorIndex === 0 ? 1 : 0;
+    const opponentArchetype = match.Competitors[opponentIndex]?.Decklists[0]?.DecklistName || 'Unknown';
+    
+    // Parse result string (e.g., "Player Name won 2-0-0", "Player Name lost 0-2-0", "Match ended in a draw")
+    const result = match.ResultString.toLowerCase();
+    
+    // Check if player won, lost, or drew
+    if (result.includes(playerName.toLowerCase()) && result.includes('won')) {
+      wins++;
+      if (!matchupStats[opponentArchetype]) {
+        matchupStats[opponentArchetype] = { wins: 0, losses: 0, draws: 0, percentage: 0 };
+      }
+      matchupStats[opponentArchetype].wins++;
+    } else if (result.includes(playerName.toLowerCase()) && result.includes('lost')) {
+      losses++;
+      if (!matchupStats[opponentArchetype]) {
+        matchupStats[opponentArchetype] = { wins: 0, losses: 0, draws: 0, percentage: 0 };
+      }
+      matchupStats[opponentArchetype].losses++;
+    } else if (result.includes('draw') || result.includes('tie')) {
+      draws++;
+      if (!matchupStats[opponentArchetype]) {
+        matchupStats[opponentArchetype] = { wins: 0, losses: 0, draws: 0, percentage: 0 };
+      }
+      matchupStats[opponentArchetype].draws++;
+    } else {
+      // If our player's name is not in the result string, they lost
+      const opponentName = match.Competitors[opponentIndex].Team.Players[0].DisplayName;
+      if (result.includes(opponentName.toLowerCase()) && result.includes('won')) {
+        losses++;
+        if (!matchupStats[opponentArchetype]) {
+          matchupStats[opponentArchetype] = { wins: 0, losses: 0, draws: 0, percentage: 0 };
+        }
+        matchupStats[opponentArchetype].losses++;
+      }
+    }
+  });
+  
+  // Calculate percentages for matchups
+  Object.keys(matchupStats).forEach(opp => {
+    const stats = matchupStats[opp];
+    const total = stats.wins + stats.losses + stats.draws;
+    stats.percentage = total > 0 ? (stats.wins / total) * 100 : 0;
+  });
+  
+  const totalMatches = wins + losses + draws;
+  const winRate = totalMatches > 0 ? (wins / totalMatches) * 100 : 0;
+  
+  return {
+    playerName: matchingPlayer,
+    archetype,
+    wins,
+    losses,
+    draws,
+    winRate: parseFloat(winRate.toFixed(2)),
+    totalMatches,
+    record: `${wins}-${losses}${draws > 0 ? `-${draws}` : ''}`,
+    matchups: Object.entries(matchupStats)
+      .sort((a, b) => {
+        const totalA = a[1].wins + a[1].losses + a[1].draws;
+        const totalB = b[1].wins + b[1].losses + b[1].draws;
+        return totalB - totalA;
+      })
+      .map(([opp, stats]) => ({
+        opponent: opp,
+        ...stats,
+        percentage: parseFloat(stats.percentage.toFixed(2)),
+      })),
+    deckList,
+  };
+}
+
+/**
  * List all available archetypes
  */
 export function listArchetypes() {

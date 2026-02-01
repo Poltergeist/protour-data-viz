@@ -13,6 +13,7 @@ import {
   listArchetypes,
   getTournamentInfo,
   queryDecksByCard,
+  queryPlayerStats,
 } from './queries.js';
 import {
   validateQuery,
@@ -154,6 +155,35 @@ router.get('/players/:player/deck', (req: Request, res: Response) => {
   try {
     const player = validateQuery(playerNameSchema, req.params.player);
     const results = queryPlayerDeck(player);
+    
+    if (results === null) {
+      res.status(404).json({
+        success: false,
+        error: 'Player not found',
+      });
+      return;
+    }
+    
+    res.json({
+      success: true,
+      data: results,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error instanceof Error ? error.message : 'Invalid request',
+    });
+  }
+});
+
+/**
+ * GET /api/players/:player/stats
+ * Get individual player's performance statistics
+ */
+router.get('/players/:player/stats', (req: Request, res: Response) => {
+  try {
+    const player = validateQuery(playerNameSchema, req.params.player);
+    const results = queryPlayerStats(player);
     
     if (results === null) {
       res.status(404).json({

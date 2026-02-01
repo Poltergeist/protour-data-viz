@@ -202,6 +202,39 @@
         }
       }
     },
+    "/players/{player}/stats": {
+      "get": {
+        "summary": "Get individual player's performance statistics",
+        "description": "Retrieve detailed performance stats for a specific player including their W-L-D record, win rate, matchup breakdown, and deck list. Shows individual tournament performance.",
+        "operationId": "queryPlayerStats",
+        "parameters": [
+          {
+            "name": "player",
+            "in": "path",
+            "required": true,
+            "description": "Player name (exact or partial match)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayerStatsResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Player not found"
+          }
+        }
+      }
+    },
     "/archetypes": {
       "get": {
         "summary": "List all archetypes",
@@ -346,6 +379,42 @@
           },
           "data": {
             "type": "object"
+          }
+        }
+      },
+      "PlayerStatsResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "playerName": {"type": "string"},
+              "archetype": {"type": "string"},
+              "wins": {"type": "integer"},
+              "losses": {"type": "integer"},
+              "draws": {"type": "integer"},
+              "winRate": {"type": "number"},
+              "totalMatches": {"type": "integer"},
+              "record": {"type": "string", "example": "5-2"},
+              "matchups": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "opponent": {"type": "string"},
+                    "wins": {"type": "integer"},
+                    "losses": {"type": "integer"},
+                    "draws": {"type": "integer"},
+                    "percentage": {"type": "number"}
+                  }
+                }
+              },
+              "deckList": {"type": "object"}
+            }
           }
         }
       },
