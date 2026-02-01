@@ -113,8 +113,8 @@ export function validateQuery<T>(schema: z.ZodSchema<T>, data: unknown): T {
     return schema.parse(data);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const firstError = error.errors[0];
-      throw new Error(`Validation error: ${firstError.message}`);
+      const messages = error.errors.map(e => e.message).join(', ');
+      throw new Error(`Validation error: ${messages}`);
     }
     throw error;
   }
