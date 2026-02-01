@@ -138,8 +138,8 @@
     },
     "/stats": {
       "get": {
-        "summary": "Get archetype statistics",
-        "description": "Retrieve archetype win rates and matchup data",
+        "summary": "Get archetype win rates and matchup statistics",
+        "description": "Retrieve detailed statistics including win/loss records, win rates, and head-to-head matchup data for any archetype. Essential for meta analysis.",
         "operationId": "queryStats",
         "parameters": [
           {
