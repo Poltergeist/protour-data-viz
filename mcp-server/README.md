@@ -30,9 +30,12 @@ npm run dev
 
 - `npm run dev` - Start development server with hot reload (port 3000)
 - `npm run dev:ngrok` - Instructions for HTTPS testing with ngrok
+- `npm run mcp` - **Run MCP server (stdio mode for Claude Desktop)**
 - `npm run build` - Compile TypeScript to JavaScript
 - `npm run start` - Run production server (requires build first)
 - `npm run test:mcp` - Test health endpoint locally
+- `npm run test:queries` - Test all query functions
+- `npm run test:phase2` - Test data loading and validation
 
 ## Architecture
 
