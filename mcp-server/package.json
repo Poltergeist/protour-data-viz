@@ -12,6 +12,7 @@
     "build": "tsc",
     "start": "node dist/http-server.js",
     "test:mcp": "curl http://localhost:3000/health",
+    "test:http": "tsx src/test-http.ts",
     "test:queries": "tsx src/test-queries.ts",
     "test:phase2": "tsx src/test-phase2.ts"
   },
