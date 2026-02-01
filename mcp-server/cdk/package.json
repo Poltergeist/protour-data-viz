@@ -1,0 +1,25 @@
+{
+  "name": "protour-mcp-cdk",
+  "version": "1.0.0",
+  "description": "AWS CDK deployment for ProTour MCP Server",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "deploy": "cdk deploy",
+    "diff": "cdk diff",
+    "synth": "cdk synth",
+    "destroy": "cdk destroy"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "aws-cdk": "^2.118.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.118.0",
+    "constructs": "^10.3.0"
+  }
+}

@@ -1,0 +1,30 @@
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Build output
+dist/
+*.js
+*.d.ts
+
+# Dependency directories
+node_modules/
+
+# CDK Context & Staging files
+.cdk.staging/
+cdk.context.json
+
+# Testing
+coverage/
+*.log
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
