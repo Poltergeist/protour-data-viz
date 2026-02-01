@@ -88,8 +88,8 @@
     },
     "/decks": {
       "get": {
-        "summary": "Query deck lists",
-        "description": "Query complete deck lists by player or archetype",
+        "summary": "Get deck lists with full card details",
+        "description": "Retrieve complete deck lists including main deck, sideboard, and all card details. Filter by player name or archetype to find specific decks.",
         "operationId": "queryDecks",
         "parameters": [
           {
@@ -171,8 +171,8 @@
     },
     "/players/{player}/deck": {
       "get": {
-        "summary": "Get player's deck and performance",
-        "description": "Get complete information for a specific player",
+        "summary": "Get specific player's complete deck list and tournament results",
+        "description": "Retrieve a player's full deck list (main deck and sideboard), their archetype, and all match results. Perfect for analyzing individual player performance.",
         "operationId": "queryPlayerDeck",
         "parameters": [
           {
