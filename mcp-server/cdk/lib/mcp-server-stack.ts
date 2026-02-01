@@ -6,7 +6,6 @@
 import * as cdk from 'aws-cdk-lib';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigatewayv2 from 'aws-cdk-lib/aws-apigatewayv2';
-import * as logs from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -47,13 +46,8 @@ export class McpServerStack extends cdk.Stack {
         NODE_ENV: 'production',
       },
       description: 'ProTour MCP Server - Tournament data query service',
-    });
-
-    // CloudWatch Logs
-    new logs.LogGroup(this, 'ProTourMcpLogGroup', {
-      logGroupName: `/aws/lambda/${mcpFunction.functionName}`,
-      retention: logs.RetentionDays.ONE_WEEK,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      // CloudWatch Logs are automatically created by Lambda
+      // Retention can be managed in AWS Console or via separate custom resource if needed
     });
 
     // HTTP API Gateway
