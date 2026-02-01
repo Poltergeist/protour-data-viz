@@ -62,6 +62,7 @@ npm run dev
 
 ## Documentation
 
+- [DATA-SCHEMA.md](./DATA-SCHEMA.md) - Data structures and types reference
 - [TOOLS.md](./TOOLS.md) - Complete MCP tools reference
 - [API.md](./API.md) - REST API documentation
 - [INTEGRATIONS.md](./INTEGRATIONS.md) - AI tool setup guides
