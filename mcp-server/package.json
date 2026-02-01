@@ -5,9 +5,11 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "echo 'Dev script coming soon'",
-    "build": "echo 'Build script coming soon'",
-    "start": "echo 'Start script coming soon'"
+    "dev": "tsx watch src/index.ts",
+    "dev:ngrok": "echo 'Run: npm run dev (in one terminal) && ngrok http 3000 (in another terminal)'",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test:mcp": "curl http://localhost:3000/health"
   },
   "keywords": [
     "mcp",

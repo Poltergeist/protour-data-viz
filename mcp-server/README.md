@@ -17,13 +17,22 @@ Both interfaces provide read-only access to tournament matches, deck lists, arch
 # Install dependencies
 npm install
 
-# Run development server
+# Run development server (with hot reload)
 npm run dev
 
 # Server runs at http://localhost:3000
 # MCP endpoint: http://localhost:3000/mcp
 # REST API: http://localhost:3000/api/*
+# Health check: http://localhost:3000/health
 ```
+
+## NPM Scripts
+
+- `npm run dev` - Start development server with hot reload (port 3000)
+- `npm run dev:ngrok` - Instructions for HTTPS testing with ngrok
+- `npm run build` - Compile TypeScript to JavaScript
+- `npm run start` - Run production server (requires build first)
+- `npm run test:mcp` - Test health endpoint locally
 
 ## Architecture
 
