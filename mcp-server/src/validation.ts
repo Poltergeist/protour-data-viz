@@ -103,6 +103,23 @@ export const playerDeckQuerySchema = z.object({
 });
 
 /**
+ * Card name validation
+ */
+export const cardNameSchema = z
+  .string()
+  .min(1)
+  .max(MAX_STRING_LENGTH)
+  .regex(/^[a-zA-Z0-9\s\-',./]+$/, 'Invalid card name');
+
+/**
+ * Query parameters for card queries
+ */
+export const cardQuerySchema = z.object({
+  card: cardNameSchema,
+  limit: limitSchema.optional(),
+});
+
+/**
  * Sanitize a string by removing potentially dangerous characters
  */
 export function sanitizeString(input: string): string {
@@ -131,3 +148,4 @@ export type MatchQuery = z.infer<typeof matchQuerySchema>;
 export type DeckQuery = z.infer<typeof deckQuerySchema>;
 export type StatsQuery = z.infer<typeof statsQuerySchema>;
 export type PlayerDeckQuery = z.infer<typeof playerDeckQuerySchema>;
+export type CardQuery = z.infer<typeof cardQuerySchema>;

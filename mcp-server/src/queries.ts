@@ -7,7 +7,7 @@ import type {
   Match,
 } from './types.js';
 import { loadAllData } from './data-loader.js';
-import type { MatchQuery, DeckQuery, StatsQuery } from './validation.js';
+import type { MatchQuery, DeckQuery, StatsQuery, CardQuery } from './validation.js';
 
 // Cache loaded data to avoid repeated file reads
 let cachedData: ReturnType<typeof loadAllData> | null = null;
@@ -174,6 +174,78 @@ export function listArchetypes() {
     }));
   
   return archetypes;
+}
+
+/**
+ * Query decks by card name and calculate performance
+ */
+export function queryDecksByCard(params: CardQuery) {
+  const data = getData();
+  const { card, limit = 100 } = params;
+  const cardLower = card.toLowerCase();
+  
+  // Find all decks containing this card (in main deck or sideboard)
+  const decksWithCard = data.decklists.filter(deck => {
+    const hasInMainDeck = deck.mainDeck.some(c => 
+      c.name.toLowerCase().includes(cardLower)
+    );
+    const hasInSideboard = deck.sideboard.some(c => 
+      c.name.toLowerCase().includes(cardLower)
+    );
+    return hasInMainDeck || hasInSideboard;
+  });
+  
+  // Calculate statistics for these decks
+  const archetypeBreakdown: Record<string, {
+    count: number;
+    wins: number;
+    losses: number;
+    draws: number;
+    winRate: number;
+  }> = {};
+  
+  let totalWins = 0;
+  let totalLosses = 0;
+  let totalDraws = 0;
+  
+  decksWithCard.forEach(deck => {
+    const archetype = deck.archetype;
+    const archetypeStats = data.stats.archetypes[archetype];
+    
+    if (archetypeStats) {
+      if (!archetypeBreakdown[archetype]) {
+        archetypeBreakdown[archetype] = {
+          count: 0,
+          wins: archetypeStats.wins,
+          losses: archetypeStats.losses,
+          draws: archetypeStats.draws,
+          winRate: archetypeStats.winRate,
+        };
+      }
+      archetypeBreakdown[archetype].count += 1;
+      totalWins += archetypeStats.wins;
+      totalLosses += archetypeStats.losses;
+      totalDraws += archetypeStats.draws;
+    }
+  });
+  
+  const totalMatches = totalWins + totalLosses + totalDraws;
+  const overallWinRate = totalMatches > 0 ? (totalWins / totalMatches) * 100 : 0;
+  
+  return {
+    card,
+    totalDecks: decksWithCard.length,
+    overallStats: {
+      wins: totalWins,
+      losses: totalLosses,
+      draws: totalDraws,
+      winRate: parseFloat(overallWinRate.toFixed(2)),
+    },
+    archetypeBreakdown: Object.entries(archetypeBreakdown)
+      .sort((a, b) => b[1].count - a[1].count)
+      .map(([name, stats]) => ({ archetype: name, ...stats })),
+    decks: decksWithCard.slice(0, limit),
+  };
 }
 
 /**

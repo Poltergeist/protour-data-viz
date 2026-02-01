@@ -12,6 +12,7 @@ import {
   queryPlayerDeck,
   listArchetypes,
   getTournamentInfo,
+  queryDecksByCard,
 } from './queries.js';
 import {
   validateQuery,
@@ -19,6 +20,7 @@ import {
   deckQuerySchema,
   statsQuerySchema,
   playerNameSchema,
+  cardQuerySchema,
 } from './validation.js';
 
 const router = Router();
@@ -210,6 +212,32 @@ router.get('/tournament', (_req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       error: error instanceof Error ? error.message : 'Internal server error',
+    });
+  }
+});
+
+/**
+ * GET /api/cards/:card
+ * Query decks by card name and get performance statistics
+ */
+router.get('/cards/:card', (req: Request, res: Response) => {
+  try {
+    const params = {
+      card: req.params.card as string,
+      limit: req.query.limit ? parseInt(req.query.limit as string, 10) : undefined,
+    };
+
+    const validated = validateQuery(cardQuerySchema, params);
+    const results = queryDecksByCard(validated);
+    
+    res.json({
+      success: true,
+      data: results,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error instanceof Error ? error.message : 'Invalid request',
     });
   }
 });
