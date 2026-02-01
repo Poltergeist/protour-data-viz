@@ -17499,6 +17499,4304 @@
       ]
     }
   ],
+  "16": [
+    {
+      "TableNumber": 0,
+      "ResultString": "Robert Wagner Krankel was assigned a bye",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a6286ba4-150b-45d0-a66c-b3e00044c5ff",
+              "PlayerId": 3764934,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764934,
+                "DisplayName": "Robert Wagner Krankel",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 0,
+      "ResultString": "EduS was assigned a bye",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "b01f74e0-d2ea-416a-bdc1-b3e00080d2dc",
+              "PlayerId": 3764992,
+              "DecklistName": "Izzet Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764992,
+                "DisplayName": "EduS",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 0,
+      "ResultString": "Toni Portolan was assigned a bye",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8db35743-eac3-49a9-a62f-b3df017e206e",
+              "PlayerId": 3793159,
+              "DecklistName": "Temur Harmonizer",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3793159,
+                "DisplayName": "Toni Portolan",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 0,
+      "ResultString": "Cyprien Tron was assigned a bye",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "4662b8a2-57a7-41e5-9db6-b3e0001371aa",
+              "PlayerId": 3764872,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764872,
+                "DisplayName": "Cyprien Tron",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 0,
+      "ResultString": "Francisco Sanchez was assigned a bye",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "1a2c47f6-da1e-47e9-8256-b3e00065875f",
+              "PlayerId": 3764883,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764883,
+                "DisplayName": "Francisco Sanchez",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 0,
+      "ResultString": "Luis Salvatto was assigned a bye",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "dc0c52ad-9706-4baf-8a45-b3e00071eecd",
+              "PlayerId": 3782372,
+              "DecklistName": "Dimir Excruciator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3782372,
+                "DisplayName": "Luis Salvatto",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 1,
+      "ResultString": "Guglielmo Lupi won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ce1bd306-8e0a-4681-b513-b3e00109cf58",
+              "PlayerId": 3793563,
+              "DecklistName": "Sultai Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3793563,
+                "DisplayName": "Julien Henry",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8b8753bf-4f2d-4caf-887d-b3e000371ff8",
+              "PlayerId": 3764885,
+              "DecklistName": "Five-Color Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764885,
+                "DisplayName": "Guglielmo Lupi",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 2,
+      "ResultString": "Marco Belacca won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a9db90ec-540a-4f25-8bdc-b3dd004ff8f0",
+              "PlayerId": 3767404,
+              "DecklistName": "Jeskai Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767404,
+                "DisplayName": "Marco Belacca",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "4f66f169-40cf-49e1-97da-b3e00040e614",
+              "PlayerId": 3778263,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778263,
+                "DisplayName": "Andy Garcia-Romo",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 3,
+      "ResultString": "Christoffer Larsen won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "63952237-9100-4949-b6a4-b3e001103c67",
+              "PlayerId": 3767399,
+              "DecklistName": "Dimir Excruciator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767399,
+                "DisplayName": "Christoffer Larsen",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "d36f03b4-654a-474d-8233-b3df00c5ff66",
+              "PlayerId": 3777512,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3777512,
+                "DisplayName": "Ken Yukuhiro",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 4,
+      "ResultString": "PetrKikac won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "6872749e-c911-4eb8-9c77-b3e00105e28d",
+              "PlayerId": 3811557,
+              "DecklistName": "Izzet Blink",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811557,
+                "DisplayName": "Arne Huschenbeth",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "4c54206b-0cb1-4206-b5a4-b3e000ee3963",
+              "PlayerId": 3794294,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3794294,
+                "DisplayName": "PetrKikac",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 5,
+      "ResultString": "Marco cammilluzzi won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "69bff9be-03a7-465a-b7ae-b3e001100076",
+              "PlayerId": 3796033,
+              "DecklistName": "Grixis Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3796033,
+                "DisplayName": "Marco cammilluzzi",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "2deb84fa-fa0c-4195-9597-b3e0000de8ba",
+              "PlayerId": 3778264,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778264,
+                "DisplayName": "Charis Kikidis",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 6,
+      "ResultString": "Adam Edelson won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c5884cc0-4552-4f2e-9daf-b3e000660eee",
+              "PlayerId": 3767396,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767396,
+                "DisplayName": "Adam Edelson",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ffdf9165-d716-4005-8300-b3e00051b24a",
+              "PlayerId": 3764882,
+              "DecklistName": "Izzet Blink",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764882,
+                "DisplayName": "Eli Kassis",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 7,
+      "ResultString": "Adria Martin won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ef211468-7753-47bc-bdbc-b3df011ce71a",
+              "PlayerId": 3800336,
+              "DecklistName": "Rakdos Monument",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3800336,
+                "DisplayName": "Adria Martin",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "6a138536-5179-433a-be2b-b3e0001076d8",
+              "PlayerId": 3793561,
+              "DecklistName": "Azorius Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3793561,
+                "DisplayName": "Arch Dota",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 8,
+      "ResultString": "Marcus Wosner won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "cde5064e-a0f9-49d0-8fbf-b3e0007c82c2",
+              "PlayerId": 3776759,
+              "DecklistName": "Four-Color Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3776759,
+                "DisplayName": "Nick Deriu",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "6ab27e76-554e-4b92-9a10-b3dc015a4eb8",
+              "PlayerId": 3779958,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3779958,
+                "DisplayName": "Marcus Wosner",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 9,
+      "ResultString": "Shota Yasooka won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "9b74b8a9-9093-4809-8665-b3de012a612b",
+              "PlayerId": 3764949,
+              "DecklistName": "Temur Harmonizer",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764949,
+                "DisplayName": "Tom White",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a9197d76-c767-4d2e-ac50-b3e000415728",
+              "PlayerId": 3767407,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767407,
+                "DisplayName": "Shota Yasooka",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 10,
+      "ResultString": "Zevin Faust won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "97f2be9f-6bc2-4015-bf34-b3df00c893c2",
+              "PlayerId": 3809245,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3809245,
+                "DisplayName": "Yuuki Ichikawa",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a1e9e98f-49c0-462c-8c29-b3e000509ee2",
+              "PlayerId": 3811223,
+              "DecklistName": "Azorius Tempo",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811223,
+                "DisplayName": "Zevin Faust",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 11,
+      "ResultString": "JodyK won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ee796731-9b9d-462a-9915-b3e000c1a6d4",
+              "PlayerId": 3796030,
+              "DecklistName": "Bant Omniscience",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3796030,
+                "DisplayName": "JodyK",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "4c2b6300-5d1e-4e4b-9da5-b3e00082285f",
+              "PlayerId": 3764911,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764911,
+                "DisplayName": "Marc Peral",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 12,
+      "ResultString": "Simon Nielsen won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "824cf9ad-ca89-4997-a0a9-b3df00b20209",
+              "PlayerId": 3765794,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765794,
+                "DisplayName": "Atsuki Kihara",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "5dba8ae1-5852-4d4a-b54a-b3e00111c346",
+              "PlayerId": 3792743,
+              "DecklistName": "Five-Color Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3792743,
+                "DisplayName": "Simon Nielsen",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 13,
+      "ResultString": "Yuchen Liu won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "efff200c-cdcc-4431-ab00-b3e00039d8bf",
+              "PlayerId": 3764904,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764904,
+                "DisplayName": "Joshua Willis",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "64036688-fbff-4d10-854d-b3df009f879e",
+              "PlayerId": 3766946,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3766946,
+                "DisplayName": "Yuchen Liu",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 14,
+      "ResultString": "Jack Potter won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "0c0f2f9e-eae0-40bd-8342-b3df016ec081",
+              "PlayerId": 3764891,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764891,
+                "DisplayName": "Jack Potter",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "6059e1dd-f287-4da2-a551-b3e0003c7bb8",
+              "PlayerId": 3764942,
+              "DecklistName": "Five-Color Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764942,
+                "DisplayName": "Stefan Schütz",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 15,
+      "ResultString": "Yimin Zhi won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "3d703160-ecb9-4c3d-9acc-b3df016f2252",
+              "PlayerId": 3792872,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3792872,
+                "DisplayName": "KELLEN PASTORE",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "b255c2c7-0336-4bd8-8d79-b3de0100fcd2",
+              "PlayerId": 3766625,
+              "DecklistName": "Azorius Tempo",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3766625,
+                "DisplayName": "Yimin Zhi",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 16,
+      "ResultString": "Huaxing Bai won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "5380542f-ecd5-4cb3-b5c5-b3e0003b885f",
+              "PlayerId": 3782886,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3782886,
+                "DisplayName": "Huaxing Bai",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "066a3998-fb61-480d-894c-b3e000756b7c",
+              "PlayerId": 3781952,
+              "DecklistName": "Dimir Excruciator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3781952,
+                "DisplayName": "Ale_Mtg",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 17,
+      "ResultString": "Gabriel Nicholas won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "e07642c6-c08c-4e64-8149-b3e000678b39",
+              "PlayerId": 3764917,
+              "DecklistName": "Dimir Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764917,
+                "DisplayName": "Matt Sperling",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "dba391d5-4e17-4421-9a67-b3e0003a43c3",
+              "PlayerId": 3781947,
+              "DecklistName": "Izzet Blink",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3781947,
+                "DisplayName": "Gabriel Nicholas",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 18,
+      "ResultString": "Matthew Wright won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8a41f35b-3288-47ce-ad4d-b3e000d7beb4",
+              "PlayerId": 3788698,
+              "DecklistName": "Esper Pixie",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3788698,
+                "DisplayName": "Matthew Wright",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "75878897-94fe-42a9-8918-b3e00038192d",
+              "PlayerId": 3764926,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764926,
+                "DisplayName": "Paul Green",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 19,
+      "ResultString": "Samuel Chang won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "01741eb1-2e20-4a7d-a56e-b3e000b42637",
+              "PlayerId": 3765570,
+              "DecklistName": "Boros Dragons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765570,
+                "DisplayName": "Brennan Roy",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "2a12fd93-909b-4b09-8ea5-b3df003ae263",
+              "PlayerId": 3794295,
+              "DecklistName": "Grixis Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3794295,
+                "DisplayName": "Samuel Chang",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 20,
+      "ResultString": "Julian Riedener won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "811f1445-0e10-4795-b675-b3e000096866",
+              "PlayerId": 3776941,
+              "DecklistName": "Grixis Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3776941,
+                "DisplayName": "Julian Riedener",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "0f2193e3-5244-440e-ad23-b3de009860c4",
+              "PlayerId": 3764875,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764875,
+                "DisplayName": "Davor Detecnik",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 21,
+      "ResultString": "Allen Wu won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "5123fd12-ecf9-4f92-8c4e-b3e00061cf55",
+              "PlayerId": 3764893,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764893,
+                "DisplayName": "Jacob Rabaey",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "902c3623-cfc7-44cc-bc53-b3e00031dcb3",
+              "PlayerId": 3764863,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764863,
+                "DisplayName": "Allen Wu",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 22,
+      "ResultString": "Alexey Paulot won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "43da8480-0c5c-4f7d-a8e1-b3df01095930",
+              "PlayerId": 3764909,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764909,
+                "DisplayName": "Lucas Duchow",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "55b484e1-5e83-4d8a-9c95-b3e0005dbfe5",
+              "PlayerId": 3778262,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778262,
+                "DisplayName": "Alexey Paulot",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 23,
+      "ResultString": "Daniel Goetschel won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "7ff809b1-07ad-42b1-a918-b3df015419e7",
+              "PlayerId": 3778266,
+              "DecklistName": "Boros Dragons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778266,
+                "DisplayName": "Takumi Matsuura",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "f4fa122f-5db8-4345-8ffb-b3df011f5bc4",
+              "PlayerId": 3767400,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767400,
+                "DisplayName": "Daniel Goetschel",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 24,
+      "ResultString": "Nicholas Talbot won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "e357c561-b064-49dc-b9b6-b3e000aeefca",
+              "PlayerId": 3811400,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811400,
+                "DisplayName": "Hojun Yoon",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "cddcb14e-f278-4557-b4a4-b3df0052fe3f",
+              "PlayerId": 3774208,
+              "DecklistName": "Jeskai Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3774208,
+                "DisplayName": "Nicholas Talbot",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 25,
+      "ResultString": "Mateo Ferreira  won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a9fcaf32-6e31-4940-8ff5-b3df01140e66",
+              "PlayerId": 3764859,
+              "DecklistName": "Izzet Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764859,
+                "DisplayName": "Abe Schnake",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "07df3099-66fa-43fa-a279-b3e0010f1f28",
+              "PlayerId": 3764916,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764916,
+                "DisplayName": "Mateo Ferreira ",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 26,
+      "ResultString": "Alexander Kans won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "96248d8d-aa1c-449e-a0f5-b3e000937017",
+              "PlayerId": 3778261,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778261,
+                "DisplayName": "Alexander Kans",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "f2085cd1-f7cb-4df4-aad0-b3df0184a8fd",
+              "PlayerId": 3764915,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764915,
+                "DisplayName": "Mason Buonadonna",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 27,
+      "ResultString": "Avi Lessure won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8dd4dade-c464-47a7-85a0-b3e00075c1c6",
+              "PlayerId": 3764878,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764878,
+                "DisplayName": "Dominic Harvey",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "708613f1-9fcb-4fc6-aa18-b3e000336565",
+              "PlayerId": 3783413,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3783413,
+                "DisplayName": "Avi Lessure",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 28,
+      "ResultString": "Evan Sonnenberg-Rhim won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "733afed0-e2ed-4b23-913c-b3df017fe482",
+              "PlayerId": 3783961,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3783961,
+                "DisplayName": "pasquale_ruggiero",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "468bab79-0be8-41f4-8eb8-b3e00046ec27",
+              "PlayerId": 3788460,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3788460,
+                "DisplayName": "Evan Sonnenberg-Rhim",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 29,
+      "ResultString": "Jacopo Di Napoli won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "562e43c7-a2f0-400c-963b-b3df0174d1fb",
+              "PlayerId": 3765019,
+              "DecklistName": "Izzet Prowess",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765019,
+                "DisplayName": "Anthony Lee",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "b0c20464-6783-49da-ad25-b3e000f8eb8e",
+              "PlayerId": 3764895,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764895,
+                "DisplayName": "Jacopo Di Napoli",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 30,
+      "ResultString": "Maxime Rayvich won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "15c5a439-8891-4299-aa61-b3e00034c456",
+              "PlayerId": 3764919,
+              "DecklistName": "Mono-Green Landfall",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764919,
+                "DisplayName": "Maxime Rayvich",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "10ec9550-c584-46ea-ba60-b3df00bf0007",
+              "PlayerId": 3764907,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764907,
+                "DisplayName": "kenta masukado",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 31,
+      "ResultString": "Reid Duke won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ec696aed-4345-45cb-91f8-b3df0156352a",
+              "PlayerId": 3764932,
+              "DecklistName": "Dimir Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764932,
+                "DisplayName": "Reid Duke",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "941bc719-a75c-44fd-a837-b3df017ae247",
+              "PlayerId": 3778267,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778267,
+                "DisplayName": "Yiren Jiang",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 32,
+      "ResultString": "MASAHIDE MORIYAMA won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "67de46a8-c8a4-490b-947c-b3df0139f1cc",
+              "PlayerId": 3788589,
+              "DecklistName": "Izzet Burn",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3788589,
+                "DisplayName": "MASAHIDE MORIYAMA",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "68152621-437b-4b52-a7e3-b3e000035e74",
+              "PlayerId": 3764922,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764922,
+                "DisplayName": "Toothy",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 33,
+      "ResultString": "James Dimitrov won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "21fd12fa-8d77-4fa6-a0c0-b3e000092c6a",
+              "PlayerId": 3770347,
+              "DecklistName": "Grixis Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3770347,
+                "DisplayName": "Filipe Sousa",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c488571d-5919-4794-a680-b3e0009510b8",
+              "PlayerId": 3764896,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764896,
+                "DisplayName": "James Dimitrov",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 34,
+      "ResultString": "Lorenzo Terlizzi won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "85b11047-1503-4060-9de0-b3e00050b7a3",
+              "PlayerId": 3764908,
+              "DecklistName": "Azorius Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764908,
+                "DisplayName": "Lorenzo Terlizzi",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "b19e5ae4-987d-4dc0-b24b-b3df0177cf39",
+              "PlayerId": 3787219,
+              "DecklistName": "Temur Harmonizer",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3787219,
+                "DisplayName": "Evariel",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 35,
+      "ResultString": "Jacob Nagro won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "9307cd85-2d73-492f-9e91-b3e000737e77",
+              "PlayerId": 3764898,
+              "DecklistName": "Dimir Excruciator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764898,
+                "DisplayName": "Javier Dominguez",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "9d2260e5-93e8-4d01-b339-b3e00044c661",
+              "PlayerId": 3764894,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764894,
+                "DisplayName": "Jacob Nagro",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 36,
+      "ResultString": "Ben Tudman won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "e3943bc7-1f7c-4fcb-bdf4-b3df01733b55",
+              "PlayerId": 3764862,
+              "DecklistName": "Izzet Prowess",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764862,
+                "DisplayName": "Aidan Mirabelli",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "630903ce-c29a-44c6-a074-b3e0000f4e00",
+              "PlayerId": 3764865,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764865,
+                "DisplayName": "Ben Tudman",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 37,
+      "ResultString": "Andrew Elenbogen won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "451d7d82-dedd-4344-8569-b3e0003bd121",
+              "PlayerId": 3764864,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764864,
+                "DisplayName": "Andrew Elenbogen",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "6d434fcb-0296-4ce2-bded-b3e0003e7841",
+              "PlayerId": 3764860,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764860,
+                "DisplayName": "Adam Brace",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 38,
+      "ResultString": "Marco Del Pivo won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "12080ae2-5bce-48af-bf09-b3e0004b0991",
+              "PlayerId": 3764913,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764913,
+                "DisplayName": "Marco Del Pivo",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "dca786d5-03c1-49f3-90e5-b3df00a75962",
+              "PlayerId": 3766547,
+              "DecklistName": "Azorius Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3766547,
+                "DisplayName": "Alex Rohan",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 39,
+      "ResultString": "Daniel Weiser won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "dcd62504-6062-4786-9904-b3e000429134",
+              "PlayerId": 3764873,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764873,
+                "DisplayName": "Daniel Weiser",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "2ebcb6a9-fcd2-4fb2-906e-b3e0004212b8",
+              "PlayerId": 3793412,
+              "DecklistName": "Jeskai Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3793412,
+                "DisplayName": "Bodado",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 40,
+      "ResultString": "Etai Kurtzman won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ec90dba7-54cf-4003-bb6b-b3df00bc6b66",
+              "PlayerId": 3768997,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3768997,
+                "DisplayName": "Takeshi Ozawa",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "d0b7c8c8-410a-424c-815e-b3e00058352d",
+              "PlayerId": 3782683,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3782683,
+                "DisplayName": "Etai Kurtzman",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 41,
+      "ResultString": "Coby Schnepf won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ab880854-c5ef-40a8-9c5e-b3e000400260",
+              "PlayerId": 3776260,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3776260,
+                "DisplayName": "Coby Schnepf",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8c6d2fb9-db72-49c3-a6ab-b3e00082268c",
+              "PlayerId": 3778686,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778686,
+                "DisplayName": "Josep Sanfeliu",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 42,
+      "ResultString": "holiestholy won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8ece5e7b-045c-4c63-bd67-b3e00038e774",
+              "PlayerId": 3811205,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811205,
+                "DisplayName": "Sam Clayton",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "bc3e45a5-71d1-4375-87d5-b3e00104f911",
+              "PlayerId": 3788587,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3788587,
+                "DisplayName": "holiestholy",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 43,
+      "ResultString": "Gabriel Nassif won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "bdfc45ad-b1bf-4c44-96ed-b3e00115514e",
+              "PlayerId": 3793562,
+              "DecklistName": "Dimir Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3793562,
+                "DisplayName": "Gabriel Nassif",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a6af6155-499e-4598-bf0f-b3e000628ffd",
+              "PlayerId": 3796354,
+              "DecklistName": "Four-Color Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3796354,
+                "DisplayName": "Markus Valori",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 44,
+      "ResultString": "Karl 🤝 Sarap won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ac39f8f3-b1ea-4b2f-afd5-b3df00a97dcb",
+              "PlayerId": 3775136,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3775136,
+                "DisplayName": "Tristan Lebon",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "4cda3b23-aba2-4536-893d-b3e0004bf4b3",
+              "PlayerId": 3764905,
+              "DecklistName": "Five-Color Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764905,
+                "DisplayName": "Karl 🤝 Sarap",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 45,
+      "ResultString": "Adriano Moscato won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ee2fac36-8089-4162-8365-b3e000fd972b",
+              "PlayerId": 3776408,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3776408,
+                "DisplayName": "pizzangry",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "610334b3-7ed7-46de-a506-b3e001147b89",
+              "PlayerId": 3764861,
+              "DecklistName": "Sultai Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764861,
+                "DisplayName": "Adriano Moscato",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 46,
+      "ResultString": "Bassel Nasri won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "2b38e70a-a964-4519-a1c7-b3e00070cb97",
+              "PlayerId": 3776757,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3776757,
+                "DisplayName": "Bassel Nasri",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "1505d486-0a22-4329-93f7-b3df00f4996c",
+              "PlayerId": 3779957,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3779957,
+                "DisplayName": "Drugo",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 47,
+      "ResultString": "Andrew Sullano won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "4bf2929e-8e5d-4325-9b47-b3e000654ef5",
+              "PlayerId": 3801511,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3801511,
+                "DisplayName": "Andrew Sullano",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "7dc61beb-d4e0-4ded-9ac2-b3e000870827",
+              "PlayerId": 3796032,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3796032,
+                "DisplayName": "Kenith Dsouza",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 48,
+      "ResultString": "John Puglisi Clark won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "59d60f6f-ceea-418a-966b-b3e0005b372c",
+              "PlayerId": 3764903,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764903,
+                "DisplayName": "John Puglisi Clark",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "929f1060-01ae-4fbd-8a3d-b3e00040c865",
+              "PlayerId": 3796031,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3796031,
+                "DisplayName": "Justin Schabel",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 49,
+      "ResultString": "Rémi ROUDIER won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "83b6de71-8526-43b7-af2b-b3df00949e00",
+              "PlayerId": 3764906,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764906,
+                "DisplayName": "Kenta Harane",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "092e61d6-2793-41e9-8b4d-b3e000f7d06a",
+              "PlayerId": 3764933,
+              "DecklistName": "Sultai Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764933,
+                "DisplayName": "Rémi ROUDIER",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 50,
+      "ResultString": "Phillip Li won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "f2366fac-638e-4d0c-a35d-b3e00059473c",
+              "PlayerId": 3777513,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3777513,
+                "DisplayName": "Chris Barone",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "02f4b3b2-2294-4d54-a2c1-b3e0005d45ae",
+              "PlayerId": 3764928,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764928,
+                "DisplayName": "Phillip Li",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 51,
+      "ResultString": "Nicholas Odenheimer won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "39ce1866-534a-4d3a-96ca-b3e000e1d72d",
+              "PlayerId": 3764923,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764923,
+                "DisplayName": "Nicholas Odenheimer",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "f98f4214-7da9-46fd-9869-b3df0003c80d",
+              "PlayerId": 3779955,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3779955,
+                "DisplayName": "Greg Dyer",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 52,
+      "ResultString": "Mikey Bishara won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c3ea0e4e-3ca7-4ca1-8ab0-b3e0003d60b1",
+              "PlayerId": 3765301,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765301,
+                "DisplayName": "Liam Etelson",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "b906d338-00aa-4793-b751-b3e000ed0210",
+              "PlayerId": 3764920,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764920,
+                "DisplayName": "Mikey Bishara",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 53,
+      "ResultString": "LEOGARTNER won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "2f6249bd-db30-40e3-9970-b3e000f44edd",
+              "PlayerId": 3811493,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811493,
+                "DisplayName": "LEOGARTNER",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "388f2573-f2b4-457c-a8eb-b3df010536fd",
+              "PlayerId": 3764951,
+              "DecklistName": "Boros Aggro",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764951,
+                "DisplayName": "Willy Edel",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 54,
+      "ResultString": "David Rood won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "1128efb5-5a64-4124-8c88-b3e0004827a9",
+              "PlayerId": 3764874,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764874,
+                "DisplayName": "David Rood",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c950c67b-200a-40dc-84f5-b3e000398e66",
+              "PlayerId": 3803437,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3803437,
+                "DisplayName": "Matt Costa",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 55,
+      "ResultString": "Matt Sikkink Johnson won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "12e0fb2e-08a0-41a2-869e-b3de010a9636",
+              "PlayerId": 3765826,
+              "DecklistName": "Selesnya Landfall",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765826,
+                "DisplayName": "yuta yokokawa",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "fe6cec7a-e51a-4aaa-8a51-b3e0004550b5",
+              "PlayerId": 3779959,
+              "DecklistName": "Izzet Spellementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3779959,
+                "DisplayName": "Matt Sikkink Johnson",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 56,
+      "ResultString": "SethManfieldMTG won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "27bd0206-8028-47b9-9c91-b3de018385bd",
+              "PlayerId": 3764930,
+              "DecklistName": "Grixis Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764930,
+                "DisplayName": "Raphael Levy",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "fd321a4b-b225-4504-9403-b3e00102a20f",
+              "PlayerId": 3764939,
+              "DecklistName": "Esper Pixie",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764939,
+                "DisplayName": "SethManfieldMTG",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 57,
+      "ResultString": "Ryan Condon won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "114bdfb6-e603-4f5b-abee-b3df01805c57",
+              "PlayerId": 3764935,
+              "DecklistName": "Jeskai Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764935,
+                "DisplayName": "Ryan Condon",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "cb17d03b-6733-4d09-9902-b3e0010373f6",
+              "PlayerId": 3764890,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764890,
+                "DisplayName": "Ivan Espinosa",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 58,
+      "ResultString": "Ian Robb won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8f20a156-f128-44a6-acc9-b3df01143f6c",
+              "PlayerId": 3764889,
+              "DecklistName": "Izzet Prowess",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764889,
+                "DisplayName": "Ian Robb",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "66ae6a97-4050-4bcb-931c-b3e00017d129",
+              "PlayerId": 3788951,
+              "DecklistName": "Mono-Green Landfall",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3788951,
+                "DisplayName": "Ryan Brozovich",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 59,
+      "ResultString": "Thierry Ramboa won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "894d5495-28ff-4001-b2ee-b3e00116997d",
+              "PlayerId": 3795069,
+              "DecklistName": "Temur Harmonizer",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3795069,
+                "DisplayName": "cftsoc",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "2c5e2c87-ada7-4ed0-afeb-b3df01771806",
+              "PlayerId": 3764946,
+              "DecklistName": "Izzet Prowess",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764946,
+                "DisplayName": "Thierry Ramboa",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 60,
+      "ResultString": "Piotr Głogowski won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "e4926234-5ff4-4bc0-bff9-b3e00049c013",
+              "PlayerId": 3774210,
+              "DecklistName": "Five-Color Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3774210,
+                "DisplayName": "Piotr Głogowski",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c9ec9a55-b9d6-4817-a7d4-b3e0003da1f2",
+              "PlayerId": 3764921,
+              "DecklistName": "Esper Pixie",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764921,
+                "DisplayName": "Nam Dang",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 61,
+      "ResultString": "Benton Madsen won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "84be3efc-23c5-4807-b779-b3e000714ba8",
+              "PlayerId": 3767397,
+              "DecklistName": "Rakdos Monument",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767397,
+                "DisplayName": "Benton Madsen",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "7bd7c16a-3d62-4e7b-bd42-b3e000ff4bfd",
+              "PlayerId": 3764899,
+              "DecklistName": "Sultai Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764899,
+                "DisplayName": "Jean-Emmanuel Depraz",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 62,
+      "ResultString": "Brian Kibler won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "303cb1f1-9357-48b9-9469-b3df003b1c04",
+              "PlayerId": 3776194,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3776194,
+                "DisplayName": "koki hara",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "1ea83d36-1978-47d8-af1c-b3df011e2b25",
+              "PlayerId": 3764867,
+              "DecklistName": "Izzet Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764867,
+                "DisplayName": "Brian Kibler",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 63,
+      "ResultString": "Heathe Butler won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "5c1d23d9-dd59-4ff9-90a7-b3e000d1eb79",
+              "PlayerId": 3781948,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3781948,
+                "DisplayName": "Jesse Piland",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "59bed9cd-4010-4ba2-a1c2-b3e000039806",
+              "PlayerId": 3764888,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764888,
+                "DisplayName": "Heathe Butler",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 64,
+      "ResultString": "ch4rm2nd0r won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "54bb8586-ee98-4497-bf59-b3da00661461",
+              "PlayerId": 3764927,
+              "DecklistName": "Mono-Red Aggro",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764927,
+                "DisplayName": "ch4rm2nd0r",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "ee74ff97-657b-4129-96fa-b3e000f1f41d",
+              "PlayerId": 3781974,
+              "DecklistName": "Grixis Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3781974,
+                "DisplayName": "Reed Johnston",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 65,
+      "ResultString": "Thirawat Chaovarindr won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "889e1f6a-1951-4962-ae79-b3e000c74ae7",
+              "PlayerId": 3764947,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764947,
+                "DisplayName": "Thirawat Chaovarindr",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "b13ce68d-b4fa-4c85-8a89-b3e00105b2c1",
+              "PlayerId": 3811558,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811558,
+                "DisplayName": "Matt Nass",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 66,
+      "ResultString": "Lucca LiPuma won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "96e8dfa9-1b09-4343-b111-b3df014cdb21",
+              "PlayerId": 3806551,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3806551,
+                "DisplayName": "雨桐 邹",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "15a5aaff-5948-463e-8fbd-b3e00076c71e",
+              "PlayerId": 3774207,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3774207,
+                "DisplayName": "Lucca LiPuma",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 67,
+      "ResultString": "Camari Bolger won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8d7857f1-ccbf-4920-a4d3-b3e00035ba42",
+              "PlayerId": 3764897,
+              "DecklistName": "Jeskai Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764897,
+                "DisplayName": "Jason Ye",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "637de6fd-d8a2-4667-bcf2-b3e00042c599",
+              "PlayerId": 3790435,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3790435,
+                "DisplayName": "Camari Bolger",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 68,
+      "ResultString": "Oscar Christensen won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a2e167f1-121a-426a-839f-b3e00055b5f4",
+              "PlayerId": 3794322,
+              "DecklistName": "Izzet Prowess",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3794322,
+                "DisplayName": "Ben Katz",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a5f1e1ea-564e-4b0e-926d-b3e0004b5f44",
+              "PlayerId": 3783900,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3783900,
+                "DisplayName": "Oscar Christensen",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 69,
+      "ResultString": "Jacob Lamothe won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "9f4ca5a7-52a2-4adb-a354-b3e0005c269d",
+              "PlayerId": 3782586,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3782586,
+                "DisplayName": "Reese Pfenning",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "58b4bcc8-cc0c-4383-a2f8-b3e0004777f5",
+              "PlayerId": 3778731,
+              "DecklistName": "Grixis Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3778731,
+                "DisplayName": "Jacob Lamothe",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 70,
+      "ResultString": "André Santos won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "87aa74f2-6b15-4105-85ed-b3e0000bca64",
+              "PlayerId": 3782888,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3782888,
+                "DisplayName": "Max Rappaport",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "6c294906-ec06-4360-95f4-b3e0010dfea7",
+              "PlayerId": 3777337,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3777337,
+                "DisplayName": "André Santos",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 71,
+      "ResultString": "BestSmurgNA won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "545ee420-6ea1-4486-a23f-b3e000fd0375",
+              "PlayerId": 3764936,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764936,
+                "DisplayName": "Samuel Pardee",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "bc51efb7-b804-47b8-9a58-b3e0010ea2ce",
+              "PlayerId": 3764956,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764956,
+                "DisplayName": "BestSmurgNA",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 72,
+      "ResultString": "Gage Hergert won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "aca0ddbb-d89b-473b-a2b8-b3e0003534d1",
+              "PlayerId": 3782887,
+              "DecklistName": "Izzet Prowess",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3782887,
+                "DisplayName": "Liam Kane",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "55ac7275-44f7-495b-abd3-b3e000445d69",
+              "PlayerId": 3765046,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765046,
+                "DisplayName": "Gage Hergert",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 73,
+      "ResultString": "Nathan Steuer won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c54f62c1-7da7-4584-a53b-b3e001153576",
+              "PlayerId": 3781770,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3781770,
+                "DisplayName": "Michael Simonetti",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "91fabea5-fd5c-4316-87b8-b3e00045f43d",
+              "PlayerId": 3811214,
+              "DecklistName": "Izzet Blink",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811214,
+                "DisplayName": "Nathan Steuer",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 74,
+      "ResultString": "Jennifer Wang won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c6358c2d-2035-4d8b-b083-b3e00005c323",
+              "PlayerId": 3764900,
+              "DecklistName": "Temur Harmonizer",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764900,
+                "DisplayName": "Jennifer Wang",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "c2bd5de9-3bd8-43be-bcef-b3e00107ba77",
+              "PlayerId": 3765002,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765002,
+                "DisplayName": "Pierre Liebsch",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 75,
+      "ResultString": "Daniel Toledo won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "bee3daee-e03d-4966-af5f-b3e000825ef0",
+              "PlayerId": 3807813,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3807813,
+                "DisplayName": "Masaya_Hoshino",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "03df2d61-22cf-4d82-9d78-b3e000722954",
+              "PlayerId": 3805612,
+              "DecklistName": "Dimir Excruciator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3805612,
+                "DisplayName": "Daniel Toledo",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 76,
+      "ResultString": "shuhei nakamura won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "340594a5-45a6-440c-aa31-b3df011558c1",
+              "PlayerId": 3808565,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3808565,
+                "DisplayName": "Tomoaki Ogasawara",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "711cf3e0-1bd6-4d52-8b3b-b3df00e420b8",
+              "PlayerId": 3764940,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764940,
+                "DisplayName": "shuhei nakamura",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 77,
+      "ResultString": "NiHaoDyLan won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "4c834b25-3699-4e00-adf7-b3e00076daf2",
+              "PlayerId": 3793169,
+              "DecklistName": "Jeskai Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3793169,
+                "DisplayName": "Gabriel Clark",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "9a58913d-7192-458a-ba46-b3e001129dd7",
+              "PlayerId": 3764880,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764880,
+                "DisplayName": "NiHaoDyLan",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 78,
+      "ResultString": "Toru Inoue won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "eeb678c8-d6f9-466a-910f-b3df00ac8bb8",
+              "PlayerId": 3764950,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764950,
+                "DisplayName": "Toru Inoue",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "56f0be82-f15e-4478-a91a-b3e000f0ded4",
+              "PlayerId": 3811484,
+              "DecklistName": "Jeskai Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811484,
+                "DisplayName": "Alessio Fedi",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 79,
+      "ResultString": "Jim Davis won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8eabb860-6dbe-4e3b-8d75-b3e001148df9",
+              "PlayerId": 3781949,
+              "DecklistName": "Esper Pixie",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3781949,
+                "DisplayName": "Jim Davis",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "20bd47fa-7df1-4f86-9cff-b3df0088c6f5",
+              "PlayerId": 3779985,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3779985,
+                "DisplayName": "Sangjoon Kong",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 80,
+      "ResultString": "thepchapin won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "34b2cd20-ea2e-4b70-be9e-b3e00108e22d",
+              "PlayerId": 3774209,
+              "DecklistName": "Sultai Reanimator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3774209,
+                "DisplayName": "thepchapin",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "3960b19e-3e4b-4f8b-9c8a-b3e0005d5c2f",
+              "PlayerId": 3779956,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3779956,
+                "DisplayName": "Joseph Puglisi",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 81,
+      "ResultString": "Quinn Tonole won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "38b8cff1-a62f-472c-b46a-b3e0010ce83e",
+              "PlayerId": 3764929,
+              "DecklistName": "Mono-Red Aggro",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764929,
+                "DisplayName": "Quinn Tonole",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "5ca58448-b63b-4c77-8116-b3df014fac7a",
+              "PlayerId": 3788661,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3788661,
+                "DisplayName": "Matyáš Kalužný",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 82,
+      "ResultString": "Christopher Tong won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "0349ca15-eedc-4b7a-873d-b3e000763869",
+              "PlayerId": 3764938,
+              "DecklistName": "Dimir Excruciator",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764938,
+                "DisplayName": "Sergio Garcia",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "39d94f0b-f392-4d7f-8b45-b3e000295d46",
+              "PlayerId": 3764870,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764870,
+                "DisplayName": "Christopher Tong",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 83,
+      "ResultString": "Ha Pham won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a07f8d0e-e0ec-4900-9ff6-b3e000b26780",
+              "PlayerId": 3811406,
+              "DecklistName": "Golgari Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811406,
+                "DisplayName": "savagebeats",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "e913bb8a-a6f5-4b2d-a659-b3e000f3242e",
+              "PlayerId": 3767401,
+              "DecklistName": "Sultai Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767401,
+                "DisplayName": "Ha Pham",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 84,
+      "ResultString": "Glisa999 won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "58eacc7d-833d-4bd0-8c60-b3e000f09da9",
+              "PlayerId": 3765005,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765005,
+                "DisplayName": "Glisa999",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "215f94a1-1bbd-4fbe-a888-b3e00108e0b9",
+              "PlayerId": 3811579,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811579,
+                "DisplayName": "Jeffrey Howell",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 85,
+      "ResultString": "Derrick Davis won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "99f00f6a-e332-4439-8549-b3e0005a252f",
+              "PlayerId": 3773757,
+              "DecklistName": "Bant Airbending",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3773757,
+                "DisplayName": "Derrick Davis",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a61c8ddf-c528-4e83-b737-b3e00024233f",
+              "PlayerId": 3766698,
+              "DecklistName": "Jeskai Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3766698,
+                "DisplayName": "Jay T",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 86,
+      "ResultString": "Devon Straub won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "a189d137-192e-438d-b15c-b3e0005ffde9",
+              "PlayerId": 3764877,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764877,
+                "DisplayName": "Devon Straub",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "48aa5094-3a5e-4146-8541-b3e000271e2c",
+              "PlayerId": 3764876,
+              "DecklistName": "Dimir Midrange",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764876,
+                "DisplayName": "Dawson Courson",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 87,
+      "ResultString": "Taktikerpups won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "6015ab3d-6b7f-4ed4-b082-b3e0002b86fe",
+              "PlayerId": 3811133,
+              "DecklistName": "Simic Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3811133,
+                "DisplayName": "Taktikerpups",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "8115d7ed-13e4-4d0b-9736-b3e00005dd3d",
+              "PlayerId": 3765016,
+              "DecklistName": "Four-Color Control",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765016,
+                "DisplayName": "Gavin Bennett",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 88,
+      "ResultString": "Damian Del Nero won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "68770bb0-5f39-4d3a-8ba2-b3de015dcdd9",
+              "PlayerId": 3767169,
+              "DecklistName": "Sultai Elementals",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3767169,
+                "DisplayName": "Max Dore",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "35a2c5c5-2ee9-4bfa-93d4-b3e00026cffc",
+              "PlayerId": 3777511,
+              "DecklistName": "Golgari Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3777511,
+                "DisplayName": "Damian Del Nero",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 89,
+      "ResultString": "Borreguinhas won 2-1-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "bf6bfd05-508c-4c85-a4b6-b3e0000a8e55",
+              "PlayerId": 3765013,
+              "DecklistName": "Izzet Lessons",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3765013,
+                "DisplayName": "Alfonso Concha",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "9175c75c-3a18-4744-be8d-b3e000d4ce44",
+              "PlayerId": 3810395,
+              "DecklistName": "Mono-Green Landfall",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3810395,
+                "DisplayName": "Borreguinhas",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "TableNumber": 90,
+      "ResultString": "Victor Hawkins won 2-0-0",
+      "Competitors": [
+        {
+          "Decklists": [
+            {
+              "DecklistId": "700f45f2-d64a-45eb-a1d9-b3e00074492b",
+              "PlayerId": 3764931,
+              "DecklistName": "Five-Color Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3764931,
+                "DisplayName": "Raul Porojan",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        },
+        {
+          "Decklists": [
+            {
+              "DecklistId": "74796d6b-1548-4540-a911-b3e0005b08e1",
+              "PlayerId": 3786821,
+              "DecklistName": "Bant Rhythm",
+              "Format": "Standard",
+              "FormatId": "0c751de2-e65d-4666-83a2-ad08f96882d6"
+            }
+          ],
+          "Team": {
+            "Players": [
+              {
+                "ID": 3786821,
+                "DisplayName": "Victor Hawkins",
+                "ScreenName": "N/A"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
   "4": [
     {
       "TableNumber": 1,
