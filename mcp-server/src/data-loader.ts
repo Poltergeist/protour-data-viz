@@ -23,7 +23,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Absolute path to data directory
-const DATA_DIR = resolve(__dirname, '../../data');
+// In Lambda, data is bundled alongside the code in ./data
+// In local dev, data is in ../data (from src to data)
+const DATA_DIR = process.env.AWS_LAMBDA_FUNCTION_NAME
+  ? resolve(__dirname, './data')
+  : resolve(__dirname, '../../data');
 
 // SECURITY: Allowlist of specific files that can be accessed
 const ALLOWED_FILES = [
