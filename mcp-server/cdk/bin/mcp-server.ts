@@ -13,7 +13,7 @@ new McpServerStack(app, 'ProTourMcpStack', {
   description: 'ProTour MCP Server - Tournament data query service',
   env: {
     account: process.env.CDK_DEFAULT_ACCOUNT,
-    region: process.env.CDK_DEFAULT_REGION,
+    region: process.env.CDK_DEPLOY_REGION || 'eu-central-1',
   },
 });
 

@@ -16,11 +16,28 @@ This directory contains AWS CDK infrastructure code for deploying the ProTour MC
    ```bash
    aws configure
    ```
-3. **Node.js**: Version 18 or higher
+3. **Node.js**: Version 20 or higher
 4. **CDK Bootstrap**: Run once per AWS account/region
    ```bash
-   npm run cdk bootstrap
+   # Bootstrap for eu-central-1 (default region)
+   export CDK_DEPLOY_REGION=eu-central-1
+   npx cdk bootstrap aws://YOUR_ACCOUNT_ID/eu-central-1
+   
+   # Or for a different region
+   export CDK_DEPLOY_REGION=us-west-2
+   npx cdk bootstrap aws://YOUR_ACCOUNT_ID/us-west-2
    ```
+
+## Region Configuration
+
+By default, the stack deploys to **eu-central-1**. You can change the region by setting the `CDK_DEPLOY_REGION` environment variable:
+
+```bash
+export CDK_DEPLOY_REGION=us-west-2
+npm run deploy
+```
+
+**Note**: You must bootstrap the region before deploying to it.
 
 ## Quick Start
 

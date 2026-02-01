@@ -68,10 +68,15 @@ CDK requires a one-time bootstrap to set up resources in your AWS account:
 ```bash
 cd mcp-server/cdk
 npm install
-npx cdk bootstrap
+
+# Bootstrap for eu-central-1 (default region)
+export CDK_DEPLOY_REGION=eu-central-1
+npx cdk bootstrap aws://$(aws sts get-caller-identity --query Account --output text)/eu-central-1
 ```
 
 This creates an S3 bucket and other resources needed for CDK deployments.
+
+**Deploying to a different region?** See [Changing Regions](#changing-regions) section below.
 
 ### 2. Install Dependencies
 
@@ -478,6 +483,82 @@ If `destroy` fails, manually delete:
    ```bash
    aws logs delete-log-group --log-group-name /aws/lambda/ProTourMcpStack-ProTourMcpFunctionXXXXXX
    ```
+
+## Changing Regions
+
+### Deploying to a Different Region
+
+By default, the stack deploys to **eu-central-1**. To deploy to a different region:
+
+```bash
+# Set the target region
+export CDK_DEPLOY_REGION=us-west-2
+
+# Bootstrap the new region (one-time)
+npx cdk bootstrap aws://$(aws sts get-caller-identity --query Account --output text)/us-west-2
+
+# Deploy to the new region
+npm run deploy
+```
+
+### Moving from One Region to Another
+
+If you accidentally deployed to the wrong region and want to move:
+
+**Option 1: Use the automated script**
+```bash
+cd mcp-server/cdk
+./redeploy-to-eu-central-1.sh
+```
+
+**Option 2: Manual steps**
+
+1. **Delete from old region (e.g., us-east-1)**:
+   ```bash
+   # Delete application stack
+   aws cloudformation delete-stack --region us-east-1 --stack-name ProTourMcpStack
+   aws cloudformation wait stack-delete-complete --region us-east-1 --stack-name ProTourMcpStack
+   
+   # Delete bootstrap stack (optional, but recommended for cleanup)
+   aws cloudformation delete-stack --region us-east-1 --stack-name CDKToolkit
+   aws cloudformation wait stack-delete-complete --region us-east-1 --stack-name CDKToolkit
+   ```
+
+2. **Bootstrap new region (e.g., eu-central-1)**:
+   ```bash
+   export CDK_DEPLOY_REGION=eu-central-1
+   npx cdk bootstrap aws://$(aws sts get-caller-identity --query Account --output text)/eu-central-1
+   ```
+
+3. **Deploy to new region**:
+   ```bash
+   npm run deploy
+   ```
+
+### Unbootstrapping CDK
+
+To completely remove CDK bootstrap resources from a region:
+
+```bash
+# Delete the CDKToolkit stack
+aws cloudformation delete-stack --region REGION --stack-name CDKToolkit
+
+# Wait for completion
+aws cloudformation wait stack-delete-complete --region REGION --stack-name CDKToolkit
+
+# Manually delete the S3 bucket (if not empty)
+BUCKET_NAME=$(aws cloudformation describe-stack-resources \
+  --region REGION \
+  --stack-name CDKToolkit \
+  --query 'StackResources[?ResourceType==`AWS::S3::Bucket`].PhysicalResourceId' \
+  --output text)
+
+# Empty and delete bucket
+aws s3 rm s3://$BUCKET_NAME --recursive --region REGION
+aws s3 rb s3://$BUCKET_NAME --region REGION
+```
+
+**Note**: Bootstrap resources cost ~$0.01/month when unused, so you can safely leave them if you might redeploy later.
 
 ## Additional Resources
 
