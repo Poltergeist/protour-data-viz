@@ -5,11 +5,12 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch src/http-server.ts",
     "dev:ngrok": "echo 'Run: npm run dev (in one terminal) && ngrok http 3000 (in another terminal)'",
     "mcp": "tsx src/mcp-server.ts",
+    "serve": "tsx src/http-server.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/http-server.js",
     "test:mcp": "curl http://localhost:3000/health",
     "test:queries": "tsx src/test-queries.ts",
     "test:phase2": "tsx src/test-phase2.ts"

@@ -28,14 +28,41 @@ npm run dev
 
 ## NPM Scripts
 
-- `npm run dev` - Start development server with hot reload (port 3000)
+- `npm run dev` - Start HTTP server with hot reload (port 3000)
 - `npm run dev:ngrok` - Instructions for HTTPS testing with ngrok
-- `npm run mcp` - **Run MCP server (stdio mode for Claude Desktop)**
+- `npm run serve` - Start HTTP server (production mode)
+- `npm run mcp` - **Run MCP server in stdio mode (for local Claude Desktop testing)**
 - `npm run build` - Compile TypeScript to JavaScript
-- `npm run start` - Run production server (requires build first)
-- `npm run test:mcp` - Test health endpoint locally
+- `npm run start` - Run production HTTP server (requires build first)
+- `npm run test:mcp` - Test health endpoint
 - `npm run test:queries` - Test all query functions
 - `npm run test:phase2` - Test data loading and validation
+
+## Usage Modes
+
+### 1. HTTP Server Mode (for deployment)
+
+```bash
+npm run dev
+# Server runs on http://localhost:3000
+# MCP endpoint: POST http://localhost:3000/mcp
+```
+
+This mode is for:
+- Deploying to AWS Lambda, Vercel, Railway, etc.
+- Connecting AI tools via HTTP (Claude Desktop, Cursor, VS Code)
+- Testing with ngrok for HTTPS
+
+### 2. Stdio Mode (for local testing)
+
+```bash
+npm run mcp
+# Runs MCP server on stdio
+```
+
+This mode is for:
+- Testing MCP protocol locally
+- Direct integration with MCP inspector
 
 ## Architecture
 
