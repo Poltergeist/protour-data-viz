@@ -61,6 +61,8 @@ curl "http://localhost:3000/api/matches?round=5&limit=5"
 | `npm run serve` | Start HTTP server (no hot reload) |
 | `npm run mcp` | Run MCP server in stdio mode (for testing) |
 | `npm run build` | Compile TypeScript to JavaScript |
+| `npm run build:lambda` | Build for Lambda deployment (includes data) |
+| `npm run deploy` | Deploy to AWS Lambda via CDK |
 | `npm run start` | Run production server (requires build) |
 | `npm run test:http` | Test MCP endpoint via HTTP |
 | `npm run test:api` | Test REST API endpoints |
@@ -198,24 +200,52 @@ See [SECURITY.md](./SECURITY.md) for detailed security model.
 | [EXAMPLES.md](./EXAMPLES.md) | Sample prompts and use cases |
 | [DEVELOPMENT.md](./DEVELOPMENT.md) | Local development and testing guide |
 | [SECURITY.md](./SECURITY.md) | Security model and threat analysis |
-| [openapi.json](./openapi.json) | OpenAPI 3.0 spec for REST API |
+| [PRIVACY.md](./PRIVACY.md) | Privacy policy for ChatGPT integration |
+| [DEPLOYMENT-AWS.md](./DEPLOYMENT-AWS.md) | AWS Lambda deployment guide with CDK |
+| [openapi.json](./openapi.json) | OpenAPI 3.1.0 spec for REST API |
 
 ## Deployment
 
-**Local Development:**
+### Local Development
+
 ```bash
 npm run dev  # http://localhost:3000
 ```
 
-**Production Options:**
+### AWS Lambda (via CDK)
+
+Deploy to AWS Lambda with API Gateway:
+
+```bash
+# One-time setup
+cd cdk
+npm install
+npx cdk bootstrap
+
+# Deploy
+npm run deploy
+```
+
+**Output:**
+```
+✅ ProTourMcpStack
+Outputs:
+  ApiUrl = https://abc123.execute-api.us-east-1.amazonaws.com/
+  McpEndpoint = https://abc123.execute-api.us-east-1.amazonaws.com/mcp
+  RestApiBase = https://abc123.execute-api.us-east-1.amazonaws.com/api/
+```
+
+**Estimated cost:** ~$2-5/month for moderate usage (10K requests/day)
+
+See [DEPLOYMENT-AWS.md](./DEPLOYMENT-AWS.md) for complete guide.
+
+### Other Deployment Options
+
 - **Vercel/Netlify** - Serverless functions (easiest, free tier)
-- **AWS Lambda** - Serverless with API Gateway
-- **Railway/Fly.io** - Container-based deployment
-- **Self-hosted** - Traditional server (EC2, VPS)
+- **Railway/Fly.io** - Container-based deployment  
+- **Self-hosted** - Traditional server (EC2, VPS, Docker)
 
 All options support both MCP (via HTTP) and REST API endpoints.
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for deployment guides.
 
 ## Testing
 
@@ -234,20 +264,20 @@ curl http://localhost:3000/api/tournament
 
 ## Project Status
 
-✅ **Phase 1-5 Complete**
+✅ **All Phases Complete**
 - [x] Project setup and configuration
 - [x] Data loading with security controls
 - [x] 6 MCP tools implemented
 - [x] HTTP server with SSE transport
 - [x] REST API with 6 endpoints
-- [x] Comprehensive documentation (9 files)
+- [x] Comprehensive documentation (11 files)
 - [x] Input validation and rate limiting
 - [x] Testing suite
+- [x] AWS Lambda deployment with CDK
+- [x] ChatGPT integration support
+- [x] Production-ready security model
 
-🚧 **Remaining Work**
-- [ ] Deployment guides (AWS, Vercel, etc.)
-- [ ] Production deployment examples
-- [ ] CI/CD pipeline setup
+**Ready for deployment and use!**
 
 ## Contributing
 
