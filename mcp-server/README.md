@@ -2,14 +2,26 @@
 
 Model Context Protocol (MCP) server + REST API for querying Pokémon TCG ProTour tournament data.
 
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org/)
+[![MCP](https://img.shields.io/badge/MCP-1.25-purple)](https://modelcontextprotocol.io)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
+
 ## Overview
 
 This service provides two interfaces for accessing tournament data:
 
-1. **MCP Server** (via HTTP) - For AI tools like Claude Desktop, Cursor, VS Code
-2. **REST API** - For ChatGPT Custom GPTs and direct HTTP clients
+1. **MCP Server** (via HTTP) - For AI tools like Claude Desktop, Cursor, VS Code, Zed, Windsurf
+2. **REST API** - For ChatGPT Custom GPTs, direct HTTP clients, and traditional integrations
 
-Both interfaces provide read-only access to tournament matches, deck lists, archetypes, and statistics.
+Both interfaces provide read-only access to tournament matches, deck lists, archetypes, and statistics from Pro Tour - Aetherdrift (tournament 394299).
+
+**Data available:**
+- 304 players across 10 rounds
+- 43 unique deck archetypes
+- Complete deck lists and card data
+- Match results and statistics
+- Archetype matchup data
 
 ## Quick Start
 
@@ -17,47 +29,51 @@ Both interfaces provide read-only access to tournament matches, deck lists, arch
 # Install dependencies
 npm install
 
-# Run development server (with hot reload)
+# Run development server
 npm run dev
 
 # Server runs at http://localhost:3000
-# MCP endpoint: http://localhost:3000/mcp
-# REST API: http://localhost:3000/api/*
-# Health check: http://localhost:3000/health
-```
-
-## NPM Scripts
-
-- `npm run dev` - Start HTTP server with hot reload (port 3000)
-- `npm run dev:ngrok` - Instructions for HTTPS testing with ngrok
-- `npm run serve` - Start HTTP server (production mode)
-- `npm run mcp` - **Run MCP server in stdio mode (for local Claude Desktop testing)**
-- `npm run build` - Compile TypeScript to JavaScript
-- `npm run start` - Run production HTTP server (requires build first)
-- `npm run test:mcp` - Test health endpoint
-- `npm run test:queries` - Test all query functions
-- `npm run test:phase2` - Test data loading and validation
-
-## Usage Modes
-
-### 1. HTTP Server Mode (Recommended for Production)
-
-```bash
-npm run dev
-# Server runs on http://localhost:3000
 # MCP endpoint: POST http://localhost:3000/mcp
+# REST API: GET http://localhost:3000/api/*
 # Health check: GET http://localhost:3000/health
 ```
 
-**What is this?**
-- MCP protocol over HTTP using Server-Sent Events (SSE)
-- Can be deployed to AWS Lambda, Vercel, Railway, Fly.io, etc.
-- AI tools connect via HTTPS URL (e.g., `https://your-domain.com/mcp`)
-- Same architecture as Astro's MCP server
+**Test it:**
+```bash
+# Health check
+curl http://localhost:3000/health
 
-**Connect AI tools:**
+# Get tournament info
+curl http://localhost:3000/api/tournament
+
+# List all archetypes
+curl http://localhost:3000/api/archetypes
+
+# Query matches from round 5
+curl "http://localhost:3000/api/matches?round=5&limit=5"
+```
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start HTTP server with hot reload (port 3000) |
+| `npm run serve` | Start HTTP server (no hot reload) |
+| `npm run mcp` | Run MCP server in stdio mode (for testing) |
+| `npm run build` | Compile TypeScript to JavaScript |
+| `npm run start` | Run production server (requires build) |
+| `npm run test:http` | Test MCP endpoint via HTTP |
+| `npm run test:api` | Test REST API endpoints |
+| `npm run test:queries` | Test query functions |
+| `npm run test:phase2` | Test data loading and validation |
+
+## Integration Examples
+
+### Claude Desktop
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
 ```json
-// Claude Desktop config
 {
   "mcpServers": {
     "ProTour Data": {
@@ -68,73 +84,182 @@ npm run dev
 }
 ```
 
-**Test the endpoint:**
-```bash
-# Health check
-curl http://localhost:3000/health
+Restart Claude and try: *"List all archetypes in the tournament"*
 
-# List MCP tools
-curl -X POST http://localhost:3000/mcp \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
-```
+### ChatGPT Custom GPT
 
-### 2. Stdio Mode (For Local Testing)
+1. Start server with HTTPS (use ngrok for local testing)
+2. Import `openapi.json` to Custom GPT Actions
+3. Try: *"Show me the top 5 archetypes by win rate"*
+
+See [CHATGPT-TESTING.md](./CHATGPT-TESTING.md) for detailed setup.
+
+### curl / HTTP clients
 
 ```bash
-npm run mcp
-# Runs MCP server on stdio
+# List all archetypes
+curl http://localhost:3000/api/archetypes
+
+# Get player's deck
+curl http://localhost:3000/api/players/Gabriel%20Nicholas/deck
+
+# Query matches from round 7
+curl "http://localhost:3000/api/matches?round=7&limit=10"
 ```
 
-This mode is primarily for:
-- Testing MCP protocol locally
-- MCP inspector integration
-- Debugging tool implementations
-
-**Note:** Most users should use HTTP mode for deployment and AI tool integration.
+See [API.md](./API.md) for complete endpoint documentation.
 
 ## Architecture
 
-- **Language**: TypeScript/Node.js
-- **MCP Transport**: Streamable HTTP (like Astro's MCP server)
-- **HTTP Framework**: Express/Fastify
-- **Data Source**: JSON files from `../data` directory
-- **Security**: Read-only, input validation, rate limiting
+```
+┌─────────────────────────────────────────────────┐
+│           HTTP Server (Port 3000)               │
+├─────────────────────────────────────────────────┤
+│  POST /mcp          │  GET /api/*               │
+│  (MCP Protocol)     │  (REST API)               │
+│  Server-Sent Events │  JSON Responses           │
+└──────────┬──────────┴──────────┬────────────────┘
+           │                     │
+           └─────────┬───────────┘
+                     │
+           ┌─────────▼──────────┐
+           │   Query Functions  │
+           │   (queries.ts)     │
+           └─────────┬──────────┘
+                     │
+           ┌─────────▼──────────┐
+           │   Data Loader      │
+           │   (data-loader.ts) │
+           └─────────┬──────────┘
+                     │
+           ┌─────────▼──────────┐
+           │    JSON Files      │
+           │    ../data/*.json  │
+           └────────────────────┘
+```
+
+**Stack:**
+- **Language**: TypeScript 5.0 + Node.js 18+
+- **MCP SDK**: @modelcontextprotocol/sdk v1.25.3
+- **HTTP Framework**: Express 5.x
+- **Validation**: Zod
+- **Transport**: StreamableHTTPServerTransport (SSE)
+- **Data Source**: Static JSON files
+- **Security**: Read-only, rate limiting, input validation
 
 ## Features
 
-### MCP Tools (6 tools)
-- `query_matches` - Query matches by round, player, or archetype
-- `query_decks` - Get deck lists and archetype information
-- `query_stats` - Retrieve archetype statistics and matchup data
-- `query_player_deck` - Get specific player's deck and performance
-- `list_archetypes` - List all available archetypes
-- `get_tournament_info` - Get tournament metadata
+### 🛠️ MCP Tools (6 tools)
 
-### REST API (6 endpoints)
-- `GET /api/matches` - Query matches
-- `GET /api/decks` - Query deck lists
-- `GET /api/stats` - Get statistics
-- `GET /api/players/:player/deck` - Player deck info
-- `GET /api/archetypes` - List archetypes
-- `GET /api/tournament` - Tournament metadata
+| Tool | Description | Example Prompt |
+|------|-------------|----------------|
+| `query_matches` | Query matches by round, player, or archetype | "Show matches from round 5" |
+| `query_decks` | Get deck lists and archetype information | "Show all Izzet Spellementals decks" |
+| `query_stats` | Retrieve archetype statistics and matchup data | "What's the win rate for Bant Rhythm?" |
+| `query_player_deck` | Get specific player's deck and performance | "Show Gabriel Nicholas's deck" |
+| `list_archetypes` | List all available archetypes | "List all archetypes by win rate" |
+| `get_tournament_info` | Get tournament metadata | "What tournament is this?" |
+
+See [TOOLS.md](./TOOLS.md) for complete tool documentation.
+
+### 🌐 REST API (6 endpoints)
+
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/matches` | Query matches with filters (round, player, archetype) |
+| `GET /api/decks` | Query deck lists with filters |
+| `GET /api/stats` | Get archetype statistics and matchup data |
+| `GET /api/players/:player/deck` | Get player's deck and performance |
+| `GET /api/archetypes` | List all archetypes with stats |
+| `GET /api/tournament` | Get tournament metadata |
+
+See [API.md](./API.md) for complete endpoint documentation.
+
+### 🔒 Security Features
+
+- **Read-only access** - No write operations
+- **File allowlist** - Only specific data files accessible
+- **Input validation** - Zod schemas validate all parameters
+- **Rate limiting** - 100 requests/minute per IP
+- **Security headers** - CSP, X-Frame-Options, HSTS
+- **Request limits** - 1KB body size, 1000 max results
+
+See [SECURITY.md](./SECURITY.md) for detailed security model.
 
 ## Documentation
 
-- [DATA-SCHEMA.md](./DATA-SCHEMA.md) - Data structures and types reference
-- [TOOLS.md](./TOOLS.md) - Complete MCP tools reference
-- [API.md](./API.md) - REST API documentation
-- [INTEGRATIONS.md](./INTEGRATIONS.md) - AI tool setup guides
-- [EXAMPLES.md](./EXAMPLES.md) - Sample prompts and use cases
-- [DEVELOPMENT.md](./DEVELOPMENT.md) - Local development guide
-- [SECURITY.md](./SECURITY.md) - Security model
-- [DEPLOYMENT.md](./DEPLOYMENT.md) - Deployment guide
+| Document | Description |
+|----------|-------------|
+| [DATA-SCHEMA.md](./DATA-SCHEMA.md) | Data structures and TypeScript types |
+| [TOOLS.md](./TOOLS.md) | Complete MCP tools reference with examples |
+| [API.md](./API.md) | REST API documentation with curl examples |
+| [INTEGRATIONS.md](./INTEGRATIONS.md) | Setup guides for Claude, Cursor, VS Code, ChatGPT |
+| [CHATGPT-TESTING.md](./CHATGPT-TESTING.md) | Testing with ChatGPT locally via ngrok |
+| [EXAMPLES.md](./EXAMPLES.md) | Sample prompts and use cases |
+| [DEVELOPMENT.md](./DEVELOPMENT.md) | Local development and testing guide |
+| [SECURITY.md](./SECURITY.md) | Security model and threat analysis |
+| [openapi.json](./openapi.json) | OpenAPI 3.0 spec for REST API |
 
-## Status
+## Deployment
 
-🚧 **Under Development** - This server is currently being built incrementally.
+**Local Development:**
+```bash
+npm run dev  # http://localhost:3000
+```
+
+**Production Options:**
+- **Vercel/Netlify** - Serverless functions (easiest, free tier)
+- **AWS Lambda** - Serverless with API Gateway
+- **Railway/Fly.io** - Container-based deployment
+- **Self-hosted** - Traditional server (EC2, VPS)
+
+All options support both MCP (via HTTP) and REST API endpoints.
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for deployment guides.
+
+## Testing
+
+```bash
+# Run all tests
+npm run test:phase2  # Data loading
+npm run test:queries # Query functions
+npm run test:http    # MCP endpoint
+npm run test:api     # REST API
+
+# Manual testing
+npm run dev
+curl http://localhost:3000/health
+curl http://localhost:3000/api/tournament
+```
+
+## Project Status
+
+✅ **Phase 1-5 Complete**
+- [x] Project setup and configuration
+- [x] Data loading with security controls
+- [x] 6 MCP tools implemented
+- [x] HTTP server with SSE transport
+- [x] REST API with 6 endpoints
+- [x] Comprehensive documentation (9 files)
+- [x] Input validation and rate limiting
+- [x] Testing suite
+
+🚧 **Remaining Work**
+- [ ] Deployment guides (AWS, Vercel, etc.)
+- [ ] Production deployment examples
+- [ ] CI/CD pipeline setup
+
+## Contributing
+
+Contributions welcome! Please see [DEVELOPMENT.md](./DEVELOPMENT.md) for local setup and testing.
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/) for commit messages:
+```bash
+feat(api): add player search endpoint
+fix(validation): handle edge case in round validation
+docs(readme): update installation instructions
+```
 
 ## License
 
-MIT
+MIT - See [LICENSE](../LICENSE) for details
