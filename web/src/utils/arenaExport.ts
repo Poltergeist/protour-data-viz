@@ -1,17 +1,26 @@
 import type { DeckInfo, CardInfo } from '../types/tournament';
 
+function cleanCardName(cardName: string): string {
+  // For double-sided cards, only use the name before the //
+  const doubleSidedSplit = cardName.indexOf('//');
+  if (doubleSidedSplit !== -1) {
+    return cardName.substring(0, doubleSidedSplit).trim();
+  }
+  return cardName;
+}
+
 export function formatDeckForArena(deck: DeckInfo): string {
   const lines: string[] = [];
   
   // Add About section with tournament, archetype, and player name
   lines.push('About');
-  lines.push(`PT - ${deck.archetype} - ${deck.playerName}`);
+  lines.push('Name PT - ' + deck.archetype + ' - ' + deck.playerName);
   lines.push('');
   
   // Main deck section
   lines.push('Deck');
   deck.mainDeck.forEach(card => {
-    lines.push(`${card.quantity} ${card.name}`);
+    lines.push(`${card.quantity} ${cleanCardName(card.name)}`);
   });
   
   // Sideboard separator
@@ -19,7 +28,7 @@ export function formatDeckForArena(deck: DeckInfo): string {
     lines.push('');
     lines.push('Sideboard');
     deck.sideboard.forEach(card => {
-      lines.push(`${card.quantity} ${card.name}`);
+      lines.push(`${card.quantity} ${cleanCardName(card.name)}`);
     });
   }
   
