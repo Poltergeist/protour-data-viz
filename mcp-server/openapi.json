@@ -6,7 +6,8 @@
     "description": "REST API for querying Pokémon TCG ProTour tournament data including matches, deck lists, and statistics.",
     "contact": {
       "name": "API Support"
-    }
+    },
+    "x-privacy-policy-url": "https://github.com/sp3c1/protour-data-viz#privacy"
   },
   "servers": [
     {
