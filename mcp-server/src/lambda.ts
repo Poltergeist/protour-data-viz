@@ -27,7 +27,7 @@ import {
   matchQuerySchema,
   deckQuerySchema,
   statsQuerySchema,
-  playerNameSchema,
+  playerDeckQuerySchema,
 } from './validation.js';
 
 // Create Express app (same as http-server.ts but without app.listen)
@@ -187,44 +187,31 @@ function createMcpServer() {
 
       switch (name) {
         case 'query_matches': {
-          const validation = validateQuery(matchQuerySchema, args);
-          if (!validation.success) {
-            throw new Error(`Validation error: ${validation.error}`);
-          }
-          result = await queryMatches(validation.data);
+          const validData = validateQuery(matchQuerySchema, args);
+          result = await queryMatches(validData);
           break;
         }
 
         case 'query_decks': {
-          const validation = validateQuery(deckQuerySchema, args);
-          if (!validation.success) {
-            throw new Error(`Validation error: ${validation.error}`);
-          }
-          result = await queryDecks(validation.data);
+          const validData = validateQuery(deckQuerySchema, args);
+          result = await queryDecks(validData);
           break;
         }
 
         case 'query_stats': {
-          const validation = validateQuery(statsQuerySchema, args);
-          if (!validation.success) {
-            throw new Error(`Validation error: ${validation.error}`);
-          }
-          result = await queryStats(validation.data);
+          const validData = validateQuery(statsQuerySchema, args);
+          result = await queryStats(validData);
           break;
         }
 
         case 'query_player_deck': {
-          const validation = validateQuery(playerNameSchema, args);
-          if (!validation.success) {
-            throw new Error(`Validation error: ${validation.error}`);
-          }
-          result = await queryPlayerDeck(validation.data.player);
+          const validData = validateQuery(playerDeckQuerySchema, args);
+          result = await queryPlayerDeck(validData.player);
           break;
         }
 
         case 'list_archetypes': {
-          const sortBy = (args?.sortBy as string) || 'popularity';
-          result = await listArchetypes(sortBy);
+          result = await listArchetypes();
           break;
         }
 

@@ -5,11 +5,6 @@
 
 import type {
   Match,
-  MatchesByRound,
-  DeckList,
-  PlayerDecks,
-  TournamentStats,
-  ArchetypeStats,
 } from './types.js';
 import { loadAllData } from './data-loader.js';
 import type { MatchQuery, DeckQuery, StatsQuery } from './validation.js';

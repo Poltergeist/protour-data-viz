@@ -96,6 +96,13 @@ export const statsQuerySchema = z.object({
 });
 
 /**
+ * Query parameters for player deck queries
+ */
+export const playerDeckQuerySchema = z.object({
+  player: playerNameSchema,
+});
+
+/**
  * Sanitize a string by removing potentially dangerous characters
  */
 export function sanitizeString(input: string): string {
@@ -113,7 +120,7 @@ export function validateQuery<T>(schema: z.ZodSchema<T>, data: unknown): T {
     return schema.parse(data);
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const messages = error.errors.map(e => e.message).join(', ');
+      const messages = error.issues.map(e => e.message).join(', ');
       throw new Error(`Validation error: ${messages}`);
     }
     throw error;
@@ -123,3 +130,4 @@ export function validateQuery<T>(schema: z.ZodSchema<T>, data: unknown): T {
 export type MatchQuery = z.infer<typeof matchQuerySchema>;
 export type DeckQuery = z.infer<typeof deckQuerySchema>;
 export type StatsQuery = z.infer<typeof statsQuerySchema>;
+export type PlayerDeckQuery = z.infer<typeof playerDeckQuerySchema>;
