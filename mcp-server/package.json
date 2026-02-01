@@ -10,7 +10,7 @@
     "mcp": "tsx src/mcp-server.ts",
     "serve": "tsx src/http-server.ts",
     "build": "tsc",
-    "build:lambda": "tsc && cp -r ../data dist/",
+    "build:lambda": "tsc && cp -r ../data dist/ && cp package.json dist/package.json",
     "start": "node dist/http-server.js",
     "deploy": "npm run build:lambda && cd cdk && npm run deploy",
     "test:mcp": "curl http://localhost:3000/health",
