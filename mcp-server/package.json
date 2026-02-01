@@ -1,0 +1,25 @@
+{
+  "name": "@protour/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server and REST API for ProTour tournament data",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'Dev script coming soon'",
+    "build": "echo 'Build script coming soon'",
+    "start": "echo 'Start script coming soon'"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "pokemon",
+    "tcg",
+    "tournament",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
