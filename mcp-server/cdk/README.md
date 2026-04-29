@@ -139,7 +139,7 @@ Edit `lib/mcp-server-stack.ts` to adjust:
 
 ```typescript
 const fn = new lambda.Function(this, 'ProTourMcpFunction', {
-  runtime: lambda.Runtime.NODEJS_20_X,
+  runtime: lambda.Runtime.NODEJS_22_X,
   memorySize: 512,  // Adjust: 128-10240 MB
   timeout: Duration.seconds(30),  // Adjust: 1-900 seconds
   // ...
