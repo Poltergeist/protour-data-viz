@@ -24,11 +24,11 @@ export class McpServerStack extends cdk.Stack {
 
     // Lambda function
     const mcpFunction = new lambda.Function(this, 'ProTourMcpFunction', {
-      runtime: lambda.Runtime.NODEJS_20_X,
+      runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'lambda.handler',
       code: lambda.Code.fromAsset(path.join(__dirname, '../../dist'), {
         bundling: {
-          image: lambda.Runtime.NODEJS_20_X.bundlingImage,
+          image: lambda.Runtime.NODEJS_22_X.bundlingImage,
           command: [
             'bash',
             '-c',
