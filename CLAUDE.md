@@ -22,9 +22,9 @@ Five files in `data/` form the contract:
 - `tournament-<id>-player-decks.json` — per-tournament player → archetype map
 - `tournament-<id>-stats.json` — per-tournament aggregated archetype stats + matchup matrix
 
-The scraper now reads `tournaments.json` to know what to scrape — there is no hardcoded tournament ID anymore. Stages 2 and 3 of the multi-tournament rollout (see `docs/superpowers/plans/`) make the MCP server and web app registry-driven too. Until those land, `mcp-server/src/data-loader.ts` and `web/src/pages/*.astro` are still hardcoded to 394299.
+The scraper, MCP server, and web app all read `tournaments.json` — no hardcoded tournament IDs anywhere. The MCP server's data-loader builds its allowlist dynamically from the registry; the web app's `getStaticPaths` enumerates per-slug routes from it.
 
-If the scraper output schema changes, update `mcp-server/src/types.ts` and the web page imports together.
+If the scraper output schema changes, update `mcp-server/src/types.ts` and `web/src/utils/tournaments.ts` together (the loose `any`/`Record<string, string>` typings in the web util mean type errors won't surface there, but rendering will break).
 
 ## Common commands
 
@@ -44,10 +44,10 @@ Output goes to `../data/`. The scraper reads `data/tournaments.json` to know wha
 cd web
 npm install
 npm run dev      # dev server (http://localhost:4321)
-npm run build    # runs prebuild (fetchCardImages.ts) → astro build
+npm run build    # runs prebuild (fetchCardImages.ts across all tournaments) → astro build
 npm run preview
 ```
-`npm run prebuild` fetches Scryfall card images into `public/card-images.json`. `npm run build` always runs it; the dev server does not.
+`npm run prebuild` fetches Scryfall card images for the union of cards across every tournament in the registry into `public/card-images.json`. `npm run build` always runs it; the dev server does not.
 
 ### MCP server (TypeScript)
 ```bash
@@ -79,7 +79,7 @@ npm run destroy
 
 **Scraper approach.** The `/Match/GetRoundMatches/{roundId}` endpoint on melee.gg is reachable via a DataTables-style `application/x-www-form-urlencoded` POST (see `scraper/ANALYSIS.md` for the param shape). Round IDs differ per tournament — `scraper/round_ids.go` resolves them by GETting `https://melee.gg/Tournament/View/{id}` and parsing `<button class="round-selector" data-id="...">` elements. Decklist HTML is scraped separately in `melee_decklists.go`. The dependency tree includes `chromedp` and `go-rod`, but the working path is the API call; browser automation is a fallback.
 
-**Web rendering.** All pages are static (`output: 'static'`). Astro pages import the JSON directly at build time and React components (`.tsx`) handle interactivity. The site URL in `astro.config.mjs` is the GitHub Pages custom domain — changing it affects generated absolute URLs.
+**Web rendering.** All pages are static (`output: 'static'`). The root `/` is a tournaments index that lists registered tournaments from `data/tournaments.json`. Per-tournament pages live under `/<slug>/` and use Astro's `getStaticPaths()` (via `src/utils/tournaments.ts`) to enumerate slugs from the registry; data files are loaded at build time via the same util. React components (`.tsx`) handle interactivity. The site URL in `astro.config.mjs` is the GitHub Pages custom domain — changing it affects generated absolute URLs.
 
 **MCP server dual interface.** Same query layer (`queries.ts`) backs both the MCP tools (registered in `http-server.ts` / `mcp-server.ts`) and the REST routes (`api-routes.ts`). Validation is centralized in `validation.ts` (Zod). Read-only by design; the file allowlist in `data-loader.ts` is the trust boundary.
 
