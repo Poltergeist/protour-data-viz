@@ -2,13 +2,26 @@
 interface Props {
   title: string;
   description?: string;
+  // Tournament context — when present, header and nav are scoped to this tournament.
+  // Omit on the root tournaments index.
+  tournament?: {
+    slug: string;
+    name: string;
+  };
 }
 
-const { title, description = "Pro Tour Lorwyn Eclipsed tournament statistics and decklists. View win rates, matchup matrices, and complete deck lists from 306 players across 40 archetypes." } = Astro.props;
+const { title, description, tournament } = Astro.props;
 
 const siteUrl = "https://pro-tour-lorwyn-eclipsed.alles-standard.social";
 const ogImage = `${siteUrl}/og-image.png`;
-const ogImageAlt = "Pro Tour Lorwyn Eclipsed - Tournament Statistics and Decklists";
+const ogImageAlt = title;
+
+const headerTitle = tournament?.name ?? "Pro Tour Tournament Data";
+const navBase = tournament ? `/${tournament.slug}` : null;
+const fallbackDescription = tournament
+  ? `${tournament.name} statistics and decklists. Win rates, matchup matrices, and complete deck lists.`
+  : "Pro Tour tournament data — multiple tournaments, decklists, and statistics.";
+const finalDescription = description ?? fallbackDescription;
 ---
 
 <!doctype html>
@@ -16,30 +29,27 @@ const ogImageAlt = "Pro Tour Lorwyn Eclipsed - Tournament Statistics and Decklis
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
-    
-    <!-- Favicon -->
+    <meta name="description" content={finalDescription} />
+
     <link rel="icon" type="image/png" href="/favicon.png" />
-    
-    <!-- Open Graph / Facebook -->
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={finalDescription} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:site_name" content="Alles Standard" />
-    
-    <!-- Twitter -->
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={siteUrl} />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={finalDescription} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
-    
+
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,13 +58,20 @@ const ogImageAlt = "Pro Tour Lorwyn Eclipsed - Tournament Statistics and Decklis
   <body>
     <header>
       <div class="container">
-        <h1>Pro Tour Lorwyn Eclipsed</h1>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/statistics">Statistics</a>
-          <a href="/archetypes">Archetypes</a>
-          <a href="/decklists">Decklists</a>
-        </nav>
+        <h1><a href="/">{headerTitle}</a></h1>
+        {navBase && (
+          <nav>
+            <a href={navBase}>Home</a>
+            <a href={`${navBase}/statistics`}>Statistics</a>
+            <a href={`${navBase}/archetypes`}>Archetypes</a>
+            <a href={`${navBase}/decklists`}>Decklists</a>
+          </nav>
+        )}
+        {!navBase && (
+          <nav>
+            <a href="/">Tournaments</a>
+          </nav>
+        )}
       </div>
     </header>
     <main class="container">
