@@ -91,3 +91,14 @@ export interface TournamentInfo {
   url?: string;
   dataFiles: string[];
 }
+
+// Tournament registry entry (mirrors data/tournaments.json schema)
+export interface Tournament {
+  id: string;
+  slug: string;
+  name: string;
+  format: string;
+  date: string;
+  rounds: string[];
+  completed: boolean;
+}
