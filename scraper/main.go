@@ -140,7 +140,7 @@ func printStatsSummary(stats *TournamentStats) {
 	}
 	
 	log.Printf("\nTotal archetypes: %d", len(stats.Archetypes))
-	log.Println("=====================================\n")
+	log.Println("=====================================")
 }
 
 // saveMatchData saves match data to JSON file
