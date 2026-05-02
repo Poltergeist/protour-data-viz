@@ -11,215 +11,226 @@ import (
 )
 
 const (
-	tournamentURL = "https://melee.gg/Tournament/View/394299"
-	tournamentID  = "394299"
-	outputDir     = "../data"
+	outputDir    = "../data"
+	registryFile = "tournaments.json"
 )
 
 func main() {
-	// Parse command-line flags
-	roundsFlag := flag.String("rounds", "4-8", "Rounds to scrape (e.g., '4-8', '4,5,6', '4-8,12-16')")
+	tournamentFlag := flag.String("tournament", "", "Tournament ID to scrape (must exist in registry). If empty, scrapes all non-completed tournaments.")
+	roundsFlag := flag.String("rounds", "", "Override rounds for this run (e.g. '4-8' or '4-8,12-16'). When empty, uses the registry's rounds field.")
 	flag.Parse()
 
-	log.Println("Starting ProTour data scraper...")
-	log.Printf("Tournament: %s", tournamentURL)
-
-	// Parse rounds configuration
-	rounds, err := parseRounds(*roundsFlag)
+	registryPath := filepath.Join(outputDir, registryFile)
+	registry, err := loadRegistry(registryPath)
 	if err != nil {
-		log.Fatalf("Invalid rounds configuration: %v", err)
+		log.Fatalf("Failed to load registry %s: %v", registryPath, err)
 	}
-	log.Printf("Scraping rounds: %v", rounds)
 
-	// Create output directory if it doesn't exist
+	var targets Registry
+	if *tournamentFlag != "" {
+		t, ok := registry.find(*tournamentFlag)
+		if !ok {
+			log.Fatalf("Tournament %s not found in registry. Add it to %s before scraping.", *tournamentFlag, registryPath)
+		}
+		if t.Completed {
+			log.Fatalf("Tournament %s is marked completed in the registry. Flip completed:false to re-scrape.", *tournamentFlag)
+		}
+		targets = Registry{t}
+	} else {
+		targets = registry.active()
+		if len(targets) == 0 {
+			log.Println("No active (non-completed) tournaments in registry. Nothing to do.")
+			return
+		}
+	}
+
 	if err := os.MkdirAll(outputDir, 0755); err != nil {
 		log.Fatalf("Failed to create output directory: %v", err)
 	}
 
-	// Fetch match data for each round
-	allMatches := make(map[int][]Match)
-	for _, roundNum := range rounds {
-		log.Printf("Fetching Round %d...", roundNum)
-
-		matches, err := fetchRoundMatches(roundNum)
-		if err != nil {
-			log.Printf("Warning: Failed to fetch Round %d: %v", roundNum, err)
+	for i, t := range targets {
+		if i > 0 {
+			time.Sleep(1 * time.Second) // polite delay between tournaments
+		}
+		if err := scrapeTournament(t, *roundsFlag); err != nil {
+			log.Printf("Tournament %s (%s) failed: %v", t.ID, t.Name, err)
 			continue
 		}
+	}
 
-		log.Printf("  Found %d matches in Round %d", matches.RecordsTotal, roundNum)
+	log.Println("Scraping completed.")
+}
+
+// scrapeTournament runs the full scrape for one tournament.
+// roundsOverride, when non-empty, replaces the registry's rounds for this run only.
+func scrapeTournament(t Tournament, roundsOverride string) error {
+	tournamentURL := fmt.Sprintf("https://melee.gg/Tournament/View/%s", t.ID)
+	log.Printf("Starting scrape of %s (%s)", t.ID, t.Name)
+	log.Printf("  URL: %s", tournamentURL)
+
+	roundsStr := joinRounds(t.Rounds)
+	if roundsOverride != "" {
+		roundsStr = roundsOverride
+		log.Printf("  Rounds: %s (overridden via -rounds)", roundsStr)
+	} else {
+		log.Printf("  Rounds: %s (from registry)", roundsStr)
+	}
+
+	rounds, err := parseRounds(roundsStr)
+	if err != nil {
+		return fmt.Errorf("invalid rounds: %w", err)
+	}
+	log.Printf("  Resolved round numbers: %v", rounds)
+
+	log.Println("  Discovering melee.gg round IDs...")
+	roundIDs, err := fetchRoundIDs(t.ID)
+	if err != nil {
+		return fmt.Errorf("discover round IDs: %w", err)
+	}
+	log.Printf("  Found %d round buttons", len(roundIDs))
+
+	allMatches := make(map[int][]Match)
+	for _, roundNum := range rounds {
+		log.Printf("  Fetching Round %d...", roundNum)
+
+		matches, err := fetchRoundMatches(t.ID, roundIDs, roundNum)
+		if err != nil {
+			log.Printf("  Warning: failed to fetch Round %d: %v", roundNum, err)
+			continue
+		}
+		log.Printf("    %d matches", matches.RecordsTotal)
 		allMatches[roundNum] = matches.Data
 
-		// Be polite - add delay between requests
 		time.Sleep(1 * time.Second)
 	}
 
-	// Save raw match data
-	if err := saveMatchData(allMatches); err != nil {
-		log.Fatalf("Failed to save match data: %v", err)
+	if err := saveMatchData(t.ID, allMatches); err != nil {
+		return fmt.Errorf("save matches: %w", err)
 	}
 
-	// Extract deck information from melee.gg match data
-	log.Println("Extracting deck information from melee.gg...")
+	log.Println("  Extracting deck info from matches...")
 	playerArchetype := extractPlayerDecksFromMatches(allMatches)
 	playerNames := extractPlayerNamesFromMatches(allMatches)
-	log.Printf("Mapped %d players to decks", len(playerArchetype))
+	log.Printf("  %d players mapped to decks", len(playerArchetype))
 
-	// Save player deck mapping
-	if err := savePlayerDeckMapping(playerArchetype); err != nil {
-		log.Fatalf("Failed to save player deck mapping: %v", err)
+	if err := savePlayerDeckMapping(t.ID, playerArchetype); err != nil {
+		return fmt.Errorf("save player decks: %w", err)
 	}
 
-	// Fetch full decklists from melee.gg
-	log.Println("Fetching complete decklists from melee.gg (this may take a few minutes)...")
+	log.Println("  Fetching complete decklists from melee.gg...")
 	decklists, err := fetchDecklistsFromMelee(allMatches, playerArchetype, playerNames)
 	if err != nil {
-		log.Fatalf("Failed to fetch decklists: %v", err)
+		return fmt.Errorf("fetch decklists: %w", err)
 	}
-	log.Printf("Fetched %d complete decklists", len(decklists))
-	
-	// Save decklists
-	if err := saveDecklistsData(decklists); err != nil {
-		log.Fatalf("Failed to save decklists: %v", err)
+	log.Printf("  Fetched %d decklists", len(decklists))
+
+	if err := saveDecklistsData(t.ID, decklists); err != nil {
+		return fmt.Errorf("save decklists: %w", err)
 	}
 
-	// Aggregate statistics
 	if len(playerArchetype) > 0 && len(allMatches) > 0 {
-		log.Println("Aggregating match statistics...")
-		
-		// Calculate statistics
+		log.Println("  Aggregating statistics...")
 		stats := aggregateStats(allMatches, playerArchetype)
-		log.Printf("Calculated stats for %d archetypes", len(stats.Archetypes))
-		
-		// Save statistics
-		if err := saveStatsData(stats); err != nil {
-			log.Fatalf("Failed to save statistics: %v", err)
+		log.Printf("  Stats for %d archetypes", len(stats.Archetypes))
+
+		if err := saveStatsData(t.ID, stats); err != nil {
+			return fmt.Errorf("save stats: %w", err)
 		}
-		
-		// Print summary
+
 		printStatsSummary(stats)
 	}
 
-	log.Println("Scraping completed successfully!")
-	log.Printf("Data saved to: %s", outputDir)
+	log.Printf("Tournament %s done.", t.ID)
+	return nil
 }
 
-// printStatsSummary prints a summary of the statistics
+// joinRounds turns ["4-8", "12-16"] into "4-8,12-16" — the form parseRounds already understands.
+func joinRounds(rounds []string) string {
+	out := ""
+	for i, r := range rounds {
+		if i > 0 {
+			out += ","
+		}
+		out += r
+	}
+	return out
+}
+
 func printStatsSummary(stats *TournamentStats) {
 	log.Println("\n=== Tournament Statistics Summary ===")
-	
-	// Find top archetypes by win rate (min 10 matches)
+
 	type archetypeWithWins struct {
 		name    string
 		stats   *ArchetypeStats
 		matches int
 	}
-	
+
 	var archetypes []archetypeWithWins
 	for name, archStats := range stats.Archetypes {
 		matches := archStats.Wins + archStats.Losses
-		archetypes = append(archetypes, archetypeWithWins{
-			name:    name,
-			stats:   archStats,
-			matches: matches,
-		})
+		archetypes = append(archetypes, archetypeWithWins{name: name, stats: archStats, matches: matches})
 	}
-	
-	// Sort by win rate (for those with 10+ matches)
+
 	log.Println("\nTop Archetypes (10+ matches):")
 	count := 0
 	for _, arch := range archetypes {
 		if arch.matches >= 10 && count < 5 {
 			log.Printf("  %s: %d-%d (%.1f%% win rate)",
-				arch.name,
-				arch.stats.Wins,
-				arch.stats.Losses,
-				arch.stats.WinRate)
+				arch.name, arch.stats.Wins, arch.stats.Losses, arch.stats.WinRate)
 			count++
 		}
 	}
-	
 	log.Printf("\nTotal archetypes: %d", len(stats.Archetypes))
 	log.Println("=====================================")
 }
 
-// saveMatchData saves match data to JSON file
-func saveMatchData(matches map[int][]Match) error {
-	filename := fmt.Sprintf("tournament-%s-matches.json", tournamentID)
+func saveMatchData(tournamentID string, matches map[int][]Match) error {
+	return saveJSON(tournamentID, "matches", matches)
+}
+
+func savePlayerDeckMapping(tournamentID string, playerDecks map[string]string) error {
+	return saveJSON(tournamentID, "player-decks", playerDecks)
+}
+
+func saveDecklistsData(tournamentID string, decklists []DeckInfo) error {
+	return saveJSON(tournamentID, "decklists", decklists)
+}
+
+func saveStatsData(tournamentID string, stats *TournamentStats) error {
+	return saveJSON(tournamentID, "stats", stats)
+}
+
+func saveJSON(tournamentID, kind string, data interface{}) error {
+	filename := fmt.Sprintf("tournament-%s-%s.json", tournamentID, kind)
 	outputPath := filepath.Join(outputDir, filename)
 
 	file, err := os.Create(outputPath)
 	if err != nil {
-		return fmt.Errorf("failed to create file: %w", err)
+		return fmt.Errorf("create %s: %w", outputPath, err)
 	}
 	defer file.Close()
 
 	encoder := json.NewEncoder(file)
 	encoder.SetIndent("", "  ")
-	if err := encoder.Encode(matches); err != nil {
-		return fmt.Errorf("failed to encode JSON: %w", err)
+	if err := encoder.Encode(data); err != nil {
+		return fmt.Errorf("encode %s: %w", outputPath, err)
 	}
 
-	log.Printf("Saved match data to %s", outputPath)
+	log.Printf("    Saved %s", outputPath)
 	return nil
 }
 
-// savePlayerDeckMapping saves player-to-deck mapping to JSON file
-func savePlayerDeckMapping(playerDecks map[string]string) error {
-	filename := fmt.Sprintf("tournament-%s-player-decks.json", tournamentID)
-	outputPath := filepath.Join(outputDir, filename)
-
-	file, err := os.Create(outputPath)
-	if err != nil {
-		return fmt.Errorf("failed to create file: %w", err)
-	}
-	defer file.Close()
-
-	encoder := json.NewEncoder(file)
-	encoder.SetIndent("", "  ")
-	if err := encoder.Encode(playerDecks); err != nil {
-		return fmt.Errorf("failed to encode JSON: %w", err)
-	}
-
-	log.Printf("Saved player deck mapping to %s", outputPath)
-	return nil
-}
-
-// saveDecklistsData saves decklist data to JSON file
-func saveDecklistsData(decklists []DeckInfo) error {
-	filename := fmt.Sprintf("tournament-%s-decklists.json", tournamentID)
-	outputPath := filepath.Join(outputDir, filename)
-
-	file, err := os.Create(outputPath)
-	if err != nil {
-		return fmt.Errorf("failed to create file: %w", err)
-	}
-	defer file.Close()
-
-	encoder := json.NewEncoder(file)
-	encoder.SetIndent("", "  ")
-	if err := encoder.Encode(decklists); err != nil {
-		return fmt.Errorf("failed to encode JSON: %w", err)
-	}
-
-	log.Printf("Saved decklist data to %s", outputPath)
-	return nil
-}
-
-// extractPlayerDecksFromMatches extracts player-to-deck mapping from match data
 func extractPlayerDecksFromMatches(allMatches map[int][]Match) map[string]string {
 	playerDecks := make(map[string]string)
-	
+
 	for _, matches := range allMatches {
 		for _, match := range matches {
 			for _, competitor := range match.Competitors {
-				// Get deck information from Decklists at competitor level
 				if len(competitor.Decklists) > 0 && len(competitor.Team.Players) > 0 {
 					deckName := competitor.Decklists[0].DecklistName
 					playerName := competitor.Team.Players[0].DisplayName
-					
+
 					if deckName != "" && playerName != "" {
-						// Normalize player name for consistent matching
 						normalizedName := normalizePlayerName(playerName)
 						playerDecks[normalizedName] = deckName
 					}
@@ -227,14 +238,13 @@ func extractPlayerDecksFromMatches(allMatches map[int][]Match) map[string]string
 			}
 		}
 	}
-	
+
 	return playerDecks
 }
 
-// extractPlayerNamesFromMatches extracts actual player display names from matches
 func extractPlayerNamesFromMatches(allMatches map[int][]Match) map[string]string {
-	playerNames := make(map[string]string) // normalized -> display name
-	
+	playerNames := make(map[string]string)
+
 	for _, matches := range allMatches {
 		for _, match := range matches {
 			for _, competitor := range match.Competitors {
@@ -248,28 +258,6 @@ func extractPlayerNamesFromMatches(allMatches map[int][]Match) map[string]string
 			}
 		}
 	}
-	
+
 	return playerNames
 }
-
-// saveStatsData saves aggregated statistics to JSON file
-func saveStatsData(stats *TournamentStats) error {
-	filename := fmt.Sprintf("tournament-%s-stats.json", tournamentID)
-	outputPath := filepath.Join(outputDir, filename)
-
-	file, err := os.Create(outputPath)
-	if err != nil {
-		return fmt.Errorf("failed to create file: %w", err)
-	}
-	defer file.Close()
-
-	encoder := json.NewEncoder(file)
-	encoder.SetIndent("", "  ")
-	if err := encoder.Encode(stats); err != nil {
-		return fmt.Errorf("failed to encode JSON: %w", err)
-	}
-
-	log.Printf("Saved statistics to %s", outputPath)
-	return nil
-}
-

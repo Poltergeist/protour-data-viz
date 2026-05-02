@@ -9,26 +9,6 @@ import (
 	"strings"
 )
 
-// RoundID mapping for the tournament
-var roundIDs = map[int]string{
-	1:  "1384568",
-	2:  "1384570",
-	3:  "1384572",
-	4:  "1384574", // Start of Standard
-	5:  "1384575",
-	6:  "1384576",
-	7:  "1384577",
-	8:  "1384578", // End of Day 1 Standard
-	9:  "1384579",
-	10: "1384580",
-	11: "1384581",
-	12: "1384582", // Day 2 Standard starts
-	13: "1384583",
-	14: "1384584",
-	15: "1384585",
-	16: "1384586", // Day 2 Standard ends
-}
-
 // Match represents a single match from the API
 type Match struct {
 	TableNumber  int    `json:"TableNumber"`
@@ -59,16 +39,17 @@ type MatchResponse struct {
 	Data            []Match `json:"data"`
 }
 
-// fetchRoundMatches fetches match data for a specific round
-func fetchRoundMatches(roundNumber int) (*MatchResponse, error) {
+// fetchRoundMatches fetches match data for a specific round.
+// roundIDs is the per-tournament round-number → round-ID mapping (from fetchRoundIDs).
+// tournamentID is used to build the Referer header.
+func fetchRoundMatches(tournamentID string, roundIDs map[int]string, roundNumber int) (*MatchResponse, error) {
 	roundID, ok := roundIDs[roundNumber]
 	if !ok {
-		return nil, fmt.Errorf("unknown round number: %d", roundNumber)
+		return nil, fmt.Errorf("no round ID known for round %d (tournament %s)", roundNumber, tournamentID)
 	}
 
 	apiURL := fmt.Sprintf("https://melee.gg/Match/GetRoundMatches/%s", roundID)
 
-	// Prepare POST data (DataTables format)
 	data := url.Values{}
 	data.Set("draw", "1")
 	data.Set("columns[0][data]", "TableNumber")
@@ -80,24 +61,21 @@ func fetchRoundMatches(roundNumber int) (*MatchResponse, error) {
 	data.Set("order[0][column]", "0")
 	data.Set("order[0][dir]", "asc")
 	data.Set("start", "0")
-	data.Set("length", "500") // Fetch up to 500 matches
+	data.Set("length", "500")
 	data.Set("search[value]", "")
 	data.Set("search[regex]", "false")
 
-	// Create request
 	req, err := http.NewRequest("POST", apiURL, strings.NewReader(data.Encode()))
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
-	// Set headers to mimic browser
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36")
 	req.Header.Set("Accept", "application/json, text/javascript, */*; q=0.01")
-	req.Header.Set("Referer", "https://melee.gg/Tournament/View/394299")
+	req.Header.Set("Referer", fmt.Sprintf("https://melee.gg/Tournament/View/%s", tournamentID))
 	req.Header.Set("X-Requested-With", "XMLHttpRequest")
 
-	// Send request
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
@@ -105,13 +83,11 @@ func fetchRoundMatches(roundNumber int) (*MatchResponse, error) {
 	}
 	defer resp.Body.Close()
 
-	// Read response
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read response: %w", err)
 	}
 
-	// Parse JSON
 	var matchResp MatchResponse
 	if err := json.Unmarshal(body, &matchResp); err != nil {
 		return nil, fmt.Errorf("failed to parse JSON: %w", err)

@@ -1,53 +1,51 @@
 package main
 
 import (
-"encoding/json"
-"fmt"
-"os"
-"path/filepath"
-"sort"
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
+	"sort"
 )
 
-// generateDecklistsFromMelee generates a complete decklists.json file from melee.gg data
-// This replaces the magic.gg decklists entirely with melee.gg as the single source of truth
-func generateDecklistsFromMelee(playerArchetype map[string]string, playerNames map[string]string) error {
-var decklists []DeckInfo
+// generateDecklistsFromMelee writes a decklists.json file containing player+archetype only
+// (no card lists). This is a fallback used when full decklist HTML scraping is unavailable.
+// Currently the main scraper path uses fetchDecklistsFromMelee instead, but this is kept
+// for the case where melee.gg's decklist HTML format changes.
+func generateDecklistsFromMelee(outputDir, tournamentID string, playerArchetype map[string]string, playerNames map[string]string) error {
+	var decklists []DeckInfo
 
-// Create a decklist entry for each player
-for normalizedName, archetype := range playerArchetype {
-displayName := playerNames[normalizedName]
-if displayName == "" {
-displayName = normalizedName // Fallback
-}
+	for normalizedName, archetype := range playerArchetype {
+		displayName := playerNames[normalizedName]
+		if displayName == "" {
+			displayName = normalizedName
+		}
 
-decklists = append(decklists, DeckInfo{
-PlayerName: displayName,
-Archetype:  archetype,
-MainDeck:   []CardInfo{}, // No card list available from melee.gg API
-Sideboard:  []CardInfo{}, // No card list available from melee.gg API
-})
-}
+		decklists = append(decklists, DeckInfo{
+			PlayerName: displayName,
+			Archetype:  archetype,
+			MainDeck:   []CardInfo{},
+			Sideboard:  []CardInfo{},
+		})
+	}
 
-// Sort by player name for consistency
-sort.Slice(decklists, func(i, j int) bool {
-return decklists[i].PlayerName < decklists[j].PlayerName
-})
+	sort.Slice(decklists, func(i, j int) bool {
+		return decklists[i].PlayerName < decklists[j].PlayerName
+	})
 
-// Save decklists
-decklistPath := filepath.Join(outputDir, fmt.Sprintf("tournament-%s-decklists.json", tournamentID))
-file, err := os.Create(decklistPath)
-if err != nil {
-return fmt.Errorf("failed to create decklists file: %w", err)
-}
-defer file.Close()
+	decklistPath := filepath.Join(outputDir, fmt.Sprintf("tournament-%s-decklists.json", tournamentID))
+	file, err := os.Create(decklistPath)
+	if err != nil {
+		return fmt.Errorf("failed to create decklists file: %w", err)
+	}
+	defer file.Close()
 
-encoder := json.NewEncoder(file)
-encoder.SetIndent("", "  ")
-if err := encoder.Encode(decklists); err != nil {
-return fmt.Errorf("failed to encode decklists: %w", err)
-}
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", "  ")
+	if err := encoder.Encode(decklists); err != nil {
+		return fmt.Errorf("failed to encode decklists: %w", err)
+	}
 
-fmt.Printf("  Generated %d decklists from melee.gg data\n", len(decklists))
-
-return nil
+	fmt.Printf("  Generated %d decklists from melee.gg data\n", len(decklists))
+	return nil
 }
