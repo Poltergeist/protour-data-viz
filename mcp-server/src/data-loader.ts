@@ -1,16 +1,18 @@
 /**
- * Secure data loading module
- * 
- * Security features:
- * - Allowlist of specific JSON files only
- * - No arbitrary file access
- * - Path validation to prevent directory traversal
- * - Error handling for missing/malformed data
+ * Secure data loading module.
+ *
+ * Security:
+ * - Allowlist built dynamically from data/tournaments.json — only files for
+ *   registered tournaments are loadable.
+ * - Path validation prevents directory traversal.
+ *
+ * Each load function takes a tournamentId and reads tournament-{id}-{kind}.json.
  */
 
 import { readFileSync } from 'fs';
-import { join, resolve, dirname } from 'path';
+import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { loadTournaments, tournamentExists } from './tournaments.js';
 import type {
   MatchesByRound,
   DeckList,
@@ -18,52 +20,42 @@ import type {
   TournamentStats,
 } from './types.js';
 
-// Get directory path in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Absolute path to data directory
-// In Lambda, data is bundled alongside the code in ./data
-// In local dev, data is in ../data (from src to data)
 const DATA_DIR = process.env.AWS_LAMBDA_FUNCTION_NAME
   ? resolve(__dirname, './data')
   : resolve(__dirname, '../../data');
 
-// SECURITY: Allowlist of specific files that can be accessed
-const ALLOWED_FILES = [
-  'tournament-394299-matches.json',
-  'tournament-394299-decklists.json',
-  'tournament-394299-player-decks.json',
-  'tournament-394299-stats.json',
-] as const;
-
-type AllowedFileName = typeof ALLOWED_FILES[number];
+type DataKind = 'matches' | 'decklists' | 'player-decks' | 'stats';
 
 /**
- * Validate that a filename is in the allowlist
- * @throws Error if filename is not allowed
+ * Build the file allowlist from the registry. Re-runs on every check so
+ * registry edits during local dev are picked up; in production the registry
+ * cache makes this cheap.
  */
-function validateFileName(filename: string): asserts filename is AllowedFileName {
-  if (!ALLOWED_FILES.includes(filename as AllowedFileName)) {
-    throw new Error(`Invalid file: ${filename}. File not in allowlist.`);
+function isAllowedFile(filename: string): boolean {
+  if (filename === 'tournaments.json') return true;
+
+  const tournaments = loadTournaments();
+  for (const t of tournaments) {
+    const allowed: string[] = [
+      `tournament-${t.id}-matches.json`,
+      `tournament-${t.id}-decklists.json`,
+      `tournament-${t.id}-player-decks.json`,
+      `tournament-${t.id}-stats.json`,
+    ];
+    if (allowed.includes(filename)) return true;
   }
+  return false;
 }
 
-/**
- * Safely load a JSON file from the data directory
- * SECURITY: Only allows files from the allowlist
- * 
- * @param filename - Name of the file (must be in ALLOWED_FILES)
- * @returns Parsed JSON data
- * @throws Error if file doesn't exist, is not allowed, or contains invalid JSON
- */
 function loadDataFile<T>(filename: string): T {
-  // SECURITY: Validate filename is in allowlist
-  validateFileName(filename);
-  
-  // Construct safe file path
+  if (!isAllowedFile(filename)) {
+    throw new Error(`Invalid file: ${filename}. File not in allowlist.`);
+  }
+
   const filePath = join(DATA_DIR, filename);
-  
   try {
     const fileContent = readFileSync(filePath, 'utf-8');
     return JSON.parse(fileContent) as T;
@@ -78,49 +70,41 @@ function loadDataFile<T>(filename: string): T {
   }
 }
 
-/**
- * Load match data organized by round
- */
-export function loadMatches(): MatchesByRound {
-  return loadDataFile<MatchesByRound>('tournament-394299-matches.json');
+function dataFileName(tournamentId: string, kind: DataKind): string {
+  return `tournament-${tournamentId}-${kind}.json`;
 }
 
-/**
- * Load deck lists
- */
-export function loadDecklists(): DeckList[] {
-  return loadDataFile<DeckList[]>('tournament-394299-decklists.json');
+function ensureRegistered(tournamentId: string): void {
+  if (!tournamentExists(tournamentId)) {
+    throw new Error(`Unknown tournament: ${tournamentId}`);
+  }
 }
 
-/**
- * Load player to archetype mappings
- */
-export function loadPlayerDecks(): PlayerDecks {
-  return loadDataFile<PlayerDecks>('tournament-394299-player-decks.json');
+export function loadMatches(tournamentId: string): MatchesByRound {
+  ensureRegistered(tournamentId);
+  return loadDataFile<MatchesByRound>(dataFileName(tournamentId, 'matches'));
 }
 
-/**
- * Load tournament statistics
- */
-export function loadStats(): TournamentStats {
-  return loadDataFile<TournamentStats>('tournament-394299-stats.json');
+export function loadDecklists(tournamentId: string): DeckList[] {
+  ensureRegistered(tournamentId);
+  return loadDataFile<DeckList[]>(dataFileName(tournamentId, 'decklists'));
 }
 
-/**
- * Load all tournament data at once
- */
-export function loadAllData() {
+export function loadPlayerDecks(tournamentId: string): PlayerDecks {
+  ensureRegistered(tournamentId);
+  return loadDataFile<PlayerDecks>(dataFileName(tournamentId, 'player-decks'));
+}
+
+export function loadStats(tournamentId: string): TournamentStats {
+  ensureRegistered(tournamentId);
+  return loadDataFile<TournamentStats>(dataFileName(tournamentId, 'stats'));
+}
+
+export function loadAllData(tournamentId: string) {
   return {
-    matches: loadMatches(),
-    decklists: loadDecklists(),
-    playerDecks: loadPlayerDecks(),
-    stats: loadStats(),
+    matches: loadMatches(tournamentId),
+    decklists: loadDecklists(tournamentId),
+    playerDecks: loadPlayerDecks(tournamentId),
+    stats: loadStats(tournamentId),
   };
-}
-
-/**
- * Get list of available data files
- */
-export function getAvailableFiles(): readonly string[] {
-  return ALLOWED_FILES;
 }
