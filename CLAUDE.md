@@ -14,32 +14,30 @@ There is no root `package.json` and no workspaces; each subproject manages its o
 
 ## The data contract
 
-Everything pivots on four files in `data/` produced by the scraper:
+Five files in `data/` form the contract:
 
-- `tournament-394299-matches.json` — matches keyed by round number
-- `tournament-394299-decklists.json` — full 60+15 decklists per player
-- `tournament-394299-player-decks.json` — player → archetype map
-- `tournament-394299-stats.json` — aggregated archetype stats + matchup matrix
+- `tournaments.json` — registry of all known tournaments (id, slug, name, format, date, rounds, completed). Hand-maintained; drives the scraper and (post-Stage-2) the MCP/REST allowlist and the web routing.
+- `tournament-<id>-matches.json` — per-tournament matches keyed by round number
+- `tournament-<id>-decklists.json` — per-tournament full 60+15 decklists per player
+- `tournament-<id>-player-decks.json` — per-tournament player → archetype map
+- `tournament-<id>-stats.json` — per-tournament aggregated archetype stats + matchup matrix
 
-These filenames are **hard-coded** in two consumers and changing them is a breaking change:
-- `web/src/pages/*.astro` import them via relative path (`../../../data/...`)
-- `mcp-server/src/data-loader.ts` has them in an `ALLOWED_FILES` allowlist (security boundary — files not in the list cannot be read)
+The scraper now reads `tournaments.json` to know what to scrape — there is no hardcoded tournament ID anymore. Stages 2 and 3 of the multi-tournament rollout (see `docs/superpowers/plans/`) make the MCP server and web app registry-driven too. Until those land, `mcp-server/src/data-loader.ts` and `web/src/pages/*.astro` are still hardcoded to 394299.
 
 If the scraper output schema changes, update `mcp-server/src/types.ts` and the web page imports together.
-
-The tournament ID `394299` is also hard-coded in `scraper/main.go` (`tournamentID` constant). The repo is currently single-tournament.
 
 ## Common commands
 
 ### Scraper (Go)
 ```bash
 cd scraper
-go run . -rounds "4-8"          # default; ~2-3 min, hits melee.gg
-go run . -rounds "4,5,6"        # specific rounds
-go run . -rounds "4-8,12-16"    # multiple ranges
-go build -o scraper             # build binary
+go run .                            # sweep: scrape all completed:false tournaments in data/tournaments.json
+go run . -tournament 415628         # targeted: scrape one tournament (must be in registry)
+go run . -tournament 415628 -rounds "4-8"   # override registry rounds for this run
+go test ./...                       # run scraper unit tests
+go build -o scraper                 # build binary
 ```
-Output goes to `../data/`. Polite 1s delay between round requests is built in — don't remove it.
+Output goes to `../data/`. The scraper reads `data/tournaments.json` to know what to scrape; `completed: true` entries are skipped. Round IDs are discovered from the tournament page on each run via regex over `<button class="round-selector" data-id="...">` (no hardcoded mapping). Polite 1s delay between rounds and between tournaments — don't remove it.
 
 ### Web (Astro)
 ```bash
@@ -79,7 +77,7 @@ npm run destroy
 
 ## Architectural notes
 
-**Scraper approach.** The `/Match/GetRoundMatches/{roundId}` endpoint on melee.gg is reachable via a DataTables-style `application/x-www-form-urlencoded` POST (see `scraper/ANALYSIS.md` for the param shape). Round IDs are not the same as round numbers — the scraper resolves them. Decklist HTML is scraped separately in `melee_decklists.go`. The dependency tree includes `chromedp` and `go-rod`, but the working path is the API call; browser automation is a fallback.
+**Scraper approach.** The `/Match/GetRoundMatches/{roundId}` endpoint on melee.gg is reachable via a DataTables-style `application/x-www-form-urlencoded` POST (see `scraper/ANALYSIS.md` for the param shape). Round IDs differ per tournament — `scraper/round_ids.go` resolves them by GETting `https://melee.gg/Tournament/View/{id}` and parsing `<button class="round-selector" data-id="...">` elements. Decklist HTML is scraped separately in `melee_decklists.go`. The dependency tree includes `chromedp` and `go-rod`, but the working path is the API call; browser automation is a fallback.
 
 **Web rendering.** All pages are static (`output: 'static'`). Astro pages import the JSON directly at build time and React components (`.tsx`) handle interactivity. The site URL in `astro.config.mjs` is the GitHub Pages custom domain — changing it affects generated absolute URLs.
 
