@@ -117,19 +117,28 @@ async function fetchCardBatch(cardNames: string[]): Promise<Map<string, string |
 }
 
 async function main() {
-  // Load decklists
-  const decklistsPath = path.join(__dirname, '../../data/tournament-394299-decklists.json');
-  const decklists = JSON.parse(fs.readFileSync(decklistsPath, 'utf-8'));
+  // Load tournament registry and gather cards across all tournaments that have decklists
+  const registryPath = path.join(__dirname, '../../data/tournaments.json');
+  const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8')) as Array<{ id: string }>;
 
-  // Collect all unique card names
   const cardNames = new Set<string>();
-  decklists.forEach((deck: any) => {
-    deck.mainDeck.forEach((card: any) => cardNames.add(card.name));
-    deck.sideboard.forEach((card: any) => cardNames.add(card.name));
-  });
+  for (const t of registry) {
+    const decklistsPath = path.join(__dirname, `../../data/tournament-${t.id}-decklists.json`);
+    let decklists: any[];
+    try {
+      decklists = JSON.parse(fs.readFileSync(decklistsPath, 'utf-8'));
+    } catch {
+      console.warn(`Skipping tournament ${t.id} — no decklists file`);
+      continue;
+    }
+    decklists.forEach((deck: any) => {
+      deck.mainDeck.forEach((card: any) => cardNames.add(card.name));
+      deck.sideboard.forEach((card: any) => cardNames.add(card.name));
+    });
+  }
 
   const sortedCards = Array.from(cardNames).sort();
-  console.log(`Found ${sortedCards.length} unique cards to fetch`);
+  console.log(`Found ${sortedCards.length} unique cards across ${registry.length} tournaments`);
 
   // Chunk into batches of 75 (Scryfall's collection endpoint limit)
   const batches = chunk(sortedCards, 75);
