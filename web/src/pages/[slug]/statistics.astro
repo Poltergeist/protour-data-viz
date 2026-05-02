@@ -1,17 +1,27 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import WinRateChart from '../components/WinRateChart';
-import MatchupTable from '../components/MatchupTable';
-import statsData from '../../../data/tournament-394299-stats.json';
+import Layout from '../../layouts/Layout.astro';
+import WinRateChart from '../../components/WinRateChart';
+import MatchupTable from '../../components/MatchupTable';
+import { tournamentStaticPaths } from '../../utils/tournaments';
+import type { TournamentData } from '../../utils/tournaments';
 
+export const getStaticPaths = () => tournamentStaticPaths();
+
+interface Props { data: TournamentData }
+const { data } = Astro.props as Props;
+const { tournament, stats: statsData } = data;
 const stats = statsData.archetypes;
 ---
 
-<Layout title="Pro Tour Lorwyn Eclipsed - Statistics" description="Tournament statistics showing win rates by archetype and head-to-head matchup data from Rounds 4-8.">
+<Layout
+  title={`${tournament.name} - Statistics`}
+  description={`Tournament statistics: win rates by archetype and head-to-head matchup data for ${tournament.name}.`}
+  tournament={{ slug: tournament.slug, name: tournament.name }}
+>
   <div class="stats-page">
     <h2>Tournament Statistics</h2>
-    <p class="subtitle">Aggregated data from Rounds 4-8 (Standard Format)</p>
-    
+    <p class="subtitle">{tournament.format} format — aggregated from rounds {tournament.rounds.join(', ')}</p>
+
     <section class="chart-section">
       <WinRateChart client:only="react" stats={stats} minGames={5} />
     </section>

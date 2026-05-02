@@ -1,19 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import DeckListViewer from '../components/DeckListViewer';
-import decklists from '../../../data/tournament-394299-decklists.json';
-import matchData from '../../../data/tournament-394299-matches.json';
-import statsData from '../../../data/tournament-394299-stats.json';
-import { calculatePlayerResults } from '../utils/calculatePlayerResults';
+import Layout from '../../layouts/Layout.astro';
+import DeckListViewer from '../../components/DeckListViewer';
+import { calculatePlayerResults } from '../../utils/calculatePlayerResults';
+import { tournamentStaticPaths } from '../../utils/tournaments';
+import type { TournamentData } from '../../utils/tournaments';
 
-const playerResults = calculatePlayerResults(matchData);
+export const getStaticPaths = () => tournamentStaticPaths();
+
+interface Props { data: TournamentData }
+const { data } = Astro.props as Props;
+const { tournament, decklists, matches, stats: statsData } = data;
+
+const playerResults = calculatePlayerResults(matches);
 ---
 
-<Layout title="Decklists - Pro Tour Lorwyn Eclipsed" description="Browse complete decklists from all 306 players. Search by player name or filter by archetype to view mainboard and sideboard cards.">
+<Layout
+  title={`Decklists - ${tournament.name}`}
+  description={`Browse complete decklists from all ${decklists.length} players. Search by player name or filter by archetype.`}
+  tournament={{ slug: tournament.slug, name: tournament.name }}
+>
   <div class="decklists-page">
     <h2>Player Decklists</h2>
     <p class="subtitle">{decklists.length} complete decklists from the tournament</p>
-    
+
     <section class="decklist-section">
       <DeckListViewer client:only="react" decklists={decklists} playerResults={playerResults} statsData={statsData} />
     </section>

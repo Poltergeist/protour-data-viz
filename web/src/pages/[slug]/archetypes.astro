@@ -1,46 +1,56 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ArchetypeBreakdown from '../components/ArchetypeBreakdown';
-import decklists from '../../../data/tournament-394299-decklists.json';
+import Layout from '../../layouts/Layout.astro';
+import ArchetypeBreakdown from '../../components/ArchetypeBreakdown';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { tournamentStaticPaths } from '../../utils/tournaments';
+import type { TournamentData } from '../../utils/tournaments';
+
+export const getStaticPaths = () => tournamentStaticPaths();
+
+interface Props { data: TournamentData }
+const { data } = Astro.props as Props;
+const { tournament, decklists } = data;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load image cache from public directory at build time
-const imageCachePath = path.join(__dirname, '../../public/card-images.json');
+// Image cache is global across tournaments (single Scryfall lookup)
+const imageCachePath = path.join(__dirname, '../../../public/card-images.json');
 const imageCache = JSON.parse(readFileSync(imageCachePath, 'utf-8'));
 
-// Get all unique archetypes sorted alphabetically
-const archetypes = Array.from(new Set(decklists.map(d => d.archetype))).sort();
+const archetypes = Array.from(new Set(decklists.map((d: any) => d.archetype))).sort() as string[];
 const defaultArchetype = archetypes[0];
 ---
 
-<Layout title="Archetype Breakdown - Pro Tour Lorwyn Eclipsed" description="Detailed card-by-card breakdown for each archetype. See which cards are played, how many copies, and in what percentage of decks.">
+<Layout
+  title={`Archetype Breakdown - ${tournament.name}`}
+  description="Detailed card-by-card breakdown for each archetype."
+  tournament={{ slug: tournament.slug, name: tournament.name }}
+>
   <div class="breakdown-page">
     <h2>Archetype Breakdown</h2>
     <p class="subtitle">Card-by-card analysis for each archetype</p>
-    
+
     <div class="archetype-selector">
       <label for="archetype-select">Select Archetype:</label>
       <select id="archetype-select" class="archetype-dropdown">
-        {archetypes.map(arch => (
+        {archetypes.map((arch) => (
           <option value={arch}>{arch}</option>
         ))}
       </select>
     </div>
 
     <section class="breakdown-section">
-      {archetypes.map(archetype => (
-        <div 
-          class="breakdown-container" 
+      {archetypes.map((archetype) => (
+        <div
+          class="breakdown-container"
           data-archetype={archetype}
           style={archetype === defaultArchetype ? 'display: block;' : 'display: none;'}
         >
-          <ArchetypeBreakdown 
-            client:only="react" 
+          <ArchetypeBreakdown
+            client:only="react"
             archetypeName={archetype}
             decklists={decklists}
             imageCache={imageCache}
@@ -55,11 +65,11 @@ const defaultArchetype = archetypes[0];
   document.addEventListener('DOMContentLoaded', () => {
     const select = document.getElementById('archetype-select') as HTMLSelectElement;
     const containers = document.querySelectorAll('.breakdown-container');
-    
+
     select?.addEventListener('change', (e) => {
       const target = e.target as HTMLSelectElement;
       const selectedArchetype = target.value;
-      
+
       containers.forEach(container => {
         const containerEl = container as HTMLElement;
         if (containerEl.dataset.archetype === selectedArchetype) {

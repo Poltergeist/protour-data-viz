@@ -1,0 +1,299 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { calculatePlayerResults } from '../../utils/calculatePlayerResults';
+import { tournamentStaticPaths } from '../../utils/tournaments';
+import type { TournamentData } from '../../utils/tournaments';
+
+export const getStaticPaths = () => tournamentStaticPaths();
+
+interface Props { data: TournamentData }
+const { data } = Astro.props as Props;
+const { tournament, matches, decklists, stats: statsData } = data;
+
+const playerResults = calculatePlayerResults(matches);
+const playersWithoutResults = decklists.filter((deck: any) => !playerResults.has(deck.playerName));
+const playersWithoutResultsCount = playersWithoutResults.length;
+
+const totalMatches = Object.values(matches).flat().length;
+
+const allCards = new Set<string>();
+decklists.forEach((deck: any) => {
+  deck.mainDeck.forEach((card: any) => allCards.add(card.name));
+  deck.sideboard.forEach((card: any) => allCards.add(card.name));
+});
+const uniqueCardsCount = allCards.size;
+
+const archetypeCount = Object.keys(statsData.archetypes).length;
+
+const navBase = `/${tournament.slug}`;
+const subtitleParts = [tournament.format, tournament.completed ? 'Final' : 'In Progress'];
+const subtitle = subtitleParts.join(' Format - ');
+---
+
+<Layout
+  title={`${tournament.name} - Tournament Data`}
+  description={`Complete tournament statistics from ${tournament.name}: ${decklists.length} players, ${archetypeCount} archetypes, ${totalMatches} matches.`}
+  tournament={{ slug: tournament.slug, name: tournament.name }}
+>
+  <div class="hero">
+    <h2>{tournament.name}</h2>
+    <p class="subtitle">{subtitle}</p>
+  </div>
+
+  <section class="stats-overview">
+    <div class="stat-card">
+      <h3>{decklists.length}</h3>
+      <p>Players</p>
+    </div>
+    <div class="stat-card">
+      <h3>{archetypeCount}</h3>
+      <p>Archetypes</p>
+    </div>
+    <div class="stat-card">
+      <h3>{totalMatches}</h3>
+      <p>Matches</p>
+    </div>
+    {uniqueCardsCount > 0 && (
+      <div class="stat-card">
+        <h3>{uniqueCardsCount}</h3>
+        <p>Unique Cards</p>
+      </div>
+    )}
+    {playersWithoutResultsCount > 0 && (
+      <div class="stat-card warning">
+        <h3>{playersWithoutResultsCount}</h3>
+        <p>Players Without Results</p>
+        <span class="tooltip">Name mismatch between decklist and match data</span>
+      </div>
+    )}
+  </section>
+
+  <section class="description">
+    <h3>About This Tournament</h3>
+    <p>
+      {tournament.name} featured {decklists.length} players competing in {tournament.format} format.
+      This page visualizes meta-game data including win rates by archetype, head-to-head matchup
+      statistics, and player deck information sourced directly from melee.gg tournament data.
+    </p>
+  </section>
+
+  {playersWithoutResultsCount > 0 && (
+    <section class="warning-section">
+      <h3>⚠️ Data Quality Notice</h3>
+      <p>
+        {playersWithoutResultsCount} player{playersWithoutResultsCount > 1 ? 's' : ''} from the decklist data
+        could not be matched with match results. This is likely due to name differences between
+        decklist and match data sources.
+      </p>
+      <details>
+        <summary>Show affected players ({playersWithoutResultsCount})</summary>
+        <ul class="player-list">
+          {playersWithoutResults.map((player: any) => (
+            <li>
+              <strong>{player.playerName}</strong>
+              <span class="archetype">({player.archetype})</span>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </section>
+  )}
+
+  <section class="links">
+    <a href={`${navBase}/statistics`} class="cta-button">View Win Rates & Matchups</a>
+    <a href={`${navBase}/decklists`} class="cta-button secondary">Browse Decklists</a>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--grey-border);
+    margin-bottom: 3rem;
+  }
+
+  .hero h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  .stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--grey-border);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 4px;
+  }
+
+  .stat-card h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+
+  .stat-card.warning {
+    border-color: #ffa500;
+    position: relative;
+  }
+
+  .stat-card.warning h3 {
+    color: #ffa500;
+  }
+
+  .stat-card .tooltip {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    font-style: italic;
+  }
+
+  .description {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .description h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .description p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .warning-section {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    padding: 1.5rem;
+    background: rgba(255, 165, 0, 0.1);
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .warning-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ffa500;
+  }
+
+  .warning-section p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .warning-section details {
+    margin-top: 1rem;
+  }
+
+  .warning-section summary {
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .warning-section summary:hover {
+    background: rgba(255, 96, 0, 0.1);
+  }
+
+  .player-list {
+    list-style: none;
+    padding: 1rem 0 0 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .player-list li {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid rgba(255, 165, 0, 0.2);
+  }
+
+  .player-list li:last-child {
+    border-bottom: none;
+  }
+
+  .player-list strong {
+    color: var(--text-primary);
+  }
+
+  .player-list .archetype {
+    margin-left: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(0deg, #ffa100 9%, #c92700 50%, #ff6000 0, #de2400 93%);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .cta-button:hover {
+    filter: drop-shadow(0 0 7px #e83411);
+    transform: translateY(-2px);
+  }
+
+  .cta-button.secondary {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--grey-border);
+  }
+
+  .cta-button.secondary:hover {
+    border-color: var(--primary-color);
+  }
+</style>
