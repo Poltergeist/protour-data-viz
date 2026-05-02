@@ -1,15 +1,49 @@
 # MCP Tools Reference
 
-Complete reference for all 6 tools provided by the ProTour MCP Server.
+Complete reference for the 7 tools provided by the ProTour MCP Server (v0.2.0).
+
+## Breaking change in v0.2.0
+
+Tournament ID is now required for every data tool. Use `list_tournaments` first to discover available tournaments.
 
 ## Available Tools
 
-1. [query_matches](#query_matches) - Query tournament matches
-2. [query_decks](#query_decks) - Query deck lists
-3. [query_stats](#query_stats) - Get archetype statistics
-4. [query_player_deck](#query_player_deck) - Get player's deck and performance
-5. [list_archetypes](#list_archetypes) - List all archetypes
-6. [get_tournament_info](#get_tournament_info) - Get tournament metadata
+1. [list_tournaments](#list_tournaments) — Discover available tournaments
+2. [query_matches](#query_matches) — Query tournament matches
+3. [query_decks](#query_decks) — Query deck lists
+4. [query_stats](#query_stats) — Get archetype statistics
+5. [query_player_deck](#query_player_deck) — Get player's deck and performance
+6. [list_archetypes](#list_archetypes) — List all archetypes
+7. [get_tournament_info](#get_tournament_info) — Get tournament metadata
+
+---
+
+## list_tournaments
+
+List all available tournaments with their IDs, slugs, names, formats, dates, and completion status. Call this first to discover the `tournament_id` values needed by every other tool.
+
+### Parameters
+
+None.
+
+### Returns
+
+Array of tournament summary objects:
+- `id` — numeric string used as `tournament_id`
+- `slug` — URL-safe identifier
+- `name` — display name
+- `format` — e.g. "Standard"
+- `date` — ISO date
+- `completed` — true once the event is finalized
+
+### Sample Response
+
+```json
+[
+  { "id": "415628", "slug": "secrets-of-strixhaven", "name": "Pro Tour Secrets of Strixhaven", "format": "Standard", "date": "2026-05-01", "completed": false },
+  { "id": "394299", "slug": "lorwyn-eclipsed", "name": "Pro Tour Lorwyn Eclipsed", "format": "Standard", "date": "2026-01-31", "completed": true }
+]
+```
 
 ---
 
@@ -21,143 +55,50 @@ Query tournament matches by round, player name, or archetype.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
+| `tournament_id` | string | **Yes** | Numeric tournament ID (from `list_tournaments`) |
 | `round` | number | No | Round number (1-20) |
-| `player` | string | No | Player name or partial name |
-| `archetype` | string | No | Deck archetype name or partial |
-| `limit` | number | No | Max results (default: 100, max: 1000) |
-
-### Returns
-
-Array of match objects with:
-- `TableNumber` - Table/match number
-- `ResultString` - Match outcome description
-- `Competitors` - Array of 2 competitors with player info and decklists
+| `player` | string | No | Player name (partial match) |
+| `archetype` | string | No | Deck archetype (partial match) |
+| `limit` | number | No | Max results (default 100, max 1000) |
 
 ### Examples
 
-**Query all matches from round 5:**
 ```json
-{
-  "round": 5
-}
+{ "tournament_id": "394299", "round": 5 }
+{ "tournament_id": "394299", "player": "Gabriel Nicholas", "limit": 10 }
+{ "tournament_id": "394299", "archetype": "Izzet Blink" }
+{ "tournament_id": "394299", "round": 8, "archetype": "Control", "limit": 20 }
 ```
 
-**Find matches for a specific player:**
-```json
-{
-  "player": "Gabriel Nicholas",
-  "limit": 10
-}
-```
+### Returns
 
-**Find matches with a specific archetype:**
-```json
-{
-  "archetype": "Izzet Blink"
-}
-```
-
-**Combined filters:**
-```json
-{
-  "round": 8,
-  "archetype": "Control",
-  "limit": 20
-}
-```
-
-### Sample Response
-
-```json
-[
-  {
-    "TableNumber": 1,
-    "ResultString": "Marco Belacca won 2-0-0",
-    "Competitors": [
-      {
-        "Decklists": [{
-          "DecklistId": "...",
-          "PlayerId": 3767404,
-          "DecklistName": "Jeskai Control",
-          "Format": "Standard"
-        }],
-        "Team": {
-          "Players": [{
-            "ID": 3767404,
-            "DisplayName": "Marco Belacca",
-            "ScreenName": "N/A"
-          }]
-        }
-      }
-    ]
-  }
-]
-```
+Array of match objects with `TableNumber`, `ResultString`, and `Competitors` (player + decklist info).
 
 ---
 
 ## query_decks
 
-Query complete deck lists by player name or archetype.
+Query complete deck lists by player or archetype.
 
 ### Parameters
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `player` | string | No | Player name or partial name |
-| `archetype` | string | No | Deck archetype name or partial |
-| `limit` | number | No | Max results (default: 100, max: 1000) |
-
-### Returns
-
-Array of deck list objects with:
-- `playerName` - Player's full name
-- `archetype` - Deck archetype
-- `mainDeck` - Array of cards with quantity and name
-- `sideboard` - Array of sideboard cards
+| `tournament_id` | string | **Yes** | Numeric tournament ID |
+| `player` | string | No | Player name (partial match) |
+| `archetype` | string | No | Deck archetype (partial match) |
+| `limit` | number | No | Max results (default 100, max 1000) |
 
 ### Examples
 
-**Get all Izzet decks:**
 ```json
-{
-  "archetype": "Izzet"
-}
+{ "tournament_id": "394299", "archetype": "Izzet" }
+{ "tournament_id": "394299", "player": "Gabriel Nicholas" }
 ```
 
-**Get a specific player's deck:**
-```json
-{
-  "player": "Gabriel Nicholas"
-}
-```
+### Returns
 
-**Get first 10 decks:**
-```json
-{
-  "limit": 10
-}
-```
-
-### Sample Response
-
-```json
-[
-  {
-    "playerName": "Gabriel Nicholas",
-    "archetype": "Izzet Blink",
-    "mainDeck": [
-      { "quantity": 4, "name": "Quantum Riddler" },
-      { "quantity": 4, "name": "Thundertrap Trainer" },
-      { "quantity": 2, "name": "Ral, Crackling Wit" }
-    ],
-    "sideboard": [
-      { "quantity": 2, "name": "Negate" },
-      { "quantity": 2, "name": "Mystical Dispute" }
-    ]
-  }
-]
-```
+Array of deck list objects with `playerName`, `archetype`, `mainDeck` (60 cards), `sideboard` (15 cards).
 
 ---
 
@@ -169,60 +110,19 @@ Retrieve archetype statistics including win rates and matchup data.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
+| `tournament_id` | string | **Yes** | Numeric tournament ID |
 | `archetype` | string | No | Specific archetype (returns all if omitted) |
-
-### Returns
-
-- If `archetype` specified: Single archetype stats object
-- If no archetype: All tournament statistics
-
-Each archetype includes:
-- `wins`, `losses`, `draws` - Overall record
-- `winRate` - Win percentage
-- `matchups` - Head-to-head stats vs other archetypes
 
 ### Examples
 
-**Get all archetype statistics:**
 ```json
-{}
+{ "tournament_id": "394299" }
+{ "tournament_id": "394299", "archetype": "Azorius Control" }
 ```
 
-**Get specific archetype stats:**
-```json
-{
-  "archetype": "Azorius Control"
-}
-```
+### Returns
 
-### Sample Response (specific archetype)
-
-```json
-{
-  "archetype": "Azorius Control",
-  "stats": {
-    "archetype": "Azorius Control",
-    "wins": 20,
-    "losses": 14,
-    "draws": 1,
-    "winRate": 58.82,
-    "matchups": {
-      "Bant Rhythm": {
-        "wins": 2,
-        "losses": 1,
-        "draws": 0,
-        "percentage": 66.67
-      },
-      "Izzet Spellementals": {
-        "wins": 3,
-        "losses": 2,
-        "draws": 0,
-        "percentage": 60.0
-      }
-    }
-  }
-}
-```
+Either a single archetype's stats (with `wins`, `losses`, `draws`, `winRate`, `matchups`) or the full archetypes map for the tournament.
 
 ---
 
@@ -234,178 +134,86 @@ Get a specific player's complete information including deck, archetype, and matc
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `player` | string | Yes | Player name (exact or partial) |
+| `tournament_id` | string | **Yes** | Numeric tournament ID |
+| `player` | string | **Yes** | Player name (exact or partial) |
+
+### Example
+
+```json
+{ "tournament_id": "394299", "player": "Gabriel Nicholas" }
+```
 
 ### Returns
 
-Player object with:
-- `playerName` - Player's full name
-- `archetype` - Deck archetype they played
-- `deckList` - Complete deck list (mainDeck + sideboard)
-- `matches` - All matches the player participated in
-- `matchCount` - Number of matches played
-
-Returns `null` if player not found.
-
-### Examples
-
-**Get player information:**
-```json
-{
-  "player": "Gabriel Nicholas"
-}
-```
-
-### Sample Response
-
-```json
-{
-  "playerName": "Gabriel Nicholas",
-  "archetype": "Izzet Blink",
-  "deckList": {
-    "playerName": "Gabriel Nicholas",
-    "archetype": "Izzet Blink",
-    "mainDeck": [ /* ... */ ],
-    "sideboard": [ /* ... */ ]
-  },
-  "matches": [ /* array of Match objects */ ],
-  "matchCount": 10
-}
-```
+Player object with `playerName`, `archetype`, `deckList`, `matches`, `matchCount`. Returns `null` if not found.
 
 ---
 
 ## list_archetypes
 
-List all deck archetypes in the tournament with play counts and win rates.
+List all deck archetypes in a tournament with play counts and win rates.
 
 ### Parameters
 
-None
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `tournament_id` | string | **Yes** | Numeric tournament ID |
+
+### Example
+
+```json
+{ "tournament_id": "394299" }
+```
 
 ### Returns
 
-Array of archetype summary objects, sorted alphabetically:
-- `name` - Archetype name
-- `count` - Number of players using this archetype
-- `winRate` - Win percentage
-- `wins`, `losses`, `draws` - Overall record
-
-### Examples
-
-**Get all archetypes:**
-```json
-{}
-```
-
-### Sample Response
-
-```json
-[
-  {
-    "name": "Azorius Control",
-    "count": 5,
-    "winRate": 58.82,
-    "wins": 20,
-    "losses": 14,
-    "draws": 1
-  },
-  {
-    "name": "Bant Rhythm",
-    "count": 22,
-    "winRate": 55.45,
-    "wins": 61,
-    "losses": 49,
-    "draws": 0
-  },
-  {
-    "name": "Izzet Spellementals",
-    "count": 15,
-    "winRate": 69.3,
-    "wins": 88,
-    "losses": 39,
-    "draws": 0
-  }
-]
-```
+Array of archetype summaries, sorted alphabetically: `name`, `count`, `winRate`, `wins`, `losses`, `draws`.
 
 ---
 
 ## get_tournament_info
 
-Get tournament metadata and summary statistics.
+Get a tournament's metadata and summary statistics.
 
 ### Parameters
 
-None
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `tournament_id` | string | **Yes** | Numeric tournament ID |
+
+### Example
+
+```json
+{ "tournament_id": "394299" }
+```
 
 ### Returns
 
-Tournament information object with:
-- `tournamentId` - Tournament ID
-- `name` - Tournament name
-- `url` - melee.gg URL
-- `format` - Tournament format
-- `stats` - Summary statistics (players, archetypes, rounds, decklists)
-- `rounds` - Array of round numbers available
-- `dataFiles` - List of source data files
-
-### Examples
-
-**Get tournament info:**
-```json
-{}
-```
-
-### Sample Response
-
-```json
-{
-  "tournamentId": "394299",
-  "name": "Pro Tour - Aetherdrift",
-  "url": "https://melee.gg/Tournament/View/394299",
-  "format": "Standard",
-  "stats": {
-    "totalPlayers": 304,
-    "totalArchetypes": 43,
-    "totalRounds": 10,
-    "totalDecklists": 304
-  },
-  "rounds": [4, 5, 6, 7, 8, 12, 13, 14, 15, 16],
-  "dataFiles": [
-    "tournament-394299-matches.json",
-    "tournament-394299-decklists.json",
-    "tournament-394299-player-decks.json",
-    "tournament-394299-stats.json"
-  ]
-}
-```
+Tournament info: `tournamentId`, `slug`, `name`, `format`, `date`, `completed`, `url`, `rounds`, `stats` (player count, archetype count, round count, decklist count), `dataFiles`.
 
 ---
 
 ## Security & Limits
 
-All tools enforce the following security constraints:
-
-- **String length**: Max 100 characters
-- **Character validation**: Only alphanumeric, spaces, hyphens, apostrophes
+- **Tournament allowlist**: only registered tournaments (in `data/tournaments.json`) are accessible. Unknown IDs error.
+- **String length**: max 100 characters
+- **Character validation**: alphanumeric, spaces, hyphens, apostrophes (player names allow periods)
 - **Round numbers**: 1-20
 - **Result limits**: 1-1000 (default 100)
-- **No file access**: Only reads from 4 specific JSON files
-- **No writes**: All tools are read-only
+- **Read-only**: no write tools
 
 ## Error Handling
 
 Tools return error objects for invalid input:
 
 ```json
-{
-  "error": "Validation error: Invalid characters in string"
-}
+{ "error": "Validation error: Unknown tournament ID" }
 ```
 
 Common errors:
+- Missing `tournament_id`
+- Unknown tournament (not in registry)
 - Invalid characters in player/archetype names
-- Round number out of range (1-20)
-- Limit exceeds maximum (1000)
-- Player not found (query_player_deck returns null)
+- Round number out of range
+- Limit exceeds maximum
+- Player not found (`query_player_deck` returns `null`)

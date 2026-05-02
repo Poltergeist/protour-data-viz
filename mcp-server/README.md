@@ -3,7 +3,7 @@
 Model Context Protocol (MCP) server + REST API for querying Pokémon TCG ProTour tournament data.
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-20+-green)](https://nodejs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-22+-green)](https://nodejs.org/)
 [![MCP](https://img.shields.io/badge/MCP-1.25-purple)](https://modelcontextprotocol.io)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
 
@@ -14,14 +14,9 @@ This service provides two interfaces for accessing tournament data:
 1. **MCP Server** (via HTTP) - For AI tools like Claude Desktop, Cursor, VS Code, Zed, Windsurf
 2. **REST API** - For ChatGPT Custom GPTs, direct HTTP clients, and traditional integrations
 
-Both interfaces provide read-only access to tournament matches, deck lists, archetypes, and statistics from Pro Tour - Aetherdrift (tournament 394299).
+Both interfaces provide read-only access to tournament matches, deck lists, archetypes, and statistics across multiple Pro Tours, driven by `data/tournaments.json`. Use `GET /api/tournaments` (REST) or the `list_tournaments` MCP tool to discover available tournaments.
 
-**Data available:**
-- 304 players across 10 rounds
-- 43 unique deck archetypes
-- Complete deck lists and card data
-- Match results and statistics
-- Archetype matchup data
+> **v0.2.0 breaking change:** every endpoint and tool now requires a `tournament_id`. The flat `/api/matches` shape has been removed in favor of `/api/tournaments/:id/matches`. ChatGPT custom GPTs must re-import `openapi.json` after the upgrade.
 
 ## Quick Start
 
@@ -43,14 +38,17 @@ npm run dev
 # Health check
 curl http://localhost:3000/health
 
-# Get tournament info
-curl http://localhost:3000/api/tournament
+# Discover tournaments
+curl http://localhost:3000/api/tournaments
 
-# List all archetypes
-curl http://localhost:3000/api/archetypes
+# Get a tournament's metadata
+curl http://localhost:3000/api/tournaments/394299
+
+# List all archetypes for a tournament
+curl http://localhost:3000/api/tournaments/394299/archetypes
 
 # Query matches from round 5
-curl "http://localhost:3000/api/matches?round=5&limit=5"
+curl "http://localhost:3000/api/tournaments/394299/matches?round=5&limit=5"
 ```
 
 ## Available Scripts
@@ -99,14 +97,17 @@ See [CHATGPT-TESTING.md](./CHATGPT-TESTING.md) for detailed setup.
 ### curl / HTTP clients
 
 ```bash
+# Discover tournaments
+curl http://localhost:3000/api/tournaments
+
 # List all archetypes
-curl http://localhost:3000/api/archetypes
+curl http://localhost:3000/api/tournaments/394299/archetypes
 
 # Get player's deck
-curl http://localhost:3000/api/players/Gabriel%20Nicholas/deck
+curl http://localhost:3000/api/tournaments/394299/players/Gabriel%20Nicholas/deck
 
 # Query matches from round 7
-curl "http://localhost:3000/api/matches?round=7&limit=10"
+curl "http://localhost:3000/api/tournaments/394299/matches?round=7&limit=10"
 ```
 
 See [API.md](./API.md) for complete endpoint documentation.
@@ -151,29 +152,35 @@ See [API.md](./API.md) for complete endpoint documentation.
 
 ## Features
 
-### 🛠️ MCP Tools (6 tools)
+### 🛠️ MCP Tools (7 tools)
+
+All data tools take a required `tournament_id` argument. Use `list_tournaments` to discover available IDs.
 
 | Tool | Description | Example Prompt |
 |------|-------------|----------------|
-| `query_matches` | Query matches by round, player, or archetype | "Show matches from round 5" |
-| `query_decks` | Get deck lists and archetype information | "Show all Izzet Spellementals decks" |
-| `query_stats` | Retrieve archetype statistics and matchup data | "What's the win rate for Bant Rhythm?" |
-| `query_player_deck` | Get specific player's deck and performance | "Show Gabriel Nicholas's deck" |
-| `list_archetypes` | List all available archetypes | "List all archetypes by win rate" |
-| `get_tournament_info` | Get tournament metadata | "What tournament is this?" |
+| `list_tournaments` | Discover available tournaments | "What tournaments are available?" |
+| `query_matches` | Query matches by round, player, or archetype | "Show matches from round 5 of 394299" |
+| `query_decks` | Get deck lists and archetype information | "Show all Izzet Spellementals decks in 394299" |
+| `query_stats` | Retrieve archetype statistics and matchup data | "What's Bant Rhythm's win rate in 394299?" |
+| `query_player_deck` | Get specific player's deck and performance | "Show Gabriel Nicholas's deck in 394299" |
+| `list_archetypes` | List all available archetypes | "List all archetypes in 394299 by win rate" |
+| `get_tournament_info` | Get tournament metadata | "What's tournament 394299?" |
 
 See [TOOLS.md](./TOOLS.md) for complete tool documentation.
 
-### 🌐 REST API (6 endpoints)
+### 🌐 REST API
 
 | Endpoint | Description |
 |----------|-------------|
-| `GET /api/matches` | Query matches with filters (round, player, archetype) |
-| `GET /api/decks` | Query deck lists with filters |
-| `GET /api/stats` | Get archetype statistics and matchup data |
-| `GET /api/players/:player/deck` | Get player's deck and performance |
-| `GET /api/archetypes` | List all archetypes with stats |
-| `GET /api/tournament` | Get tournament metadata |
+| `GET /api/tournaments` | List all tournaments (registry) |
+| `GET /api/tournaments/:id` | Tournament metadata |
+| `GET /api/tournaments/:id/matches` | Query matches (round, player, archetype filters) |
+| `GET /api/tournaments/:id/decks` | Query deck lists |
+| `GET /api/tournaments/:id/stats` | Archetype statistics and matchup data |
+| `GET /api/tournaments/:id/archetypes` | List all archetypes |
+| `GET /api/tournaments/:id/players/:player/deck` | Player's deck and history |
+| `GET /api/tournaments/:id/players/:player/stats` | Player's performance stats |
+| `GET /api/tournaments/:id/cards/:card` | Find decks containing a card |
 
 See [API.md](./API.md) for complete endpoint documentation.
 
@@ -253,13 +260,13 @@ All options support both MCP (via HTTP) and REST API endpoints.
 # Run all tests
 npm run test:phase2  # Data loading
 npm run test:queries # Query functions
-npm run test:http    # MCP endpoint
-npm run test:api     # REST API
+npm run test:http    # MCP endpoint (server must be running)
+npm run test:api     # REST API (server must be running)
 
 # Manual testing
 npm run dev
 curl http://localhost:3000/health
-curl http://localhost:3000/api/tournament
+curl http://localhost:3000/api/tournaments
 ```
 
 ## Project Status

@@ -2,22 +2,34 @@
 
 Sample prompts and queries to explore ProTour tournament data with AI assistants.
 
+> **v0.2.0:** the dataset spans multiple tournaments. Most prompts implicitly need a tournament context — the AI assistant should call `list_tournaments` (MCP) or `GET /api/tournaments` (REST) first when the user is vague.
+
 ## Getting Started
+
+### Tournament Discovery
+
+```
+"What tournaments are available?"
+
+"List all tournaments with their dates."
+```
+
+**Expected response:** registry summary including Pro Tour Lorwyn Eclipsed (394299), Pro Tour Secrets of Strixhaven (415628), and any others that have been added.
 
 ### Tournament Overview
 
 ```
-"What tournament is this data from?"
+"Tell me about Pro Tour Lorwyn Eclipsed."
 
-"How many players participated?"
+"How many players participated in tournament 415628?"
 
-"What formats were played?"
+"What format did Lorwyn Eclipsed use?"
 ```
 
-**Expected Response:**
-- Tournament name (Pro Tour - Aetherdrift)
-- Player count (304)
-- Format (Standard)
+**Expected response:**
+- Tournament name, format, date
+- Player count and archetype count
+- Round coverage
 - Available rounds
 
 ---

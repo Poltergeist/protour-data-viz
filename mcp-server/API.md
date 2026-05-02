@@ -2,10 +2,40 @@
 
 Complete reference for the ProTour Data REST API.
 
+## Breaking change in v0.2.0
+
+Tournament ID is now mandatory in the URL path for all data endpoints. The flat shape (`/api/matches`, `/api/decks`, etc.) has been removed. Use `GET /api/tournaments` to discover available tournaments.
+
+| Old (v0.1.0) | New (v0.2.0) |
+|---|---|
+| `GET /api/matches` | `GET /api/tournaments/:id/matches` |
+| `GET /api/decks` | `GET /api/tournaments/:id/decks` |
+| `GET /api/stats` | `GET /api/tournaments/:id/stats` |
+| `GET /api/archetypes` | `GET /api/tournaments/:id/archetypes` |
+| `GET /api/tournament` | `GET /api/tournaments/:id` |
+| `GET /api/players/:p/deck` | `GET /api/tournaments/:id/players/:p/deck` |
+| `GET /api/players/:p/stats` | `GET /api/tournaments/:id/players/:p/stats` |
+| `GET /api/cards/:c` | `GET /api/tournaments/:id/cards/:c` |
+| _(new)_ | `GET /api/tournaments` |
+
 ## Base URL
 
 ```
 http://localhost:3000/api
+```
+
+## Discovery
+
+Start by listing tournaments:
+
+```bash
+curl http://localhost:3000/api/tournaments
+```
+
+Then query a specific tournament's data:
+
+```bash
+curl http://localhost:3000/api/tournaments/394299/stats
 ```
 
 ## Response Format
@@ -16,8 +46,8 @@ All endpoints return JSON with a consistent structure:
 ```json
 {
   "success": true,
-  "count": 10,      // For list endpoints
-  "data": { ... }   // Response data
+  "count": 10,
+  "data": { ... }
 }
 ```
 
@@ -32,18 +62,47 @@ All endpoints return JSON with a consistent structure:
 ## Rate Limiting
 
 - **Limit**: 100 requests per minute per IP address
-- **Headers**: Rate limit info included in response headers
+- **Headers**: Rate limit info in response headers
 - **Exceeded**: Returns `429 Too Many Requests`
 
 ## Endpoints
 
-### 1. Query Matches
+### List Tournaments
+
+Returns the registry: id, slug, name, format, date, completion status for each tournament.
+
+**Endpoint:** `GET /api/tournaments`
+
+```bash
+curl "http://localhost:3000/api/tournaments"
+```
+
+```json
+{
+  "success": true,
+  "count": 2,
+  "data": [
+    { "id": "415628", "slug": "secrets-of-strixhaven", "name": "Pro Tour Secrets of Strixhaven", "format": "Standard", "date": "2026-05-01", "completed": false },
+    { "id": "394299", "slug": "lorwyn-eclipsed", "name": "Pro Tour Lorwyn Eclipsed", "format": "Standard", "date": "2026-01-31", "completed": true }
+  ]
+}
+```
+
+### Tournament Metadata
+
+**Endpoint:** `GET /api/tournaments/:id`
+
+```bash
+curl "http://localhost:3000/api/tournaments/394299"
+```
+
+Returns tournament metadata plus summary statistics (player count, archetype count, round count, etc.).
+
+### Query Matches
 
 Query tournament matches by round, player, or archetype.
 
-**Endpoint:** `GET /api/matches`
-
-**Query Parameters:**
+**Endpoint:** `GET /api/tournaments/:id/matches`
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -52,47 +111,15 @@ Query tournament matches by round, player, or archetype.
 | `archetype` | string | No | Deck archetype (partial match) |
 | `limit` | number | No | Max results (1-1000, default: 100) |
 
-**Examples:**
-
 ```bash
-# Get all matches from round 5
-curl "http://localhost:3000/api/matches?round=5&limit=10"
-
-# Find matches for a player
-curl "http://localhost:3000/api/matches?player=Gabriel%20Nicholas"
-
-# Find matches with Izzet decks
-curl "http://localhost:3000/api/matches?archetype=Izzet&limit=20"
-
-# Combined filters
-curl "http://localhost:3000/api/matches?round=8&archetype=Control"
+curl "http://localhost:3000/api/tournaments/394299/matches?round=5&limit=10"
+curl "http://localhost:3000/api/tournaments/394299/matches?player=Gabriel%20Nicholas"
+curl "http://localhost:3000/api/tournaments/394299/matches?archetype=Izzet&limit=20"
 ```
 
-**Response:**
+### Query Decks
 
-```json
-{
-  "success": true,
-  "count": 10,
-  "data": [
-    {
-      "TableNumber": 1,
-      "ResultString": "Player A won 2-1-0",
-      "Competitors": [...]
-    }
-  ]
-}
-```
-
----
-
-### 2. Query Decks
-
-Query complete deck lists by player or archetype.
-
-**Endpoint:** `GET /api/decks`
-
-**Query Parameters:**
+**Endpoint:** `GET /api/tournaments/:id/decks`
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
@@ -100,287 +127,93 @@ Query complete deck lists by player or archetype.
 | `archetype` | string | No | Deck archetype (partial match) |
 | `limit` | number | No | Max results (1-1000, default: 100) |
 
-**Examples:**
-
 ```bash
-# Get all Izzet decks
-curl "http://localhost:3000/api/decks?archetype=Izzet"
-
-# Get a specific player's deck
-curl "http://localhost:3000/api/decks?player=Gabriel%20Nicholas"
-
-# Get first 10 decks
-curl "http://localhost:3000/api/decks?limit=10"
+curl "http://localhost:3000/api/tournaments/394299/decks?archetype=Izzet"
+curl "http://localhost:3000/api/tournaments/394299/decks?player=Gabriel%20Nicholas"
 ```
 
-**Response:**
+### Query Stats
 
-```json
-{
-  "success": true,
-  "count": 3,
-  "data": [
-    {
-      "playerName": "Gabriel Nicholas",
-      "archetype": "Izzet Blink",
-      "mainDeck": [
-        { "quantity": 4, "name": "Quantum Riddler" }
-      ],
-      "sideboard": [
-        { "quantity": 2, "name": "Negate" }
-      ]
-    }
-  ]
-}
-```
-
----
-
-### 3. Query Stats
-
-Get archetype statistics including win rates and matchup data.
-
-**Endpoint:** `GET /api/stats`
-
-**Query Parameters:**
+**Endpoint:** `GET /api/tournaments/:id/stats`
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `archetype` | string | No | Specific archetype (returns all if omitted) |
 
-**Examples:**
+```bash
+curl "http://localhost:3000/api/tournaments/394299/stats"
+curl "http://localhost:3000/api/tournaments/394299/stats?archetype=Azorius%20Control"
+```
+
+### List Archetypes
+
+**Endpoint:** `GET /api/tournaments/:id/archetypes`
 
 ```bash
-# Get all archetype statistics
-curl "http://localhost:3000/api/stats"
-
-# Get specific archetype stats
-curl "http://localhost:3000/api/stats?archetype=Azorius%20Control"
+curl "http://localhost:3000/api/tournaments/394299/archetypes"
 ```
 
-**Response (specific archetype):**
+### Player Deck and History
 
-```json
-{
-  "success": true,
-  "data": {
-    "archetype": "Azorius Control",
-    "stats": {
-      "archetype": "Azorius Control",
-      "wins": 20,
-      "losses": 14,
-      "draws": 1,
-      "winRate": 58.82,
-      "matchups": {
-        "Bant Rhythm": {
-          "wins": 2,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 66.67
-        }
-      }
-    }
-  }
-}
+**Endpoint:** `GET /api/tournaments/:id/players/:player/deck`
+
+```bash
+curl "http://localhost:3000/api/tournaments/394299/players/Gabriel%20Nicholas/deck"
 ```
 
-**Response (all archetypes):**
+### Player Stats
 
-```json
-{
-  "success": true,
-  "data": {
-    "archetypes": {
-      "Azorius Control": { ... },
-      "Bant Rhythm": { ... }
-    }
-  }
-}
+**Endpoint:** `GET /api/tournaments/:id/players/:player/stats`
+
+```bash
+curl "http://localhost:3000/api/tournaments/394299/players/Gabriel%20Nicholas/stats"
 ```
 
----
+### Decks Containing a Card
 
-### 4. Query Player Deck
-
-Get a specific player's complete information including deck, archetype, and match history.
-
-**Endpoint:** `GET /api/players/:player/deck`
-
-**Path Parameters:**
+**Endpoint:** `GET /api/tournaments/:id/cards/:card`
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `player` | string | Yes | Player name (exact or partial match) |
-
-**Examples:**
+| `limit` | number | No | Max decks returned (1-1000, default: 100) |
 
 ```bash
-# Get player information
-curl "http://localhost:3000/api/players/Gabriel%20Nicholas/deck"
-
-# Partial name match
-curl "http://localhost:3000/api/players/gabriel/deck"
+curl "http://localhost:3000/api/tournaments/394299/cards/Lightning%20Bolt"
 ```
-
-**Response:**
-
-```json
-{
-  "success": true,
-  "data": {
-    "playerName": "Gabriel Nicholas",
-    "archetype": "Izzet Blink",
-    "deckList": {
-      "playerName": "Gabriel Nicholas",
-      "archetype": "Izzet Blink",
-      "mainDeck": [...],
-      "sideboard": [...]
-    },
-    "matches": [...],
-    "matchCount": 10
-  }
-}
-```
-
-**Error Response (404):**
-
-```json
-{
-  "success": false,
-  "error": "Player not found"
-}
-```
-
----
-
-### 5. List Archetypes
-
-List all deck archetypes with play counts and win rates.
-
-**Endpoint:** `GET /api/archetypes`
-
-**Parameters:** None
-
-**Examples:**
-
-```bash
-# Get all archetypes
-curl "http://localhost:3000/api/archetypes"
-```
-
-**Response:**
-
-```json
-{
-  "success": true,
-  "count": 43,
-  "data": [
-    {
-      "name": "Azorius Control",
-      "count": 5,
-      "winRate": 58.82,
-      "wins": 20,
-      "losses": 14,
-      "draws": 1
-    },
-    {
-      "name": "Bant Rhythm",
-      "count": 22,
-      "winRate": 55.45,
-      "wins": 61,
-      "losses": 49,
-      "draws": 0
-    }
-  ]
-}
-```
-
----
-
-### 6. Get Tournament Info
-
-Get tournament metadata and summary statistics.
-
-**Endpoint:** `GET /api/tournament`
-
-**Parameters:** None
-
-**Examples:**
-
-```bash
-# Get tournament information
-curl "http://localhost:3000/api/tournament"
-```
-
-**Response:**
-
-```json
-{
-  "success": true,
-  "data": {
-    "tournamentId": "394299",
-    "name": "Pro Tour - Aetherdrift",
-    "url": "https://melee.gg/Tournament/View/394299",
-    "format": "Standard",
-    "stats": {
-      "totalPlayers": 304,
-      "totalArchetypes": 43,
-      "totalRounds": 10,
-      "totalDecklists": 304
-    },
-    "rounds": [4, 5, 6, 7, 8, 12, 13, 14, 15, 16],
-    "dataFiles": [
-      "tournament-394299-matches.json",
-      "tournament-394299-decklists.json",
-      "tournament-394299-player-decks.json",
-      "tournament-394299-stats.json"
-    ]
-  }
-}
-```
-
----
 
 ## Error Codes
 
 | Code | Description |
 |------|-------------|
 | 200 | Success |
-| 400 | Bad Request - Invalid parameters |
-| 404 | Not Found - Resource doesn't exist |
-| 429 | Too Many Requests - Rate limit exceeded |
+| 400 | Bad Request — Invalid parameters |
+| 404 | Not Found — Resource or tournament doesn't exist |
+| 429 | Too Many Requests — Rate limit exceeded |
 | 500 | Internal Server Error |
+
+Unknown tournament IDs return 404 with a clear error message.
 
 ## Security
 
-- **Input Validation**: All parameters validated and sanitized
-- **Rate Limiting**: 100 requests/minute per IP
-- **Request Size Limit**: 1KB maximum
+- **Input validation**: All parameters validated against Zod schemas
+- **Allowlist**: Data files are only accessible for registered tournaments (`data/tournaments.json`)
+- **Rate limiting**: 100 requests/minute per IP
+- **Request size limit**: 1 KB max body
+- **Security headers**: `X-Content-Type-Options`, `X-Frame-Options`, CSP
 - **CORS**: Enabled for all origins (GET only)
-- **Security Headers**: X-Content-Type-Options, X-Frame-Options, CSP
-
-## CORS
-
-CORS is enabled for all origins with the following configuration:
-- **Allowed Origins**: `*` (all)
-- **Allowed Methods**: GET, POST, OPTIONS
-- **Credentials**: Not allowed
 
 ## Integration Examples
 
 ### JavaScript/TypeScript
 
 ```typescript
-// Fetch matches for a player
-const response = await fetch('http://localhost:3000/api/matches?player=Gabriel&limit=10');
-const data = await response.json();
+// Discover tournaments
+const tlist = await fetch('http://localhost:3000/api/tournaments').then(r => r.json());
+const tid = tlist.data[0].id;
 
-if (data.success) {
-  console.log(`Found ${data.count} matches`);
-  data.data.forEach(match => {
-    console.log(match.ResultString);
-  });
-}
+// Query against a specific tournament
+const matches = await fetch(`http://localhost:3000/api/tournaments/${tid}/matches?player=Gabriel&limit=10`).then(r => r.json());
+console.log(`Found ${matches.count} matches`);
 ```
 
 ### Python
@@ -388,20 +221,18 @@ if (data.success) {
 ```python
 import requests
 
-# Get all archetypes
-response = requests.get('http://localhost:3000/api/archetypes')
-data = response.json()
+tlist = requests.get('http://localhost:3000/api/tournaments').json()
+tid = tlist['data'][0]['id']
 
-if data['success']:
-    for archetype in data['data']:
-        print(f"{archetype['name']}: {archetype['winRate']:.1f}% win rate")
+archetypes = requests.get(f'http://localhost:3000/api/tournaments/{tid}/archetypes').json()
+for archetype in archetypes['data']:
+    print(f"{archetype['name']}: {archetype['winRate']:.1f}% win rate")
 ```
 
 ### cURL
 
 ```bash
-# Query with multiple parameters
-curl -G "http://localhost:3000/api/matches" \
+curl -G "http://localhost:3000/api/tournaments/394299/matches" \
   --data-urlencode "player=Gabriel Nicholas" \
   --data-urlencode "limit=5"
 ```
@@ -416,13 +247,4 @@ To use with ChatGPT Custom GPTs:
 4. Set the server URL
 5. Test the integration
 
-Example Action configuration:
-```json
-{
-  "servers": [
-    {
-      "url": "https://your-domain.com/api"
-    }
-  ]
-}
-```
+If you previously imported a v0.1.0 spec, you must re-import — endpoint shapes have changed.
