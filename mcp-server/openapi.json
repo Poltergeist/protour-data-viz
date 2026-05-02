@@ -1,507 +1,158 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "ProTour Data API",
-    "version": "0.1.0",
-    "description": "REST API for querying Pokémon TCG ProTour tournament data including matches, deck lists, and statistics.",
-    "contact": {
-      "name": "API Support"
-    },
-    "x-privacy-policy-url": "https://github.com/sp3c1/protour-data-viz#privacy"
+    "title": "ProTour Tournament Data API",
+    "description": "Read-only REST API for Pokémon TCG ProTour tournament data. Tournament ID is required in the path for all data endpoints. Use GET /api/tournaments to discover available tournaments.",
+    "version": "0.2.0",
+    "contact": { "name": "ProTour Data" }
   },
   "servers": [
-    {
-      "url": "http://localhost:3000/api",
-      "description": "Local development server"
-    }
+    { "url": "https://api.example.com", "description": "Production (replace with deployed API Gateway URL)" }
   ],
   "paths": {
-    "/matches": {
+    "/api/tournaments": {
       "get": {
-        "summary": "Query tournament matches",
-        "description": "Query matches by round, player name, or archetype",
+        "operationId": "listTournaments",
+        "summary": "List all available tournaments",
+        "description": "Returns the tournament registry with id, slug, name, format, date, and completion status for each tournament.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TournamentListResponse" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/tournaments/{id}": {
+      "get": {
+        "operationId": "getTournament",
+        "summary": "Get tournament metadata and summary statistics",
+        "parameters": [{ "$ref": "#/components/parameters/TournamentId" }],
+        "responses": {
+          "200": { "description": "OK" },
+          "404": { "description": "Tournament not found" }
+        }
+      }
+    },
+    "/api/tournaments/{id}/matches": {
+      "get": {
         "operationId": "queryMatches",
+        "summary": "Query matches for a tournament",
         "parameters": [
-          {
-            "name": "round",
-            "in": "query",
-            "description": "Round number (1-20)",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 20
-            }
-          },
-          {
-            "name": "player",
-            "in": "query",
-            "description": "Player name (partial match supported)",
-            "schema": {
-              "type": "string",
-              "maxLength": 100
-            }
-          },
-          {
-            "name": "archetype",
-            "in": "query",
-            "description": "Deck archetype (partial match supported)",
-            "schema": {
-              "type": "string",
-              "maxLength": 100
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of results",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000,
-              "default": 100
-            }
-          }
+          { "$ref": "#/components/parameters/TournamentId" },
+          { "name": "round", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 20 } },
+          { "name": "player", "in": "query", "schema": { "type": "string", "maxLength": 100 } },
+          { "name": "archetype", "in": "query", "schema": { "type": "string", "maxLength": 100 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 1000, "default": 100 } }
         ],
         "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatchesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid parameters",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Invalid parameters" },
+          "404": { "description": "Tournament not found" }
         }
       }
     },
-    "/decks": {
+    "/api/tournaments/{id}/decks": {
       "get": {
-        "summary": "Get deck lists with full card details",
-        "description": "Retrieve complete deck lists including main deck, sideboard, and all card details. Filter by player name or archetype to find specific decks.",
         "operationId": "queryDecks",
+        "summary": "Query deck lists",
         "parameters": [
-          {
-            "name": "player",
-            "in": "query",
-            "description": "Player name (partial match supported)",
-            "schema": {
-              "type": "string",
-              "maxLength": 100
-            }
-          },
-          {
-            "name": "archetype",
-            "in": "query",
-            "description": "Deck archetype (partial match supported)",
-            "schema": {
-              "type": "string",
-              "maxLength": 100
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of results",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000,
-              "default": 100
-            }
-          }
+          { "$ref": "#/components/parameters/TournamentId" },
+          { "name": "player", "in": "query", "schema": { "type": "string", "maxLength": 100 } },
+          { "name": "archetype", "in": "query", "schema": { "type": "string", "maxLength": 100 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 1000, "default": 100 } }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DecksResponse"
-                }
-              }
-            }
-          }
-        }
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Tournament not found" } }
       }
     },
-    "/stats": {
+    "/api/tournaments/{id}/stats": {
       "get": {
-        "summary": "Get archetype win rates and matchup statistics",
-        "description": "Retrieve detailed statistics including win/loss records, win rates, and head-to-head matchup data for any archetype. Essential for meta analysis.",
         "operationId": "queryStats",
+        "summary": "Archetype statistics and matchup data",
         "parameters": [
-          {
-            "name": "archetype",
-            "in": "query",
-            "description": "Specific archetype name (returns all if omitted)",
-            "schema": {
-              "type": "string",
-              "maxLength": 100
-            }
-          }
+          { "$ref": "#/components/parameters/TournamentId" },
+          { "name": "archetype", "in": "query", "schema": { "type": "string", "maxLength": 100 } }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StatsResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Archetype not found"
-          }
-        }
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Tournament not found or archetype not found" } }
       }
     },
-    "/players/{player}/deck": {
+    "/api/tournaments/{id}/archetypes": {
       "get": {
-        "summary": "Get specific player's complete deck list and tournament results",
-        "description": "Retrieve a player's full deck list (main deck and sideboard), their archetype, and all match results. Perfect for analyzing individual player performance.",
-        "operationId": "queryPlayerDeck",
-        "parameters": [
-          {
-            "name": "player",
-            "in": "path",
-            "required": true,
-            "description": "Player name (exact or partial match)",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerDeckResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Player not found"
-          }
-        }
-      }
-    },
-    "/players/{player}/stats": {
-      "get": {
-        "summary": "Get individual player's performance statistics",
-        "description": "Retrieve detailed performance stats for a specific player including their W-L-D record, win rate, matchup breakdown, and deck list. Shows individual tournament performance.",
-        "operationId": "queryPlayerStats",
-        "parameters": [
-          {
-            "name": "player",
-            "in": "path",
-            "required": true,
-            "description": "Player name (exact or partial match)",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayerStatsResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Player not found"
-          }
-        }
-      }
-    },
-    "/archetypes": {
-      "get": {
-        "summary": "List all archetypes",
-        "description": "Get list of all deck archetypes with statistics",
         "operationId": "listArchetypes",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ArchetypesResponse"
-                }
-              }
-            }
-          }
-        }
+        "summary": "List all archetypes with counts and win rates",
+        "parameters": [{ "$ref": "#/components/parameters/TournamentId" }],
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Tournament not found" } }
       }
     },
-    "/tournament": {
+    "/api/tournaments/{id}/players/{player}/deck": {
       "get": {
-        "summary": "Get tournament information",
-        "description": "Get tournament metadata and summary statistics",
-        "operationId": "getTournamentInfo",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TournamentInfoResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/cards/{card}": {
-      "get": {
-        "summary": "Query decks by card name",
-        "description": "Find all decks containing a specific card and get their performance statistics. Returns archetype breakdown and win rates for decks playing this card.",
-        "operationId": "queryDecksByCard",
+        "operationId": "getPlayerDeck",
+        "summary": "Get a player's deck and match history",
         "parameters": [
-          {
-            "name": "card",
-            "in": "path",
-            "required": true,
-            "description": "Card name (partial match supported, e.g., 'Badgermole Cub')",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum number of deck lists to return",
-            "schema": {
-              "type": "integer",
-              "minimum": 1,
-              "maximum": 1000,
-              "default": 100
-            }
-          }
+          { "$ref": "#/components/parameters/TournamentId" },
+          { "name": "player", "in": "path", "required": true, "schema": { "type": "string", "maxLength": 100 } }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CardDecksResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid card name"
-          }
-        }
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Player or tournament not found" } }
+      }
+    },
+    "/api/tournaments/{id}/players/{player}/stats": {
+      "get": {
+        "operationId": "getPlayerStats",
+        "summary": "Get a player's performance statistics",
+        "parameters": [
+          { "$ref": "#/components/parameters/TournamentId" },
+          { "name": "player", "in": "path", "required": true, "schema": { "type": "string", "maxLength": 100 } }
+        ],
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Player or tournament not found" } }
+      }
+    },
+    "/api/tournaments/{id}/cards/{card}": {
+      "get": {
+        "operationId": "queryDecksByCard",
+        "summary": "Find decks containing a card",
+        "parameters": [
+          { "$ref": "#/components/parameters/TournamentId" },
+          { "name": "card", "in": "path", "required": true, "schema": { "type": "string", "maxLength": 100 } },
+          { "name": "limit", "in": "query", "schema": { "type": "integer", "minimum": 1, "maximum": 1000, "default": 100 } }
+        ],
+        "responses": { "200": { "description": "OK" }, "404": { "description": "Tournament not found" } }
       }
     }
   },
   "components": {
+    "parameters": {
+      "TournamentId": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "description": "Tournament ID (numeric string). Use /api/tournaments to discover available IDs.",
+        "schema": { "type": "string", "pattern": "^\\d+$" }
+      }
+    },
     "schemas": {
-      "MatchesResponse": {
+      "TournamentListResponse": {
         "type": "object",
         "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "count": {
-            "type": "integer",
-            "example": 10
-          },
+          "success": { "type": "boolean" },
+          "count": { "type": "integer" },
           "data": {
             "type": "array",
             "items": {
-              "type": "object"
-            }
-          }
-        }
-      },
-      "DecksResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "count": {
-            "type": "integer",
-            "example": 5
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          }
-        }
-      },
-      "StatsResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "data": {
-            "type": "object"
-          }
-        }
-      },
-      "PlayerDeckResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "data": {
-            "type": "object"
-          }
-        }
-      },
-      "PlayerStatsResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "playerName": {"type": "string"},
-              "archetype": {"type": "string"},
-              "wins": {"type": "integer"},
-              "losses": {"type": "integer"},
-              "draws": {"type": "integer"},
-              "winRate": {"type": "number"},
-              "totalMatches": {"type": "integer"},
-              "record": {"type": "string", "example": "5-2"},
-              "matchups": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "opponent": {"type": "string"},
-                    "wins": {"type": "integer"},
-                    "losses": {"type": "integer"},
-                    "draws": {"type": "integer"},
-                    "percentage": {"type": "number"}
-                  }
-                }
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "slug": { "type": "string" },
+                "name": { "type": "string" },
+                "format": { "type": "string" },
+                "date": { "type": "string" },
+                "completed": { "type": "boolean" }
               },
-              "deckList": {"type": "object"}
+              "required": ["id", "slug", "name", "format", "date", "completed"]
             }
-          }
-        }
-      },
-      "ArchetypesResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "count": {
-            "type": "integer",
-            "example": 43
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "type": "object"
-            }
-          }
-        }
-      },
-      "TournamentInfoResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "data": {
-            "type": "object"
-          }
-        }
-      },
-      "CardDecksResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": true
-          },
-          "data": {
-            "type": "object",
-            "properties": {
-              "card": {
-                "type": "string",
-                "example": "Badgermole Cub"
-              },
-              "totalDecks": {
-                "type": "integer",
-                "example": 15
-              },
-              "overallStats": {
-                "type": "object",
-                "properties": {
-                  "wins": {"type": "integer"},
-                  "losses": {"type": "integer"},
-                  "draws": {"type": "integer"},
-                  "winRate": {"type": "number"}
-                }
-              },
-              "archetypeBreakdown": {
-                "type": "array",
-                "items": {
-                  "type": "object"
-                }
-              },
-              "decks": {
-                "type": "array",
-                "items": {
-                  "type": "object"
-                }
-              }
-            }
-          }
-        }
-      },
-      "ErrorResponse": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "example": false
-          },
-          "error": {
-            "type": "string",
-            "example": "Invalid request"
           }
         }
       }
