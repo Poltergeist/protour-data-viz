@@ -1,10 +1,10 @@
 /**
- * AWS Lambda handler for ProTour MCP Server
- * Wraps Express app for Lambda + API Gateway integration
+ * AWS Lambda handler: same Express app as http-server.ts, wrapped with
+ * @vendia/serverless-express for API Gateway integration.
  */
 
 import serverlessExpress from '@vendia/serverless-express';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
@@ -14,30 +14,13 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 
 import apiRoutes from './api-routes.js';
-import {
-  queryMatches,
-  queryDecks,
-  queryStats,
-  queryPlayerDeck,
-  listArchetypes,
-  getTournamentInfo,
-} from './queries.js';
-import {
-  validateQuery,
-  matchQuerySchema,
-  deckQuerySchema,
-  statsQuerySchema,
-  playerDeckQuerySchema,
-} from './validation.js';
+import { toolDefinitions } from './tool-definitions.js';
+import { callTool } from './tool-handlers.js';
 
-// Create Express app (same as http-server.ts but without app.listen)
 const app = express();
-
-// Middleware
 app.use(cors());
 app.use(express.json({ limit: '1kb' }));
 
-// Security headers
 app.use((_req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
@@ -46,228 +29,35 @@ app.use((_req, res, next) => {
   next();
 });
 
-// Health check endpoint
-app.get('/health', (_req, res) => {
-  res.json({
-    status: 'healthy',
-    timestamp: new Date().toISOString(),
-    version: '1.0.0',
-  });
+app.get('/health', (_req: Request, res: Response) => {
+  res.json({ status: 'ok', service: 'protour-mcp-server', version: '0.2.0', timestamp: new Date().toISOString() });
 });
 
-// MCP Tools Server
+app.use('/api', apiRoutes);
+
 function createMcpServer() {
   const server = new Server(
-    {
-      name: 'protour-mcp-server',
-      version: '1.0.0',
-    },
-    {
-      capabilities: {
-        tools: {},
-      },
-    }
+    { name: 'protour-data-server', version: '0.2.0' },
+    { capabilities: { tools: {} } }
   );
-
-  server.setRequestHandler(ListToolsRequestSchema, async () => ({
-    tools: [
-      {
-        name: 'query_matches',
-        description:
-          'Query tournament matches by round, player, or archetype. Returns match results with player names, decks, and outcomes.',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            round: {
-              type: 'number',
-              description: 'Filter by round number (1-10)',
-            },
-            player: {
-              type: 'string',
-              description: 'Filter by player name',
-            },
-            archetype: {
-              type: 'string',
-              description: 'Filter by deck archetype',
-            },
-            limit: {
-              type: 'number',
-              description: 'Maximum number of results to return',
-            },
-          },
-        },
-      },
-      {
-        name: 'query_decks',
-        description:
-          'Query deck lists and archetype information. Returns complete deck configurations with card lists and player information.',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            player: {
-              type: 'string',
-              description: 'Filter by player name',
-            },
-            archetype: {
-              type: 'string',
-              description: 'Filter by deck archetype',
-            },
-            limit: {
-              type: 'number',
-              description: 'Maximum number of results to return',
-            },
-          },
-        },
-      },
-      {
-        name: 'query_stats',
-        description:
-          'Get archetype statistics and matchup data. Returns win rates, popularity, and head-to-head matchup information.',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            archetype: {
-              type: 'string',
-              description: 'Filter by specific archetype',
-            },
-            matchup: {
-              type: 'string',
-              description: 'Filter by matchup against specific archetype',
-            },
-          },
-        },
-      },
-      {
-        name: 'query_player_deck',
-        description:
-          "Get a specific player's deck list and tournament performance. Returns complete deck configuration and match history.",
-        inputSchema: {
-          type: 'object',
-          properties: {
-            player: {
-              type: 'string',
-              description: 'Player name (required)',
-            },
-          },
-          required: ['player'],
-        },
-      },
-      {
-        name: 'list_archetypes',
-        description:
-          'List all deck archetypes in the tournament with usage statistics. Returns archetype names, player counts, and popularity rankings.',
-        inputSchema: {
-          type: 'object',
-          properties: {
-            sortBy: {
-              type: 'string',
-              description: 'Sort by: "name" or "popularity" (default: popularity)',
-              enum: ['name', 'popularity'],
-            },
-          },
-        },
-      },
-      {
-        name: 'get_tournament_info',
-        description:
-          'Get overall tournament metadata and summary statistics. Returns tournament details, player count, round information, and date.',
-        inputSchema: {
-          type: 'object',
-          properties: {},
-        },
-      },
-    ],
-  }));
-
+  server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: toolDefinitions }));
   server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const { name, arguments: args } = request.params;
-
-    try {
-      let result;
-
-      switch (name) {
-        case 'query_matches': {
-          const validData = validateQuery(matchQuerySchema, args);
-          result = await queryMatches(validData);
-          break;
-        }
-
-        case 'query_decks': {
-          const validData = validateQuery(deckQuerySchema, args);
-          result = await queryDecks(validData);
-          break;
-        }
-
-        case 'query_stats': {
-          const validData = validateQuery(statsQuerySchema, args);
-          result = await queryStats(validData);
-          break;
-        }
-
-        case 'query_player_deck': {
-          const validData = validateQuery(playerDeckQuerySchema, args);
-          result = await queryPlayerDeck(validData.player);
-          break;
-        }
-
-        case 'list_archetypes': {
-          result = await listArchetypes();
-          break;
-        }
-
-        case 'get_tournament_info': {
-          result = await getTournamentInfo();
-          break;
-        }
-
-        default:
-          throw new Error(`Unknown tool: ${name}`);
-      }
-
-      return {
-        content: [
-          {
-            type: 'text',
-            text: JSON.stringify(result, null, 2),
-          },
-        ],
-      };
-    } catch (error) {
-      return {
-        content: [
-          {
-            type: 'text',
-            text: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`,
-          },
-        ],
-        isError: true,
-      };
-    }
+    return callTool(name, args as Record<string, unknown> | undefined);
   });
-
   return server;
 }
 
-// MCP endpoint
-app.post('/mcp', async (req, res) => {
+app.post('/mcp', async (req: Request, res: Response) => {
   try {
     const server = createMcpServer();
-    const transport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: undefined,
-    });
-
+    const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
     await server.connect(transport);
     await transport.handleRequest(req as any, res as any, req.body);
   } catch (error) {
     console.error('MCP endpoint error:', error);
-    res.status(500).json({
-      error: error instanceof Error ? error.message : 'Internal server error',
-    });
+    res.status(500).json({ error: error instanceof Error ? error.message : 'Internal server error' });
   }
 });
 
-// REST API routes
-app.use('/api', apiRoutes);
-
-// Export handler for Lambda
 export const handler = serverlessExpress({ app });

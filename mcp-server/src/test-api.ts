@@ -1,98 +1,52 @@
 /**
- * Test REST API endpoints
+ * REST API smoke test. Assumes server is running at http://localhost:3000.
+ * Run: npm run dev (in another terminal) && npm run test:api
  */
 
-console.log('🧪 Testing REST API Endpoints\n');
+const BASE = process.env.API_BASE ?? 'http://localhost:3000/api';
 
-const BASE_URL = 'http://localhost:3000/api';
-
-async function testEndpoint(name: string, url: string, expectedKeys: string[] = []) {
+async function check(name: string, url: string, validate: (json: any) => string | null) {
   try {
-    const response = await fetch(url);
-    const data = await response.json();
-    
-    if (response.ok && data.success) {
-      console.log(`   ✅ ${name}`);
-      
-      // Check for expected keys
-      if (expectedKeys.length > 0) {
-        const hasKeys = expectedKeys.every(key => key in data);
-        if (hasKeys) {
-          console.log(`      Response structure valid`);
-        }
-      }
-      
-      return true;
-    } else {
-      console.log(`   ❌ ${name} - ${data.error || 'Failed'}`);
-      return false;
+    const res = await fetch(url);
+    const body = await res.json();
+    if (!res.ok) {
+      console.error(`FAIL ${name}: ${res.status} ${JSON.stringify(body)}`);
+      process.exit(1);
     }
-  } catch (error) {
-    console.log(`   ❌ ${name} - ${error}`);
-    return false;
+    const err = validate(body);
+    if (err) {
+      console.error(`FAIL ${name}: ${err}`);
+      process.exit(1);
+    }
+    console.log(`PASS ${name}`);
+  } catch (e) {
+    console.error(`FAIL ${name}: ${(e as Error).message}`);
+    process.exit(1);
   }
 }
 
-async function main() {
-  console.log('1️⃣  Testing GET /api/matches\n');
-  
-  await testEndpoint('All matches (limited)', `${BASE_URL}/matches?limit=5`, ['count', 'data']);
-  await testEndpoint('Round 5 matches', `${BASE_URL}/matches?round=5&limit=5`, ['count', 'data']);
-  await testEndpoint('Player matches', `${BASE_URL}/matches?player=Gabriel&limit=3`, ['count', 'data']);
-  await testEndpoint('Archetype matches', `${BASE_URL}/matches?archetype=Izzet&limit=5`, ['count', 'data']);
-  
-  console.log('\n2️⃣  Testing GET /api/decks\n');
-  
-  await testEndpoint('All decks (limited)', `${BASE_URL}/decks?limit=5`, ['count', 'data']);
-  await testEndpoint('Decks by archetype', `${BASE_URL}/decks?archetype=Izzet&limit=3`, ['count', 'data']);
-  await testEndpoint('Deck by player', `${BASE_URL}/decks?player=Gabriel%20Nicholas`, ['count', 'data']);
-  
-  console.log('\n3️⃣  Testing GET /api/stats\n');
-  
-  await testEndpoint('All stats', `${BASE_URL}/stats`, ['data']);
-  await testEndpoint('Specific archetype stats', `${BASE_URL}/stats?archetype=Azorius%20Control`, ['data']);
-  
-  console.log('\n4️⃣  Testing GET /api/players/:player/deck\n');
-  
-  await testEndpoint('Player deck (Gabriel Nicholas)', `${BASE_URL}/players/Gabriel%20Nicholas/deck`, ['data']);
-  
-  console.log('\n5️⃣  Testing GET /api/archetypes\n');
-  
-  const response = await fetch(`${BASE_URL}/archetypes`);
-  const data = await response.json();
-  if (response.ok && data.success) {
-    console.log(`   ✅ List archetypes`);
-    console.log(`      Total archetypes: ${data.count}`);
-    console.log(`      Sample: ${data.data.slice(0, 3).map((a: any) => a.name).join(', ')}`);
-  }
-  
-  console.log('\n6️⃣  Testing GET /api/tournament\n');
-  
-  const tourResponse = await fetch(`${BASE_URL}/tournament`);
-  const tourData = await tourResponse.json();
-  if (tourResponse.ok && tourData.success) {
-    console.log(`   ✅ Tournament info`);
-    console.log(`      Name: ${tourData.data.name}`);
-    console.log(`      Players: ${tourData.data.stats.totalPlayers}`);
-    console.log(`      Archetypes: ${tourData.data.stats.totalArchetypes}`);
-  }
-  
-  console.log('\n7️⃣  Testing error handling\n');
-  
-  // Test invalid round
-  const invalidRound = await fetch(`${BASE_URL}/matches?round=999`);
-  const invalidData = await invalidRound.json();
-  if (!invalidData.success && invalidData.error) {
-    console.log(`   ✅ Invalid round rejected: ${invalidData.error}`);
-  }
-  
-  // Test player not found
-  const notFound = await fetch(`${BASE_URL}/players/NonExistentPlayer123/deck`);
-  if (notFound.status === 404) {
-    console.log(`   ✅ 404 for non-existent player`);
-  }
-  
-  console.log('\n🎉 REST API tests complete!');
-}
+(async () => {
+  await check('list tournaments', `${BASE}/tournaments`, (b) => (Array.isArray(b.data) && b.data.length > 0 ? null : 'expected non-empty data array'));
 
-main().catch(console.error);
+  // Pull first tournament from list
+  const list = await fetch(`${BASE}/tournaments`).then((r) => r.json());
+  const firstId = list.data[0].id as string;
+  console.log(`Testing against tournament ${firstId}`);
+
+  await check('tournament metadata', `${BASE}/tournaments/${firstId}`, (b) => (b.data?.tournamentId === firstId ? null : 'wrong id'));
+  await check('matches', `${BASE}/tournaments/${firstId}/matches?limit=5`, (b) => (Array.isArray(b.data) ? null : 'expected array'));
+  await check('matches by round', `${BASE}/tournaments/${firstId}/matches?round=4&limit=3`, (b) => (Array.isArray(b.data) ? null : 'expected array'));
+  await check('decks', `${BASE}/tournaments/${firstId}/decks?limit=5`, (b) => (Array.isArray(b.data) ? null : 'expected array'));
+  await check('stats', `${BASE}/tournaments/${firstId}/stats`, (b) => (b.data?.archetypes ? null : 'expected archetypes'));
+  await check('archetypes', `${BASE}/tournaments/${firstId}/archetypes`, (b) => (Array.isArray(b.data) ? null : 'expected array'));
+
+  // Edge: unknown tournament should 404
+  const res = await fetch(`${BASE}/tournaments/999999/matches`);
+  if (res.status !== 404) {
+    console.error(`FAIL unknown-tournament: expected 404, got ${res.status}`);
+    process.exit(1);
+  }
+  console.log('PASS unknown-tournament returns 404');
+
+  console.log('\nAll REST API checks passed.');
+})();
