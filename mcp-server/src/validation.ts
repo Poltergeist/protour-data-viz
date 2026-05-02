@@ -9,6 +9,7 @@
  */
 
 import { z } from 'zod';
+import { tournamentExists } from './tournaments.js';
 
 // Maximum values to prevent abuse
 const MAX_STRING_LENGTH = 100;
@@ -70,9 +71,22 @@ export const limitSchema = z
   .default(100);
 
 /**
+ * Tournament ID validation — must be a registered tournament.
+ * The .refine check runs at validation time, so newly added tournaments are
+ * accepted on the next request (the registry is cached per process).
+ */
+export const tournamentIdSchema = z
+  .string()
+  .min(1)
+  .max(20)
+  .regex(/^\d+$/, 'Tournament ID must be numeric')
+  .refine((id) => tournamentExists(id), { message: 'Unknown tournament ID' });
+
+/**
  * Query parameters for match queries
  */
 export const matchQuerySchema = z.object({
+  tournament_id: tournamentIdSchema,
   round: roundSchema.optional(),
   player: playerNameSchema.optional(),
   archetype: archetypeSchema.optional(),
@@ -83,6 +97,7 @@ export const matchQuerySchema = z.object({
  * Query parameters for deck queries
  */
 export const deckQuerySchema = z.object({
+  tournament_id: tournamentIdSchema,
   player: playerNameSchema.optional(),
   archetype: archetypeSchema.optional(),
   limit: limitSchema.optional(),
@@ -92,6 +107,7 @@ export const deckQuerySchema = z.object({
  * Query parameters for stats queries
  */
 export const statsQuerySchema = z.object({
+  tournament_id: tournamentIdSchema,
   archetype: archetypeSchema.optional(),
 });
 
@@ -99,6 +115,7 @@ export const statsQuerySchema = z.object({
  * Query parameters for player deck queries
  */
 export const playerDeckQuerySchema = z.object({
+  tournament_id: tournamentIdSchema,
   player: playerNameSchema,
 });
 
@@ -115,6 +132,7 @@ export const cardNameSchema = z
  * Query parameters for card queries
  */
 export const cardQuerySchema = z.object({
+  tournament_id: tournamentIdSchema,
   card: cardNameSchema,
   limit: limitSchema.optional(),
 });
