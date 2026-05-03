@@ -2,16 +2,16 @@
   "archetypes": {
     "Azorius Momo": {
       "archetype": "Azorius Momo",
-      "wins": 25,
-      "losses": 40,
+      "wins": 37,
+      "losses": 58,
       "draws": 2,
-      "winRate": 38.46153846153847,
+      "winRate": 38.94736842105263,
       "matchups": {
         "Azorius Momo": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 1,
+          "losses": 1,
           "draws": 2,
-          "percentage": 0
+          "percentage": 50
         },
         "Azorius Tempo": {
           "wins": 0,
@@ -19,11 +19,17 @@
           "draws": 0,
           "percentage": 0
         },
+        "Bant Rhythm": {
+          "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 0
+        },
         "Dimir Excruciator": {
           "wins": 1,
-          "losses": 4,
+          "losses": 7,
           "draws": 0,
-          "percentage": 20
+          "percentage": 12.5
         },
         "Four-Color Control": {
           "wins": 0,
@@ -38,16 +44,16 @@
           "percentage": 0
         },
         "Golgari Midrange": {
-          "wins": 2,
-          "losses": 1,
+          "wins": 3,
+          "losses": 2,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 60
         },
         "Izzet Lessons": {
-          "wins": 2,
-          "losses": 3,
+          "wins": 5,
+          "losses": 4,
           "draws": 0,
-          "percentage": 40
+          "percentage": 55.55555555555556
         },
         "Izzet Maestro": {
           "wins": 1,
@@ -56,22 +62,22 @@
           "percentage": 50
         },
         "Izzet Prowess": {
-          "wins": 8,
-          "losses": 10,
+          "wins": 9,
+          "losses": 13,
           "draws": 0,
-          "percentage": 44.44444444444444
+          "percentage": 40.909090909090914
         },
         "Izzet Spellementals": {
-          "wins": 0,
-          "losses": 4,
+          "wins": 1,
+          "losses": 6,
           "draws": 0,
-          "percentage": 0
+          "percentage": 14.285714285714285
         },
         "Jeskai Control": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         },
         "Mardu Discard": {
           "wins": 0,
@@ -80,10 +86,10 @@
           "percentage": 0
         },
         "Mono-Green Landfall": {
-          "wins": 9,
-          "losses": 7,
+          "wins": 10,
+          "losses": 11,
           "draws": 0,
-          "percentage": 56.25
+          "percentage": 47.61904761904761
         },
         "Mono-Red Aggro": {
           "wins": 1,
@@ -92,10 +98,16 @@
           "percentage": 100
         },
         "Selesnya Landfall": {
-          "wins": 0,
+          "wins": 2,
           "losses": 3,
           "draws": 0,
-          "percentage": 0
+          "percentage": 40
+        },
+        "Selesnya Ouroboroid ": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Selesnya Rhythm": {
           "wins": 0,
@@ -113,10 +125,10 @@
     },
     "Azorius Tempo": {
       "archetype": "Azorius Tempo",
-      "wins": 17,
-      "losses": 19,
+      "wins": 28,
+      "losses": 33,
       "draws": 0,
-      "winRate": 47.22222222222222,
+      "winRate": 45.90163934426229,
       "matchups": {
         "Azorius Momo": {
           "wins": 2,
@@ -129,6 +141,12 @@
           "losses": 1,
           "draws": 0,
           "percentage": 0
+        },
+        "Bant Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Four-Color Control": {
           "wins": 0,
@@ -148,11 +166,17 @@
           "draws": 0,
           "percentage": 100
         },
+        "Golgari Midrange": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Izzet Lessons": {
           "wins": 2,
-          "losses": 4,
+          "losses": 5,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 28.57142857142857
         },
         "Izzet Maestro": {
           "wins": 0,
@@ -161,34 +185,34 @@
           "percentage": 0
         },
         "Izzet Prowess": {
-          "wins": 6,
-          "losses": 3,
+          "wins": 10,
+          "losses": 10,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Izzet Spellementals": {
+          "wins": 2,
+          "losses": 1,
           "draws": 0,
           "percentage": 66.66666666666666
         },
-        "Izzet Spellementals": {
-          "wins": 0,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 0
-        },
         "Jeskai Control": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Mono-Green Landfall": {
-          "wins": 3,
-          "losses": 1,
+          "wins": 4,
+          "losses": 4,
           "draws": 0,
-          "percentage": 75
+          "percentage": 50
         },
         "Selesnya Landfall": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 3,
           "draws": 0,
-          "percentage": 0
+          "percentage": 25
         },
         "Selesnya Ouroboroid ": {
           "wins": 1,
@@ -197,7 +221,7 @@
           "percentage": 100
         },
         "Selesnya Rhythm": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -224,10 +248,10 @@
     },
     "Bant Airbending": {
       "archetype": "Bant Airbending",
-      "wins": 3,
-      "losses": 2,
+      "wins": 4,
+      "losses": 6,
       "draws": 0,
-      "winRate": 60,
+      "winRate": 40,
       "matchups": {
         "Azorius Tempo": {
           "wins": 1,
@@ -241,17 +265,35 @@
           "draws": 0,
           "percentage": 0
         },
-        "Izzet Prowess": {
+        "Four-Color Elementals": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Izzet Prowess": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Izzet Spellementals": {
+          "wins": 0,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 0
         },
         "Mono-Green Landfall": {
           "wins": 1,
           "losses": 1,
           "draws": 0,
           "percentage": 50
+        },
+        "Selesnya Ouroboroid ": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         }
       }
     },
@@ -290,11 +332,23 @@
     },
     "Bant Rhythm": {
       "archetype": "Bant Rhythm",
-      "wins": 5,
-      "losses": 5,
+      "wins": 13,
+      "losses": 7,
       "draws": 0,
-      "winRate": 50,
+      "winRate": 65,
       "matchups": {
+        "Azorius Momo": {
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Azorius Tempo": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Bant Airbending": {
           "wins": 1,
           "losses": 0,
@@ -308,10 +362,10 @@
           "percentage": 50
         },
         "Izzet Prowess": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         },
         "Izzet Spellementals": {
           "wins": 1,
@@ -326,12 +380,24 @@
           "percentage": 0
         },
         "Mono-Green Landfall": {
-          "wins": 1,
+          "wins": 4,
           "losses": 1,
           "draws": 0,
-          "percentage": 50
+          "percentage": 80
+        },
+        "Rakdos Discard": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Selesnya Rhythm": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Sultai Control": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
@@ -368,11 +434,17 @@
     },
     "Boros Dragons": {
       "archetype": "Boros Dragons",
-      "wins": 6,
-      "losses": 3,
+      "wins": 9,
+      "losses": 5,
       "draws": 0,
-      "winRate": 66.66666666666666,
+      "winRate": 64.28571428571429,
       "matchups": {
+        "Four-Color Elementals": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Golgari Midrange": {
           "wins": 1,
           "losses": 0,
@@ -386,8 +458,8 @@
           "percentage": 0
         },
         "Izzet Prowess": {
-          "wins": 2,
-          "losses": 1,
+          "wins": 4,
+          "losses": 2,
           "draws": 0,
           "percentage": 66.66666666666666
         },
@@ -408,6 +480,12 @@
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Selesnya Landfall": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Sultai Control": {
           "wins": 0,
@@ -419,16 +497,22 @@
     },
     "Dimir Excruciator": {
       "archetype": "Dimir Excruciator",
-      "wins": 17,
-      "losses": 13,
+      "wins": 25,
+      "losses": 24,
       "draws": 0,
-      "winRate": 56.666666666666664,
+      "winRate": 51.02040816326531,
       "matchups": {
         "Azorius Momo": {
-          "wins": 4,
+          "wins": 7,
           "losses": 1,
           "draws": 0,
-          "percentage": 80
+          "percentage": 87.5
+        },
+        "Golgari Midrange": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Izzet Lessons": {
           "wins": 2,
@@ -437,34 +521,40 @@
           "percentage": 100
         },
         "Izzet Prowess": {
-          "wins": 2,
-          "losses": 4,
+          "wins": 4,
+          "losses": 6,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 40
         },
         "Izzet Spellementals": {
-          "wins": 1,
-          "losses": 0,
-          "draws": 0,
-          "percentage": 100
-        },
-        "Jeskai Control": {
           "wins": 2,
           "losses": 1,
           "draws": 0,
           "percentage": 66.66666666666666
         },
-        "Mono-Green Landfall": {
-          "wins": 5,
-          "losses": 7,
+        "Jeskai Control": {
+          "wins": 2,
+          "losses": 4,
           "draws": 0,
-          "percentage": 41.66666666666667
+          "percentage": 33.33333333333333
+        },
+        "Mono-Green Landfall": {
+          "wins": 6,
+          "losses": 11,
+          "draws": 0,
+          "percentage": 35.294117647058826
         },
         "Selesnya Landfall": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Simic Omniscience": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         }
       }
     },
@@ -503,10 +593,10 @@
     },
     "Four-Color Control": {
       "archetype": "Four-Color Control",
-      "wins": 7,
-      "losses": 13,
+      "wins": 11,
+      "losses": 14,
       "draws": 0,
-      "winRate": 35,
+      "winRate": 44,
       "matchups": {
         "Azorius Momo": {
           "wins": 1,
@@ -539,22 +629,22 @@
           "percentage": 100
         },
         "Izzet Prowess": {
-          "wins": 0,
+          "wins": 3,
           "losses": 5,
           "draws": 0,
-          "percentage": 0
+          "percentage": 37.5
         },
         "Izzet Spellementals": {
-          "wins": 0,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 0
-        },
-        "Mono-Green Landfall": {
           "wins": 1,
           "losses": 2,
           "draws": 0,
           "percentage": 33.33333333333333
+        },
+        "Mono-Green Landfall": {
+          "wins": 1,
+          "losses": 3,
+          "draws": 0,
+          "percentage": 25
         },
         "Simic Omniscience": {
           "wins": 1,
@@ -572,16 +662,22 @@
     },
     "Four-Color Elementals": {
       "archetype": "Four-Color Elementals",
-      "wins": 9,
-      "losses": 11,
+      "wins": 12,
+      "losses": 18,
       "draws": 0,
-      "winRate": 45,
+      "winRate": 40,
       "matchups": {
         "Azorius Tempo": {
           "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
+        },
+        "Bant Airbending": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Bant Rhythm": {
           "wins": 1,
@@ -595,19 +691,31 @@
           "draws": 0,
           "percentage": 100
         },
-        "Golgari Midrange": {
+        "Boros Dragons": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
           "percentage": 0
         },
-        "Izzet Prowess": {
+        "Golgari Midrange": {
           "wins": 1,
-          "losses": 6,
+          "losses": 1,
           "draws": 0,
-          "percentage": 14.285714285714285
+          "percentage": 50
+        },
+        "Izzet Prowess": {
+          "wins": 2,
+          "losses": 8,
+          "draws": 0,
+          "percentage": 20
         },
         "Izzet Spellementals": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Jeskai Control": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
@@ -615,9 +723,9 @@
         },
         "Mono-Green Landfall": {
           "wins": 3,
-          "losses": 2,
+          "losses": 4,
           "draws": 0,
-          "percentage": 60
+          "percentage": 42.857142857142854
         },
         "Rakdos Discard": {
           "wins": 0,
@@ -695,16 +803,22 @@
     },
     "Golgari Midrange": {
       "archetype": "Golgari Midrange",
-      "wins": 17,
-      "losses": 23,
+      "wins": 27,
+      "losses": 40,
       "draws": 0,
-      "winRate": 42.5,
+      "winRate": 40.298507462686565,
       "matchups": {
         "Azorius Momo": {
-          "wins": 1,
-          "losses": 2,
+          "wins": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 40
+        },
+        "Azorius Tempo": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Boros Dragons": {
           "wins": 0,
@@ -712,11 +826,17 @@
           "draws": 0,
           "percentage": 0
         },
+        "Dimir Excruciator": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Four-Color Elementals": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         },
         "Golgari Control": {
           "wins": 1,
@@ -725,34 +845,46 @@
           "percentage": 100
         },
         "Izzet Lessons": {
-          "wins": 1,
-          "losses": 2,
+          "wins": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 40
+        },
+        "Izzet Maestro": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Izzet Prowess": {
-          "wins": 4,
-          "losses": 9,
+          "wins": 5,
+          "losses": 13,
           "draws": 0,
-          "percentage": 30.76923076923077
+          "percentage": 27.77777777777778
         },
         "Izzet Spellementals": {
-          "wins": 1,
-          "losses": 1,
+          "wins": 4,
+          "losses": 4,
           "draws": 0,
           "percentage": 50
         },
         "Jeskai Control": {
-          "wins": 1,
-          "losses": 4,
+          "wins": 2,
+          "losses": 5,
           "draws": 0,
-          "percentage": 20
+          "percentage": 28.57142857142857
         },
-        "Mono-Green Landfall": {
-          "wins": 3,
+        "Mardu Discard": {
+          "wins": 0,
           "losses": 1,
           "draws": 0,
-          "percentage": 75
+          "percentage": 0
+        },
+        "Mono-Green Landfall": {
+          "wins": 4,
+          "losses": 4,
+          "draws": 0,
+          "percentage": 50
         },
         "Selesnya Landfall": {
           "wins": 1,
@@ -762,7 +894,7 @@
         },
         "Simic Omniscience": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -788,22 +920,22 @@
     },
     "Izzet Lessons": {
       "archetype": "Izzet Lessons",
-      "wins": 61,
-      "losses": 56,
-      "draws": 0,
-      "winRate": 52.13675213675214,
+      "wins": 85,
+      "losses": 90,
+      "draws": 1,
+      "winRate": 48.57142857142857,
       "matchups": {
         "Azorius Momo": {
-          "wins": 3,
-          "losses": 2,
+          "wins": 4,
+          "losses": 5,
           "draws": 0,
-          "percentage": 60
+          "percentage": 44.44444444444444
         },
         "Azorius Tempo": {
-          "wins": 4,
+          "wins": 5,
           "losses": 2,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 71.42857142857143
         },
         "Boros Dragons": {
           "wins": 1,
@@ -830,70 +962,82 @@
           "percentage": 100
         },
         "Golgari Midrange": {
-          "wins": 2,
-          "losses": 1,
+          "wins": 3,
+          "losses": 2,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 60
         },
         "Izzet Lessons": {
-          "wins": 2,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 50
-        },
-        "Izzet Maestro": {
-          "wins": 5,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 71.42857142857143
-        },
-        "Izzet Prowess": {
-          "wins": 18,
-          "losses": 19,
-          "draws": 0,
-          "percentage": 48.64864864864865
-        },
-        "Izzet Spellementals": {
-          "wins": 4,
-          "losses": 6,
-          "draws": 0,
-          "percentage": 40
-        },
-        "Jeskai Control": {
           "wins": 3,
           "losses": 3,
           "draws": 0,
           "percentage": 50
         },
-        "Mono-Green Landfall": {
-          "wins": 11,
-          "losses": 9,
+        "Izzet Maestro": {
+          "wins": 6,
+          "losses": 2,
           "draws": 0,
-          "percentage": 55.00000000000001
+          "percentage": 75
+        },
+        "Izzet Prowess": {
+          "wins": 25,
+          "losses": 29,
+          "draws": 1,
+          "percentage": 46.2962962962963
+        },
+        "Izzet Spellementals": {
+          "wins": 5,
+          "losses": 10,
+          "draws": 0,
+          "percentage": 33.33333333333333
+        },
+        "Jeskai Control": {
+          "wins": 4,
+          "losses": 4,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Mardu Discard": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Mono-Green Landfall": {
+          "wins": 14,
+          "losses": 19,
+          "draws": 0,
+          "percentage": 42.42424242424242
         },
         "Mono-Red Aggro": {
+          "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 33.33333333333333
+        },
+        "Selesnya Landfall": {
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 75
+        },
+        "Selesnya Ouroboroid ": {
+          "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 33.33333333333333
+        },
+        "Selesnya Rhythm": {
           "wins": 1,
           "losses": 1,
           "draws": 0,
           "percentage": 50
         },
-        "Selesnya Landfall": {
-          "wins": 2,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 66.66666666666666
-        },
-        "Selesnya Ouroboroid ": {
-          "wins": 0,
-          "losses": 1,
-          "draws": 0,
-          "percentage": 0
-        },
         "Simic Omniscience": {
-          "wins": 1,
+          "wins": 2,
           "losses": 2,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 50
         },
         "Simic Rhythm": {
           "wins": 0,
@@ -902,25 +1046,25 @@
           "percentage": 0
         },
         "Sultai Control": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         },
         "Temur Omniscience": {
-          "wins": 1,
+          "wins": 2,
           "losses": 1,
           "draws": 0,
-          "percentage": 50
+          "percentage": 66.66666666666666
         }
       }
     },
     "Izzet Maestro": {
       "archetype": "Izzet Maestro",
-      "wins": 15,
-      "losses": 28,
+      "wins": 18,
+      "losses": 35,
       "draws": 0,
-      "winRate": 34.883720930232556,
+      "winRate": 33.9622641509434,
       "matchups": {
         "Azorius Momo": {
           "wins": 1,
@@ -940,11 +1084,17 @@
           "draws": 0,
           "percentage": 0
         },
+        "Golgari Midrange": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Izzet Lessons": {
           "wins": 2,
-          "losses": 5,
+          "losses": 6,
           "draws": 0,
-          "percentage": 28.57142857142857
+          "percentage": 25
         },
         "Izzet Maestro": {
           "wins": 1,
@@ -953,22 +1103,28 @@
           "percentage": 50
         },
         "Izzet Prowess": {
-          "wins": 3,
-          "losses": 10,
+          "wins": 4,
+          "losses": 12,
           "draws": 0,
-          "percentage": 23.076923076923077
+          "percentage": 25
         },
         "Izzet Spellementals": {
-          "wins": 3,
-          "losses": 3,
+          "wins": 4,
+          "losses": 5,
           "draws": 0,
-          "percentage": 50
+          "percentage": 44.44444444444444
         },
         "Jeskai Control": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
+        },
+        "Mardu Discard": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         },
         "Mono-Green Landfall": {
           "wins": 1,
@@ -1016,28 +1172,28 @@
     },
     "Izzet Prowess": {
       "archetype": "Izzet Prowess",
-      "wins": 234,
-      "losses": 234,
-      "draws": 0,
-      "winRate": 50,
+      "wins": 380,
+      "losses": 386,
+      "draws": 1,
+      "winRate": 49.60835509138381,
       "matchups": {
         "Azorius Momo": {
-          "wins": 10,
-          "losses": 8,
+          "wins": 13,
+          "losses": 9,
           "draws": 0,
-          "percentage": 55.55555555555556
+          "percentage": 59.09090909090909
         },
         "Azorius Tempo": {
-          "wins": 3,
-          "losses": 6,
+          "wins": 10,
+          "losses": 10,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 50
         },
         "Bant Airbending": {
-          "wins": 0,
+          "wins": 1,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 50
         },
         "Bant Omniscience": {
           "wins": 1,
@@ -1046,10 +1202,10 @@
           "percentage": 50
         },
         "Bant Rhythm": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 66.66666666666666
         },
         "Boros Discard": {
           "wins": 1,
@@ -1058,16 +1214,16 @@
           "percentage": 100
         },
         "Boros Dragons": {
-          "wins": 1,
-          "losses": 2,
+          "wins": 2,
+          "losses": 4,
           "draws": 0,
           "percentage": 33.33333333333333
         },
         "Dimir Excruciator": {
-          "wins": 4,
-          "losses": 2,
+          "wins": 6,
+          "losses": 4,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 60
         },
         "Dimir Midrange": {
           "wins": 1,
@@ -1077,15 +1233,15 @@
         },
         "Four-Color Control": {
           "wins": 5,
-          "losses": 0,
+          "losses": 3,
           "draws": 0,
-          "percentage": 100
+          "percentage": 62.5
         },
         "Four-Color Elementals": {
-          "wins": 6,
-          "losses": 1,
+          "wins": 8,
+          "losses": 2,
           "draws": 0,
-          "percentage": 85.71428571428571
+          "percentage": 80
         },
         "Golgari Control": {
           "wins": 1,
@@ -1100,94 +1256,94 @@
           "percentage": 100
         },
         "Golgari Midrange": {
-          "wins": 9,
-          "losses": 4,
-          "draws": 0,
-          "percentage": 69.23076923076923
-        },
-        "Izzet Lessons": {
-          "wins": 19,
-          "losses": 18,
-          "draws": 0,
-          "percentage": 51.35135135135135
-        },
-        "Izzet Maestro": {
-          "wins": 10,
-          "losses": 3,
-          "draws": 0,
-          "percentage": 76.92307692307693
-        },
-        "Izzet Prowess": {
-          "wins": 68,
-          "losses": 68,
-          "draws": 0,
-          "percentage": 50
-        },
-        "Izzet Spellementals": {
-          "wins": 14,
-          "losses": 23,
-          "draws": 0,
-          "percentage": 37.83783783783784
-        },
-        "Jeskai Control": {
           "wins": 13,
           "losses": 5,
           "draws": 0,
           "percentage": 72.22222222222221
         },
-        "Mardu Discard": {
-          "wins": 0,
-          "losses": 5,
+        "Izzet Lessons": {
+          "wins": 29,
+          "losses": 25,
+          "draws": 1,
+          "percentage": 53.70370370370371
+        },
+        "Izzet Maestro": {
+          "wins": 12,
+          "losses": 4,
           "draws": 0,
-          "percentage": 0
+          "percentage": 75
+        },
+        "Izzet Prowess": {
+          "wins": 118,
+          "losses": 118,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Izzet Spellementals": {
+          "wins": 30,
+          "losses": 37,
+          "draws": 0,
+          "percentage": 44.776119402985074
+        },
+        "Jeskai Control": {
+          "wins": 20,
+          "losses": 7,
+          "draws": 0,
+          "percentage": 74.07407407407408
+        },
+        "Mardu Discard": {
+          "wins": 5,
+          "losses": 7,
+          "draws": 0,
+          "percentage": 41.66666666666667
         },
         "Mono-Green Landfall": {
-          "wins": 42,
-          "losses": 61,
+          "wins": 59,
+          "losses": 100,
           "draws": 0,
-          "percentage": 40.77669902912621
+          "percentage": 37.10691823899371
         },
         "Mono-Red Aggro": {
-          "wins": 0,
-          "losses": 2,
+          "wins": 2,
+          "losses": 4,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         },
         "Rakdos Discard": {
-          "wins": 2,
-          "losses": 2,
+          "wins": 3,
+          "losses": 3,
           "draws": 0,
           "percentage": 50
         },
         "Selesnya Landfall": {
-          "wins": 8,
-          "losses": 11,
+          "wins": 13,
+          "losses": 22,
           "draws": 0,
-          "percentage": 42.10526315789473
+          "percentage": 37.142857142857146
         },
         "Selesnya Ouroboroid ": {
           "wins": 1,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 25
         },
         "Selesnya Rhythm": {
-          "wins": 4,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 66.66666666666666
-        },
-        "Simic Omniscience": {
           "wins": 5,
-          "losses": 2,
-          "draws": 0,
-          "percentage": 71.42857142857143
-        },
-        "Sultai Control": {
-          "wins": 3,
           "losses": 4,
           "draws": 0,
-          "percentage": 42.857142857142854
+          "percentage": 55.55555555555556
+        },
+        "Simic Omniscience": {
+          "wins": 9,
+          "losses": 5,
+          "draws": 0,
+          "percentage": 64.28571428571429
+        },
+        "Sultai Control": {
+          "wins": 6,
+          "losses": 6,
+          "draws": 0,
+          "percentage": 50
         },
         "Temur Lute": {
           "wins": 1,
@@ -1196,28 +1352,34 @@
           "percentage": 100
         },
         "Temur Omniscience": {
-          "wins": 0,
+          "wins": 2,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 66.66666666666666
         }
       }
     },
     "Izzet Spellementals": {
       "archetype": "Izzet Spellementals",
-      "wins": 66,
-      "losses": 64,
+      "wins": 116,
+      "losses": 113,
       "draws": 0,
-      "winRate": 50.76923076923077,
+      "winRate": 50.65502183406113,
       "matchups": {
         "Azorius Momo": {
-          "wins": 4,
-          "losses": 0,
+          "wins": 6,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 85.71428571428571
         },
         "Azorius Tempo": {
           "wins": 1,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 33.33333333333333
+        },
+        "Bant Airbending": {
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1235,70 +1397,70 @@
           "percentage": 0
         },
         "Dimir Excruciator": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         },
         "Four-Color Control": {
           "wins": 2,
-          "losses": 0,
-          "draws": 0,
-          "percentage": 100
-        },
-        "Four-Color Elementals": {
-          "wins": 0,
           "losses": 1,
           "draws": 0,
-          "percentage": 0
+          "percentage": 66.66666666666666
         },
-        "Golgari Midrange": {
+        "Four-Color Elementals": {
           "wins": 1,
           "losses": 1,
           "draws": 0,
           "percentage": 50
         },
-        "Izzet Lessons": {
-          "wins": 6,
+        "Golgari Midrange": {
+          "wins": 4,
           "losses": 4,
-          "draws": 0,
-          "percentage": 60
-        },
-        "Izzet Maestro": {
-          "wins": 3,
-          "losses": 3,
           "draws": 0,
           "percentage": 50
         },
-        "Izzet Prowess": {
-          "wins": 23,
-          "losses": 14,
+        "Izzet Lessons": {
+          "wins": 10,
+          "losses": 5,
           "draws": 0,
-          "percentage": 62.16216216216216
+          "percentage": 66.66666666666666
+        },
+        "Izzet Maestro": {
+          "wins": 5,
+          "losses": 4,
+          "draws": 0,
+          "percentage": 55.55555555555556
+        },
+        "Izzet Prowess": {
+          "wins": 37,
+          "losses": 30,
+          "draws": 0,
+          "percentage": 55.223880597014926
         },
         "Izzet Spellementals": {
-          "wins": 9,
-          "losses": 9,
+          "wins": 16,
+          "losses": 16,
           "draws": 0,
           "percentage": 50
         },
         "Jeskai Control": {
-          "wins": 2,
-          "losses": 5,
+          "wins": 5,
+          "losses": 6,
           "draws": 0,
-          "percentage": 28.57142857142857
+          "percentage": 45.45454545454545
         },
         "Mardu Discard": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
         "Mono-Green Landfall": {
-          "wins": 8,
-          "losses": 13,
+          "wins": 15,
+          "losses": 23,
           "draws": 0,
-          "percentage": 38.095238095238095
+          "percentage": 39.473684210526315
         },
         "Mono-Red Aggro": {
           "wins": 1,
@@ -1313,14 +1475,14 @@
           "percentage": 0
         },
         "Selesnya Landfall": {
-          "wins": 2,
-          "losses": 4,
+          "wins": 6,
+          "losses": 6,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 50
         },
         "Selesnya Ouroboroid ": {
           "wins": 0,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
           "percentage": 0
         },
@@ -1332,7 +1494,7 @@
         },
         "Simic Omniscience": {
           "wins": 0,
-          "losses": 3,
+          "losses": 4,
           "draws": 0,
           "percentage": 0
         },
@@ -1352,22 +1514,22 @@
     },
     "Jeskai Control": {
       "archetype": "Jeskai Control",
-      "wins": 28,
-      "losses": 31,
+      "wins": 43,
+      "losses": 53,
       "draws": 1,
-      "winRate": 47.45762711864407,
+      "winRate": 44.79166666666667,
       "matchups": {
         "Azorius Momo": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 66.66666666666666
         },
         "Azorius Tempo": {
           "wins": 1,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 50
         },
         "Bant Omniscience": {
           "wins": 0,
@@ -1388,46 +1550,52 @@
           "percentage": 0
         },
         "Dimir Excruciator": {
-          "wins": 1,
+          "wins": 4,
           "losses": 2,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 66.66666666666666
         },
-        "Golgari Midrange": {
-          "wins": 4,
+        "Four-Color Elementals": {
+          "wins": 0,
           "losses": 1,
           "draws": 0,
-          "percentage": 80
+          "percentage": 0
         },
-        "Izzet Lessons": {
-          "wins": 3,
-          "losses": 3,
-          "draws": 0,
-          "percentage": 50
-        },
-        "Izzet Maestro": {
-          "wins": 1,
-          "losses": 0,
-          "draws": 0,
-          "percentage": 100
-        },
-        "Izzet Prowess": {
-          "wins": 5,
-          "losses": 13,
-          "draws": 0,
-          "percentage": 27.77777777777778
-        },
-        "Izzet Spellementals": {
+        "Golgari Midrange": {
           "wins": 5,
           "losses": 2,
           "draws": 0,
           "percentage": 71.42857142857143
         },
-        "Mono-Green Landfall": {
-          "wins": 5,
-          "losses": 6,
+        "Izzet Lessons": {
+          "wins": 4,
+          "losses": 4,
           "draws": 0,
-          "percentage": 45.45454545454545
+          "percentage": 50
+        },
+        "Izzet Maestro": {
+          "wins": 2,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Izzet Prowess": {
+          "wins": 7,
+          "losses": 20,
+          "draws": 0,
+          "percentage": 25.925925925925924
+        },
+        "Izzet Spellementals": {
+          "wins": 6,
+          "losses": 5,
+          "draws": 0,
+          "percentage": 54.54545454545454
+        },
+        "Mono-Green Landfall": {
+          "wins": 10,
+          "losses": 10,
+          "draws": 0,
+          "percentage": 50
         },
         "Mono-Red Aggro": {
           "wins": 1,
@@ -1435,9 +1603,15 @@
           "draws": 0,
           "percentage": 100
         },
-        "Selesnya Landfall": {
+        "Rakdos Discard": {
           "wins": 0,
           "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Selesnya Landfall": {
+          "wins": 0,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -1449,7 +1623,7 @@
         },
         "Sultai Control": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         }
@@ -1457,10 +1631,10 @@
     },
     "Mardu Discard": {
       "archetype": "Mardu Discard",
-      "wins": 11,
-      "losses": 4,
+      "wins": 18,
+      "losses": 12,
       "draws": 0,
-      "winRate": 73.33333333333333,
+      "winRate": 60,
       "matchups": {
         "Azorius Momo": {
           "wins": 1,
@@ -1468,14 +1642,32 @@
           "draws": 0,
           "percentage": 100
         },
-        "Izzet Prowess": {
-          "wins": 5,
+        "Golgari Midrange": {
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
+        "Izzet Lessons": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Izzet Maestro": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Izzet Prowess": {
+          "wins": 7,
+          "losses": 5,
+          "draws": 0,
+          "percentage": 58.333333333333336
+        },
         "Izzet Spellementals": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1487,8 +1679,8 @@
           "percentage": 50
         },
         "Mono-Green Landfall": {
-          "wins": 2,
-          "losses": 1,
+          "wins": 4,
+          "losses": 2,
           "draws": 0,
           "percentage": 66.66666666666666
         },
@@ -1503,27 +1695,33 @@
           "losses": 2,
           "draws": 0,
           "percentage": 0
+        },
+        "Simic Omniscience": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
         }
       }
     },
     "Mono-Green Landfall": {
       "archetype": "Mono-Green Landfall",
-      "wins": 163,
-      "losses": 136,
+      "wins": 284,
+      "losses": 229,
       "draws": 1,
-      "winRate": 54.515050167224075,
+      "winRate": 55.36062378167641,
       "matchups": {
         "Azorius Momo": {
-          "wins": 7,
-          "losses": 9,
+          "wins": 11,
+          "losses": 10,
           "draws": 0,
-          "percentage": 43.75
+          "percentage": 52.38095238095239
         },
         "Azorius Tempo": {
-          "wins": 1,
-          "losses": 3,
+          "wins": 4,
+          "losses": 4,
           "draws": 0,
-          "percentage": 25
+          "percentage": 50
         },
         "Bant Airbending": {
           "wins": 1,
@@ -1539,9 +1737,9 @@
         },
         "Bant Rhythm": {
           "wins": 1,
-          "losses": 1,
+          "losses": 4,
           "draws": 0,
-          "percentage": 50
+          "percentage": 20
         },
         "Boros Dragons": {
           "wins": 0,
@@ -1550,10 +1748,10 @@
           "percentage": 0
         },
         "Dimir Excruciator": {
-          "wins": 7,
-          "losses": 5,
+          "wins": 11,
+          "losses": 6,
           "draws": 0,
-          "percentage": 58.333333333333336
+          "percentage": 64.70588235294117
         },
         "Dimir Midrange": {
           "wins": 0,
@@ -1562,16 +1760,16 @@
           "percentage": 0
         },
         "Four-Color Control": {
-          "wins": 2,
+          "wins": 3,
           "losses": 1,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 75
         },
         "Four-Color Elementals": {
-          "wins": 2,
+          "wins": 4,
           "losses": 3,
           "draws": 0,
-          "percentage": 40
+          "percentage": 57.14285714285714
         },
         "Golgari Control": {
           "wins": 1,
@@ -1586,16 +1784,16 @@
           "percentage": 100
         },
         "Golgari Midrange": {
-          "wins": 1,
-          "losses": 3,
+          "wins": 4,
+          "losses": 4,
           "draws": 0,
-          "percentage": 25
+          "percentage": 50
         },
         "Izzet Lessons": {
-          "wins": 9,
-          "losses": 11,
+          "wins": 19,
+          "losses": 14,
           "draws": 0,
-          "percentage": 45
+          "percentage": 57.57575757575758
         },
         "Izzet Maestro": {
           "wins": 2,
@@ -1604,70 +1802,70 @@
           "percentage": 66.66666666666666
         },
         "Izzet Prowess": {
-          "wins": 61,
-          "losses": 42,
+          "wins": 100,
+          "losses": 59,
           "draws": 0,
-          "percentage": 59.22330097087378
+          "percentage": 62.893081761006286
         },
         "Izzet Spellementals": {
-          "wins": 13,
-          "losses": 8,
+          "wins": 23,
+          "losses": 15,
           "draws": 0,
-          "percentage": 61.904761904761905
+          "percentage": 60.526315789473685
         },
         "Jeskai Control": {
-          "wins": 6,
-          "losses": 5,
+          "wins": 10,
+          "losses": 10,
           "draws": 0,
-          "percentage": 54.54545454545454
+          "percentage": 50
         },
         "Mardu Discard": {
-          "wins": 1,
-          "losses": 2,
+          "wins": 2,
+          "losses": 4,
           "draws": 0,
           "percentage": 33.33333333333333
         },
         "Mono-Green Landfall": {
-          "wins": 25,
-          "losses": 25,
+          "wins": 54,
+          "losses": 54,
           "draws": 0,
           "percentage": 50
         },
         "Mono-Red Aggro": {
-          "wins": 5,
-          "losses": 0,
+          "wins": 7,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 87.5
         },
         "Rakdos Discard": {
           "wins": 3,
-          "losses": 0,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 75
         },
         "Selesnya Landfall": {
-          "wins": 6,
-          "losses": 5,
+          "wins": 9,
+          "losses": 17,
           "draws": 0,
-          "percentage": 54.54545454545454
+          "percentage": 34.61538461538461
         },
         "Selesnya Ouroboroid ": {
           "wins": 0,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
           "percentage": 0
         },
         "Selesnya Rhythm": {
           "wins": 0,
-          "losses": 1,
+          "losses": 5,
           "draws": 0,
           "percentage": 0
         },
         "Simic Omniscience": {
-          "wins": 1,
-          "losses": 2,
+          "wins": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 40
         },
         "Simic Rhythm": {
           "wins": 1,
@@ -1676,10 +1874,10 @@
           "percentage": 50
         },
         "Sultai Control": {
-          "wins": 3,
-          "losses": 3,
+          "wins": 7,
+          "losses": 5,
           "draws": 0,
-          "percentage": 50
+          "percentage": 58.333333333333336
         },
         "Temur Lessons": {
           "wins": 1,
@@ -1688,19 +1886,19 @@
           "percentage": 100
         },
         "Temur Omniscience": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 66.66666666666666
         }
       }
     },
     "Mono-Red Aggro": {
       "archetype": "Mono-Red Aggro",
-      "wins": 5,
-      "losses": 10,
+      "wins": 10,
+      "losses": 15,
       "draws": 0,
-      "winRate": 33.33333333333333,
+      "winRate": 40,
       "matchups": {
         "Azorius Momo": {
           "wins": 0,
@@ -1709,16 +1907,16 @@
           "percentage": 0
         },
         "Izzet Lessons": {
-          "wins": 1,
+          "wins": 2,
           "losses": 1,
           "draws": 0,
-          "percentage": 50
+          "percentage": 66.66666666666666
         },
         "Izzet Prowess": {
-          "wins": 2,
-          "losses": 0,
+          "wins": 4,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 66.66666666666666
         },
         "Izzet Spellementals": {
           "wins": 0,
@@ -1739,10 +1937,16 @@
           "percentage": 0
         },
         "Mono-Green Landfall": {
-          "wins": 0,
-          "losses": 5,
+          "wins": 1,
+          "losses": 7,
           "draws": 0,
-          "percentage": 0
+          "percentage": 12.5
+        },
+        "Mono-Red Aggro": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
         },
         "Sultai Control": {
           "wins": 1,
@@ -1760,11 +1964,17 @@
     },
     "Rakdos Discard": {
       "archetype": "Rakdos Discard",
-      "wins": 5,
-      "losses": 5,
+      "wins": 8,
+      "losses": 7,
       "draws": 0,
-      "winRate": 50,
+      "winRate": 53.333333333333336,
       "matchups": {
+        "Bant Rhythm": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Four-Color Elementals": {
           "wins": 1,
           "losses": 0,
@@ -1772,8 +1982,8 @@
           "percentage": 100
         },
         "Izzet Prowess": {
-          "wins": 2,
-          "losses": 2,
+          "wins": 3,
+          "losses": 3,
           "draws": 0,
           "percentage": 50
         },
@@ -1783,11 +1993,17 @@
           "draws": 0,
           "percentage": 100
         },
+        "Jeskai Control": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Mono-Green Landfall": {
-          "wins": 0,
+          "wins": 1,
           "losses": 3,
           "draws": 0,
-          "percentage": 0
+          "percentage": 25
         },
         "Simic Omniscience": {
           "wins": 1,
@@ -1799,18 +2015,24 @@
     },
     "Selesnya Landfall": {
       "archetype": "Selesnya Landfall",
-      "wins": 35,
-      "losses": 20,
+      "wins": 66,
+      "losses": 38,
       "draws": 0,
-      "winRate": 63.63636363636363,
+      "winRate": 63.46153846153846,
       "matchups": {
         "Azorius Momo": {
           "wins": 3,
-          "losses": 0,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 60
         },
         "Azorius Tempo": {
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 75
+        },
+        "Boros Dragons": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
@@ -1836,9 +2058,9 @@
         },
         "Izzet Lessons": {
           "wins": 1,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 25
         },
         "Izzet Maestro": {
           "wins": 1,
@@ -1847,19 +2069,19 @@
           "percentage": 100
         },
         "Izzet Prowess": {
-          "wins": 11,
-          "losses": 8,
+          "wins": 22,
+          "losses": 13,
           "draws": 0,
-          "percentage": 57.89473684210527
+          "percentage": 62.857142857142854
         },
         "Izzet Spellementals": {
-          "wins": 4,
-          "losses": 2,
+          "wins": 6,
+          "losses": 6,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 50
         },
         "Jeskai Control": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1871,13 +2093,25 @@
           "percentage": 100
         },
         "Mono-Green Landfall": {
-          "wins": 5,
-          "losses": 6,
+          "wins": 17,
+          "losses": 9,
           "draws": 0,
-          "percentage": 45.45454545454545
+          "percentage": 65.38461538461539
+        },
+        "Selesnya Landfall": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
+        "Selesnya Ouroboroid ": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
         },
         "Simic Omniscience": {
-          "wins": 2,
+          "wins": 3,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1892,31 +2126,43 @@
     },
     "Selesnya Ouroboroid ": {
       "archetype": "Selesnya Ouroboroid ",
-      "wins": 8,
-      "losses": 2,
+      "wins": 14,
+      "losses": 4,
       "draws": 0,
-      "winRate": 80,
+      "winRate": 77.77777777777779,
       "matchups": {
+        "Azorius Momo": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
         "Azorius Tempo": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
           "percentage": 0
         },
-        "Izzet Lessons": {
+        "Bant Airbending": {
           "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
-        "Izzet Prowess": {
+        "Izzet Lessons": {
           "wins": 2,
           "losses": 1,
           "draws": 0,
           "percentage": 66.66666666666666
         },
+        "Izzet Prowess": {
+          "wins": 3,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 75
+        },
         "Izzet Spellementals": {
-          "wins": 2,
+          "wins": 3,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1928,7 +2174,13 @@
           "percentage": 100
         },
         "Mono-Green Landfall": {
-          "wins": 2,
+          "wins": 3,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
+        "Selesnya Landfall": {
+          "wins": 1,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -1937,10 +2189,10 @@
     },
     "Selesnya Rhythm": {
       "archetype": "Selesnya Rhythm",
-      "wins": 6,
-      "losses": 8,
+      "wins": 13,
+      "losses": 11,
       "draws": 0,
-      "winRate": 42.857142857142854,
+      "winRate": 54.166666666666664,
       "matchups": {
         "Azorius Momo": {
           "wins": 1,
@@ -1950,7 +2202,7 @@
         },
         "Azorius Tempo": {
           "wins": 0,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
           "percentage": 0
         },
@@ -1966,6 +2218,12 @@
           "draws": 0,
           "percentage": 100
         },
+        "Izzet Lessons": {
+          "wins": 1,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 50
+        },
         "Izzet Maestro": {
           "wins": 0,
           "losses": 1,
@@ -1973,10 +2231,10 @@
           "percentage": 0
         },
         "Izzet Prowess": {
-          "wins": 2,
-          "losses": 4,
+          "wins": 4,
+          "losses": 5,
           "draws": 0,
-          "percentage": 33.33333333333333
+          "percentage": 44.44444444444444
         },
         "Izzet Spellementals": {
           "wins": 0,
@@ -1985,7 +2243,7 @@
           "percentage": 0
         },
         "Mono-Green Landfall": {
-          "wins": 1,
+          "wins": 5,
           "losses": 0,
           "draws": 0,
           "percentage": 100
@@ -2000,10 +2258,10 @@
     },
     "Simic Omniscience": {
       "archetype": "Simic Omniscience",
-      "wins": 13,
-      "losses": 12,
+      "wins": 20,
+      "losses": 20,
       "draws": 0,
-      "winRate": 52,
+      "winRate": 50,
       "matchups": {
         "Azorius Momo": {
           "wins": 0,
@@ -2017,6 +2275,12 @@
           "draws": 0,
           "percentage": 100
         },
+        "Dimir Excruciator": {
+          "wins": 1,
+          "losses": 0,
+          "draws": 0,
+          "percentage": 100
+        },
         "Four-Color Control": {
           "wins": 1,
           "losses": 1,
@@ -2024,16 +2288,16 @@
           "percentage": 50
         },
         "Golgari Midrange": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Izzet Lessons": {
           "wins": 2,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 50
         },
         "Izzet Maestro": {
           "wins": 1,
@@ -2042,22 +2306,28 @@
           "percentage": 100
         },
         "Izzet Prowess": {
-          "wins": 2,
-          "losses": 5,
+          "wins": 5,
+          "losses": 9,
           "draws": 0,
-          "percentage": 28.57142857142857
+          "percentage": 35.714285714285715
         },
         "Izzet Spellementals": {
-          "wins": 3,
+          "wins": 4,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
-        "Mono-Green Landfall": {
-          "wins": 2,
+        "Mardu Discard": {
+          "wins": 0,
           "losses": 1,
           "draws": 0,
-          "percentage": 66.66666666666666
+          "percentage": 0
+        },
+        "Mono-Green Landfall": {
+          "wins": 3,
+          "losses": 2,
+          "draws": 0,
+          "percentage": 60
         },
         "Rakdos Discard": {
           "wins": 0,
@@ -2067,7 +2337,7 @@
         },
         "Selesnya Landfall": {
           "wins": 0,
-          "losses": 2,
+          "losses": 3,
           "draws": 0,
           "percentage": 0
         }
@@ -2120,12 +2390,18 @@
     },
     "Sultai Control": {
       "archetype": "Sultai Control",
-      "wins": 13,
-      "losses": 12,
+      "wins": 19,
+      "losses": 21,
       "draws": 0,
-      "winRate": 52,
+      "winRate": 47.5,
       "matchups": {
         "Azorius Tempo": {
+          "wins": 0,
+          "losses": 1,
+          "draws": 0,
+          "percentage": 0
+        },
+        "Bant Rhythm": {
           "wins": 0,
           "losses": 1,
           "draws": 0,
@@ -2150,10 +2426,10 @@
           "percentage": 0
         },
         "Izzet Lessons": {
-          "wins": 1,
-          "losses": 0,
+          "wins": 2,
+          "losses": 1,
           "draws": 0,
-          "percentage": 100
+          "percentage": 66.66666666666666
         },
         "Izzet Maestro": {
           "wins": 2,
@@ -2162,10 +2438,10 @@
           "percentage": 100
         },
         "Izzet Prowess": {
-          "wins": 4,
-          "losses": 3,
+          "wins": 6,
+          "losses": 6,
           "draws": 0,
-          "percentage": 57.14285714285714
+          "percentage": 50
         },
         "Izzet Spellementals": {
           "wins": 0,
@@ -2174,16 +2450,16 @@
           "percentage": 0
         },
         "Jeskai Control": {
-          "wins": 1,
+          "wins": 2,
           "losses": 0,
           "draws": 0,
           "percentage": 100
         },
         "Mono-Green Landfall": {
-          "wins": 3,
-          "losses": 3,
+          "wins": 5,
+          "losses": 7,
           "draws": 0,
-          "percentage": 50
+          "percentage": 41.66666666666667
         },
         "Mono-Red Aggro": {
           "wins": 0,
@@ -2261,10 +2537,10 @@
     },
     "Temur Omniscience": {
       "archetype": "Temur Omniscience",
-      "wins": 2,
-      "losses": 3,
+      "wins": 3,
+      "losses": 7,
       "draws": 0,
-      "winRate": 40,
+      "winRate": 30,
       "matchups": {
         "Golgari Midrange": {
           "wins": 0,
@@ -2274,21 +2550,21 @@
         },
         "Izzet Lessons": {
           "wins": 1,
-          "losses": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 50
+          "percentage": 33.33333333333333
         },
         "Izzet Prowess": {
           "wins": 1,
-          "losses": 0,
+          "losses": 2,
           "draws": 0,
-          "percentage": 100
+          "percentage": 33.33333333333333
         },
         "Mono-Green Landfall": {
-          "wins": 0,
-          "losses": 1,
+          "wins": 1,
+          "losses": 2,
           "draws": 0,
-          "percentage": 0
+          "percentage": 33.33333333333333
         }
       }
     }
